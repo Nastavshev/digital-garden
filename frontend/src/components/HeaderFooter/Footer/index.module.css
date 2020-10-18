@@ -1,0 +1,7 @@
+.footer {
+  /* position: fixed;
+  bottom: 0;
+  width: 100%; */
+  background: linear-gradient(to top, #a3de83, #2eb872) !important;
+  height: 50px;
+}

@@ -1,0 +1,50 @@
+.mainGarden{
+  height: 100vh;
+  background-image: url(../../logo/3356667.jpg);
+  background-attachment: fixed;
+  background-size: 500px 500px;
+  background-repeat:no-repeat;
+  background-position-x: 100%;
+  background-position-y: 120%;
+}
+
+.examplegardenBed{
+  min-height: 300px;
+  max-width: 150px;
+  background: linear-gradient(to bottom right, #2eb872, #a3de83) !important;
+  /* border: black solid 2px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.example {
+  height: 500px;
+  width: 70%;
+  margin: 30px;
+  /* border: black solid 1px; */
+  background-color: rgba(224, 224, 224, 0.61)
+
+}
+
+.avatar{
+  height: 50px;
+  width: 50px;
+}
+.flex{
+  display: flex;
+}
+.littleContainer{
+  min-height: 150px;
+  min-width: 100px;
+  width: 20%;
+  margin: 30px;
+  padding: 10px;
+  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.76);
+}
+.addButton{
+  margin-right: 0px;
+}
