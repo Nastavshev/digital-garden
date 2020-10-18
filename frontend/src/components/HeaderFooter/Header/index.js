@@ -66,11 +66,16 @@ export default function MenuAppBar() {
           <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
           <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
           <Login setOpenLogin={setOpenLogin} openLogin={openLogin} />
-          <Button size="small" className={styles.bar}>Выйти</Button>
+          <Link className={styles.link} to='/user/logout'>
+            <Button size="small" className={styles.bar}>Выйти</Button>
+          </Link>
           <Typography variant="h6" className={classes.title}>
             Название
           </Typography>
           {/* {auth && ( */}
+          <Link className={styles.link} to='/user/account'>
+            <Button size="small" className={styles.bar}>Личный кабинет</Button>
+          </Link>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"

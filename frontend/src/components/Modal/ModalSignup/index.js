@@ -52,7 +52,7 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
-          return history.push('/secret');
+          return history.push('/user/account');
         }
         dispatch(setFault());
         return setError('пользователь с таким email уже существует');
@@ -76,7 +76,6 @@ function Logup(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="title"
             label="Введите имя"
             type="text"
             fullWidth
@@ -89,9 +88,8 @@ function Logup(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="location"
             label="Введите e-mail"
-            type="password"
+            type="text"
             fullWidth
             onChange={handleChange}
             name="email"
@@ -103,7 +101,6 @@ function Logup(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="location"
             label="Введите пароль"
             type="password"
             fullWidth
@@ -119,7 +116,7 @@ function Logup(props) {
             margin="dense"
             id="location"
             label="Подтвердите пароль"
-            type="text"
+            type="password"
             fullWidth
             onChange={handleChange}
             name="confirm"
@@ -127,6 +124,7 @@ function Logup(props) {
             required
           />
         </DialogContent>
+        <DialogContent>{error}</DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
@@ -134,14 +132,9 @@ function Logup(props) {
           <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
             Зарегистрироваться!
           </Button>
-          <div>{error}</div>
         </DialogActions>
       </Dialog>
     </div>
-
-
-
-
   );
 }
 
