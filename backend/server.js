@@ -1,10 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import session from 'express-session';
 import authRouter from './routes/auth.js';
 import indexRouter from './routes/index.js';
 import './misc/db.js';
 import './misc/env.js';
+import Garden from './models/Garden.js';
 
 const app = express();
 
@@ -31,6 +31,18 @@ app.post('/modal', async (req, res) => {
   });
   await newGardenBed.save();
   console.log(newGardenBed);
+});
+
+app.post('/modaladdGarden', async (req, res) => {
+  const {
+    title, comment,
+  } = req.body.inputsGarden;
+  const newGarden = await new Garden({
+    title,
+    comment,
+  });
+  await newGarden.save();
+  res.status(200);
 });
 
 app.use('/', indexRouter);
