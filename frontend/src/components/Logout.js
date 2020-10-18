@@ -8,6 +8,7 @@ function Logout() {
   const history = useHistory();
   useEffect(() => {
     (async () => {
+      console.log('logout');
       await fetch('/auth/logout');
       dispatch(setLogout());
       history.push('/');
@@ -15,6 +16,7 @@ function Logout() {
   }, []);
   return (
     <>
+    <div>logout</div>
     </>
   );
 }

@@ -25,7 +25,7 @@ function App() {
         <Switch>
           <Route exact path="/user/logout">
             Выход
-        {/* <Logout /> */}
+        <Logout />
           </Route>
           <Route exact path="/user/account">
             <Personal />
