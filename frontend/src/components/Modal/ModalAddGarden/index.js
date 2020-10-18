@@ -7,12 +7,28 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import styles from './index.module.css'
-
+import { useDispatch } from 'react-redux';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useState } from 'react';
 
 function ModalAddGarden(props) {
+
+  // const dispatch = useDispatch();
+
   const { setOpen, open } = props;
-  // const [inputOne, setInputOne] = useState('');
+
+  const [inputsGarden, setInputsGarden] = useState({
+    title: '',
+    comment: '',
+  });
+
+  const { title, comment } = inputsGarden;
+  function handleChange({ target: { name, value } }) {
+    setInputsGarden({
+      ...inputsGarden,
+      [name]: value,
+    });
+  }
 
   const loadScript = (src, onLoad) => {
     const script = document.createElement("script");
@@ -34,9 +50,20 @@ function ModalAddGarden(props) {
     });
   }, []);
 
+  //Разобраться с нежелательным поведением
   const init = () => {
     new window.ymaps.SuggestView('suggest', { results: 3, });
   };
+
+  async function saveGarden() {
+    const response = await fetch('/modaladdGarden', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ inputsGarden })
+    });
+  }
 
   return (
     <div>
@@ -49,10 +76,12 @@ function ModalAddGarden(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="title"
+            // id="title"
             label="Введите название"
             type="text"
             fullWidth
+            onChange={(e) => handleChange(e)}
+            name="title"
           />
         </DialogContent>
         <DialogContent>
@@ -77,13 +106,15 @@ function ModalAddGarden(props) {
             variant="outlined"
             className="comment"
             fullWidth
+            onChange={(e) => handleChange(e)}
+            name="comment"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={(event) => { handleClose(); saveGarden(event) }} color="primary">
             Создать!
           </Button>
         </DialogActions>
