@@ -3,5 +3,4 @@ export default (req, res, next) => {
     return next();
   }
   res.status(401).end();
-
 };

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Merriweather:wght@700&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.shortInfo {
+  margin-bottom: 1%;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 19px;
+}
+
+.wrapperMoon {
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.imgNature {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  /* width: 500px;
+  height: 300px; */
+}
+
+.imgNature img {
+  width: 400px;
+  height: 600px;
+}
+
+.tableGrow {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+.articleTitle {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #2eb872;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.articleText {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  text-align: justify;
+  text-indent: 1em;
+}
+
+h2 {
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Merriweather', serif;
+  font-size: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.monthName {
+  font-size: 25px;
+  color: black;
+  font-weight: 600;
+}
