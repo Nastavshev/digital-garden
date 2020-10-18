@@ -11,6 +11,7 @@ import styles from './index.module.css';
 import Signup from '../../Modal/ModalSignup';
 import Login from '../../Modal/ModalLogin';
 import { Button } from '@material-ui/core';
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuAppBar() {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const classes = useStyles();
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -62,13 +64,23 @@ export default function MenuAppBar() {
           <Link className={styles.link} to='/mooncalendar'>
             <Button size="small" className={styles.bar}>Лунный календарь</Button>
           </Link>
-          <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
-          <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
-          <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
-          <Login setOpenLogin={setOpenLogin} openLogin={openLogin} />
-          <Link className={styles.link} to='/user/logout'>
-            <Button size="small" className={styles.bar}>Выйти</Button>
-          </Link>
+
+          {isAuthenticated
+            ?
+            <>
+              <Link className={styles.link} to='/user/logout'>
+                <Button size="small" className={styles.bar}>Выйти</Button>
+              </Link>
+            </>
+            :
+            <>
+              <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
+              <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
+              <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
+              <Login setOpenLogin={setOpenLogin} openLogin={openLogin} />
+            </>
+          }
+
           <Typography variant="h6" className={classes.title}>
             Название
           </Typography>
