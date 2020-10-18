@@ -1,0 +1,19 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Amatic+SC'); */
+
+.bar {
+  color: #feffe4 !important;
+  background: linear-gradient(to top, #2eb872, #a3de83) !important;
+  height: 80px;
+}
+
+.main {
+  height: 100%;
+}
+/* .titleWord{
+  font-family: 'Amatic SC', cursive !important;
+  src: url('https://fonts.googleapis.com/css2?family=Amatic+SC');
+} */
+
+.link{
+  text-decoration: none;
+}

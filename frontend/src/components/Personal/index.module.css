@@ -1,0 +1,61 @@
+.welcome{
+  min-height: 150px;
+  width: 40%;
+  margin: 30px;
+  padding: 10px;
+}
+.avatar{
+  height: 100px;
+  width: 100px;
+}
+.welcomeContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.littleContainer{
+  min-height: 150px;
+  width: 20%;
+  margin: 30px;
+  padding: 10px;
+  min-width: 100px;
+  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.87);
+}
+.garden{
+  min-height: 600px;
+  margin: 30px;
+  width: 60%;
+}
+
+.twolittleContainer{
+  display: flex;
+  flex-direction: row;
+}
+.personalGarden{
+  height: 50px;
+  margin: 25px;
+  background: linear-gradient(to top, #2eb872, #a3de83) !important;
+}
+
+.mainPersonal{
+  background-image: url(../../logo/3356666.jpg);
+  background-attachment: fixed;
+  background-size: 500px 500px;
+  background-repeat:no-repeat;
+  background-position-x: 100%;
+  background-position-y: 120%;
+}
+
+@media (max-width: 750px) { 
+  .welcomeContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+ }
+.flexGarden{
+  display: flex;
+}
