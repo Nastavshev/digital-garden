@@ -36,6 +36,6 @@ app.post('/modal', async (req, res) => {
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
-app.listen(process.env.PORT ?? 3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log('I am work 3001');
 });

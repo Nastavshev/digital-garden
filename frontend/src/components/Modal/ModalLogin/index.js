@@ -75,11 +75,10 @@ function Login(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="location"
             label="Введите e-mail"
-            type="password"
+            type="text"
             fullWidth
-            onChange={handleChange} 
+            onChange={handleChange}
             name="email"
             value={email}
             required
@@ -89,25 +88,24 @@ function Login(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="location"
             label="Введите пароль"
             type="password"
             fullWidth
-            onChange={handleChange} 
-            name="password" 
+            onChange={handleChange}
+            name="password"
             value={password}
             required
           />
         </DialogContent>
+        <DialogContent className="error">{error}</DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => {handleSubmit(e); handleClose()}}color="primary">
+          <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
             Войти!
           </Button>
-          <div className="error">{error}</div>
-        <Link to="/">HOME</Link>
+          {/* <Link to="/">HOME</Link> */}
         </DialogActions>
       </Dialog>
     </div>
