@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { setFault, setLogup } from '../../../redux/authActions';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-function Logup(props) {
+function Signup(props) {
   const { setOpenSignup, openSignup } = props;
 
   // // Закрытие модального окна 
@@ -19,53 +16,7 @@ function Logup(props) {
     setOpenSignup(false);
   };
 
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [error, setError] = useState();
-  const [inputs, setInputs] = useState({});
-  function handleChange({ target: { name, value } }) {
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  }
-
-  const {
-    name, email, password, confirm,
-  } = inputs;
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      if (password === confirm) {
-        const response = await fetch('/auth/logup', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        });
-        if (response.status === 200) {
-          dispatch(setLogup());
-          return history.push('/secret');
-        }
-        dispatch(setFault());
-        return setError('пользователь с таким email уже существует');
-      }
-      return setError('Пароль не совпадает');
-    } catch (err) {
-      console.error('ERROR ENTER LOGIN PAGE', err);
-      return setError('ERROR ENTER LOGIN PAGE');
-    }
-  }
-
   return (
-
     <div>
       <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
         <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
@@ -80,9 +31,6 @@ function Logup(props) {
             label="Введите имя"
             type="text"
             fullWidth
-            onChange={handleChange}
-            name="name"
-            value={name}
           />
         </DialogContent>
         <DialogContent>
@@ -93,10 +41,6 @@ function Logup(props) {
             label="Введите e-mail"
             type="password"
             fullWidth
-            onChange={handleChange}
-            name="email"
-            required
-            value={email}
           />
         </DialogContent>
         <DialogContent>
@@ -107,10 +51,6 @@ function Logup(props) {
             label="Введите пароль"
             type="password"
             fullWidth
-            onChange={handleChange}
-            name="password"
-            value={password}
-            required
           />
         </DialogContent>
         <DialogContent>
@@ -121,28 +61,19 @@ function Logup(props) {
             label="Подтвердите пароль"
             type="text"
             fullWidth
-            onChange={handleChange}
-            name="confirm"
-            value={confirm}
-            required
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
+          <Button onClick={handleClose} color="primary">
             Зарегистрироваться!
           </Button>
-          <div>{error}</div>
         </DialogActions>
-      </Dialog>
-    </div>
-
-
-
-
+      </Dialog >
+    </div >
   );
 }
 
-export default Logup;
+export default Signup;

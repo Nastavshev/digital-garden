@@ -59,6 +59,9 @@ export default function MenuAppBar() {
             <Button size="small" className={styles.bar}>Главная</Button>
             {/* <Title /> */}
           </Link>
+          <Link className={styles.link} to='/mooncalendar'>
+            <Button size="small" className={styles.bar}>Лунный календарь</Button>
+          </Link>
           <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
           <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
           <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>

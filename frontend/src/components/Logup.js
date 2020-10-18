@@ -2,8 +2,24 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setFault, setLogup } from '../redux/authActions';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
-function Logup() {
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+function Logup(props) {
+  const { setOpenSignup, openSignup } = props;
+
+  // // Закрытие модального окна 
+  const handleClose = () => {
+    setOpenSignup(false);
+  };
+
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [error, setError] = useState();
@@ -49,28 +65,83 @@ function Logup() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <lable>
-          Name:
-          <input onChange={handleChange} name="name" type="text" value={name} required />
-        </lable>
-        <lable>
-          mail:
-          <input onChange={handleChange} type="email" name="email" value={email} required />
-        </lable>
-        <lable>
-          Password:
-          <input onChange={handleChange} type="password" name="password" value={password} required />
-        </lable>
-        <lable>
-          Confirm password:
-          <input onChange={handleChange} type="password" name="confirm" value={confirm} required />
-        </lable>
-        <button className="error" type="submit">Signup</button>
-        <div>{error}</div>
-      </form>
-    </>
+
+    <div>
+      <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
+        <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Заполните, пожалуста, все поля для регистрации
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            // id="title"
+            label="Введите имя"
+            type="text"
+            fullWidth
+            onChange={handleChange}
+            name="name"
+            value={name}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            // id="location"
+            label="Введите e-mail"
+            type="password"
+            fullWidth
+            onChange={handleChange}
+            name="email"
+            required
+            value={email}
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            // id="location"
+            label="Введите пароль"
+            type="password"
+            fullWidth
+            onChange={handleChange}
+            name="password"
+            value={password}
+            required
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="location"
+            label="Подтвердите пароль"
+            type="text"
+            fullWidth
+            onChange={handleChange}
+            name="confirm"
+            value={confirm}
+            required
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Отмена
+          </Button>
+          <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
+            Зарегистрироваться!
+          </Button>
+          <div>{error}</div>
+        </DialogActions>
+      </Dialog>
+    </div>
+
+
+
+
   );
 }
 
