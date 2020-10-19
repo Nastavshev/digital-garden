@@ -9,3 +9,4 @@ export {
 
 export const GET_VEGETABLES_DB = 'GET_VEGETABLES_DB';
 export const GET_MOONCALENDAR_DB = 'GET_MOONCALENDAR_DB';
+export const MODAL_LOGIN = 'MODAL_LOGIN'

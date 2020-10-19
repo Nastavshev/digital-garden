@@ -11,7 +11,8 @@ import styles from './index.module.css';
 import Signup from '../../Modal/ModalSignup';
 import Login from '../../Modal/ModalLogin';
 import { Button } from '@material-ui/core';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { modalLogin } from '../../../redux/modalLoginActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,60 +27,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuAppBar() {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const classes = useStyles();
-  const [auth, setAuth] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
   const [openSignup, setOpenSignup] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const status = useSelector((state) => state.modalLogin);
 
   const handleClickOpenSignup = () => {
     setOpenSignup(true);
   };
 
   const handleClickOpenLogin = () => {
-    setOpenLogin(true);
+    dispatch(modalLogin());
   };
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={styles.bar}>
         <Toolbar>
-          {/* <Link to='/user/logout'> */}
-          {/* Выход */}
-          {/* </Link> */}
           <Link className={styles.link} to='/'>
             <Button size="small" className={styles.bar}>Главная</Button>
-            {/* <Title /> */}
           </Link>
           <Link className={styles.link} to='/mooncalendar'>
             <Button size="small" className={styles.bar}>Лунный календарь</Button>
           </Link>
-
-          {isAuthenticated
-            ?
-            <>
-              <Link className={styles.link} to='/user/logout'>
-                <Button size="small" className={styles.bar}>Выйти</Button>
-              </Link>
-            </>
-            :
-            <>
-              <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
-              <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
-              <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
-              <Login setOpenLogin={setOpenLogin} openLogin={openLogin} />
-            </>
-          }
 
           <Typography variant="h6" className={classes.title}>
             <div className={styles.wrapperLogo}>
@@ -99,6 +70,9 @@ export default function MenuAppBar() {
           {isAuthenticated
             ?
             <>
+              <Link className={styles.link} to='/user/logout'>
+                <Button size="small" className={styles.bar}>Выйти</Button>
+              </Link>
               <Link className={styles.link} to='/user/account'>
                 <Button size="small" className={styles.bar}>Личный кабинет</Button>
               </Link>
@@ -106,18 +80,22 @@ export default function MenuAppBar() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+              // onClick={handleMenu}
               >
                 <Avatar src={woman} />
               </IconButton>
             </>
-            : ''
+            :
+            <>
+              <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
+              <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
+              <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
+              <Login />
+            </>
           }
         </Toolbar>
       </AppBar>
       <main className='main'>
-        {/* Кнопка добавления с менюшкой */}
-        {/* <CustomizedMenus /> */}
       </main>
     </div >
   );

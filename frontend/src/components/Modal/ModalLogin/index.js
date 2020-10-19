@@ -7,18 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFault, setLogin } from '../../../redux/authActions.js';
+import { modalLogin } from '../../../redux/modalLoginActions';
 
-function Login(props) {
-  const { setOpenLogin, openLogin } = props;
-
-  // // Закрытие модального окна 
-  const handleClose = () => {
-    setOpenLogin(false);
-  };
+function Login() {
 
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.modalLogin);
   const history = useHistory();
   const [error, setError] = useState();
   const [inputs, setInputs] = useState({
@@ -27,6 +23,10 @@ function Login(props) {
   });
 
   const { email, password } = inputs;
+
+  const handleClose = () => {
+    dispatch(modalLogin());
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -64,7 +64,7 @@ function Login(props) {
 
   return (
     <div>
-      <Dialog open={openLogin} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
+      <Dialog open={status} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
         <DialogTitle id="form-dialog-title"><strong>Вход</strong></DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -105,7 +105,6 @@ function Login(props) {
           <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
             Войти!
           </Button>
-          {/* <Link to="/">HOME</Link> */}
         </DialogActions>
       </Dialog>
     </div>
