@@ -6,7 +6,7 @@ import Login from '../Login';
 import Secret from '../Secret';
 import PrivateRoute from '../PrivateRoute';
 import Logout from '../Logout';
-import Logup from '../Logup';
+// import Logup from '../Logup';
 import ModalBed from '../ModalBed';
 import Main from '../Main';
 import MonthCalendar from '../MonthCalendar';
@@ -48,9 +48,9 @@ function App() {
           <Route exact path='/mooncalendar/:idMonth'>
             <MonthCalendar />
           </Route>
-          <Route exact path='/logup'>
+          {/* <Route exact path='/logup'>
             <Logup />
-          </Route>
+          </Route> */}
           <Route exact path='/policy'>
             <Policy />
           </Route>

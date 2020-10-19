@@ -8,8 +8,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-
 import DialogTitle from '@material-ui/core/DialogTitle';
+import emailjs from 'emailjs-com';
+import { LOGOUT } from '../redux/actionTypes';
 
 function Logup(props) {
   const { setOpenSignup, openSignup } = props;
@@ -35,6 +36,28 @@ function Logup(props) {
     name, email, password, confirm,
   } = inputs;
 
+  let data = {
+    name: name,
+    email: email,
+    password: password
+  }
+
+  function sendEmail(e) {
+    // e.preventDefault();
+    console.log('send email');
+    // emailjs.send(
+    //   'Yandex',
+    //   'template_tswrqnv',
+    //   'user_fgtM1ILKeawxufmu65ncd',
+    //   data
+    // )
+    //   .then((result) => {
+    //     console.log(result.text);
+    //   }, (error) => {
+    //     console.log(error.text);
+    //   });
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -50,8 +73,10 @@ function Logup(props) {
             password,
           }),
         });
+        console.log(response);
         if (response.status === 200) {
           dispatch(setLogup());
+          sendEmail(e);
           return history.push('/secret');
         }
         dispatch(setFault());
