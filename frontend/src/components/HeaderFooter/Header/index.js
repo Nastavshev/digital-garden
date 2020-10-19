@@ -59,9 +59,6 @@ export default function MenuAppBar() {
               </div>
               <div className={styles.logoText}>ВАСИН ОГОРОД</div>
               <div>
-                <img src="/icons/park.png" className={styles.logoIcon} />
-              </div>
-              <div>
                 <img src="/icons/vegetables.png" className={styles.logoIcon} />
               </div>
             </div>
