@@ -82,22 +82,37 @@ export default function MenuAppBar() {
           }
 
           <Typography variant="h6" className={classes.title}>
-            Название
+            <div className={styles.wrapperLogo}>
+              <div>
+                <img src="/icons/shovel.png" className={styles.logoIcon} />
+              </div>
+              <div className={styles.logoText}>ВАСИН ОГОРОД</div>
+              <div>
+                <img src="/icons/park.png" className={styles.logoIcon} />
+              </div>
+              <div>
+                <img src="/icons/vegetables.png" className={styles.logoIcon} />
+              </div>
+            </div>
           </Typography>
-          {/* {auth && ( */}
-          <Link className={styles.link} to='/user/account'>
-            <Button size="small" className={styles.bar}>Личный кабинет</Button>
-          </Link>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-          ><Link to='/user/account'>
-              <Avatar src={woman} />
-            </Link>
-          </IconButton>
-          {/* )} */}
+
+          {isAuthenticated
+            ?
+            <>
+              <Link className={styles.link} to='/user/account'>
+                <Button size="small" className={styles.bar}>Личный кабинет</Button>
+              </Link>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+              >
+                <Avatar src={woman} />
+              </IconButton>
+            </>
+            : ''
+          }
         </Toolbar>
       </AppBar>
       <main className='main'>
