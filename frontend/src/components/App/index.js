@@ -13,13 +13,13 @@ import MonthCalendar from '../MonthCalendar';
 import MoonCalendar from '../MoonCalendar';
 import Footer from '../HeaderFooter/Footer';
 import Header from '../HeaderFooter/Header';
-import './App.css';
+import styles from './index.module.css';
 import Personal from '../Personal';
 import Garden from '../Garden'
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Router>
         <Header />
         <Switch>
