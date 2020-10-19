@@ -1,15 +1,19 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Login from '../components/Modal/ModalLogin';
+import Main from './Main';
+import { modalLogin } from './../redux/modalLoginActions'
 
 function PrivateRoute({ children, ...rest }) {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
   return (
     <Route {...rest}>
       {
         isAuthenticated
           ? children
-          : <Redirect to="/login" />
+          : (dispatch(modalLogin()) && < Redirect to="/" />)
       }
     </Route>
   );
