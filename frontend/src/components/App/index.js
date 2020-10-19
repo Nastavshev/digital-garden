@@ -30,12 +30,12 @@ function App() {
             Выход
         <Logout />
           </Route>
-          <Route exact path="/user/account">
+          <PrivateRoute exact path="/user/account">
             <Personal />
-          </Route>
-          <Route exact path="/user/garden">
+          </PrivateRoute>
+          <PrivateRoute exact path="/user/garden">
             <Garden />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <Main />
           </Route>
