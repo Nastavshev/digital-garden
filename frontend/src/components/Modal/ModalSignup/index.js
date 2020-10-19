@@ -8,7 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-
+import emailjs from 'emailjs-com';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 function Logup(props) {
@@ -35,6 +35,28 @@ function Logup(props) {
     name, email, password, confirm,
   } = inputs;
 
+  let data = {
+    name: name,
+    email: email,
+    password: password
+  }
+
+  function sendEmail(e) {
+    // e.preventDefault();
+    console.log('send email');
+    emailjs.send(
+      'yandex',
+      'template_tswrqnv',
+      data,
+      'user_fgtM1ILKeawxufmu65ncd',
+    )
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -52,6 +74,7 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
+          sendEmail(e);
           return history.push('/user/account');
         }
         dispatch(setFault());
