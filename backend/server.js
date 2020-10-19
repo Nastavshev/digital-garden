@@ -2,9 +2,9 @@ import express from 'express';
 import session from 'express-session';
 import authRouter from './routes/auth.js';
 import indexRouter from './routes/index.js';
+import modalsRouter from './routes/modal.js';
 import './misc/db.js';
 import './misc/env.js';
-import Garden from './models/Garden.js';
 
 const app = express();
 
@@ -33,20 +33,9 @@ app.post('/modal', async (req, res) => {
   console.log(newGardenBed);
 });
 
-app.post('/modaladdGarden', async (req, res) => {
-  const {
-    title, comment,
-  } = req.body.inputsGarden;
-  const newGarden = await new Garden({
-    title,
-    comment,
-  });
-  await newGarden.save();
-  res.status(200);
-});
-
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/modals/', modalsRouter);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log('I am work 3001');

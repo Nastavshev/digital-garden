@@ -7,7 +7,7 @@ const GardenSchema = new mongoose.Schema({
   //   unique: true,
   // },
   title: String,
-  // location: String,
+  location: String,
   // size: [Number],
   // beds: [{}],
   comment: String,

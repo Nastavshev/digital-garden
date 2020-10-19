@@ -20,9 +20,10 @@ function ModalAddGarden(props) {
   const [inputsGarden, setInputsGarden] = useState({
     title: '',
     comment: '',
+    location: '',
   });
 
-  const { title, comment } = inputsGarden;
+  const { title, comment, location } = inputsGarden;
   function handleChange({ target: { name, value } }) {
     setInputsGarden({
       ...inputsGarden,
@@ -30,33 +31,29 @@ function ModalAddGarden(props) {
     });
   }
 
-  const loadScript = (src, onLoad) => {
+  const loadScript = (src) => {
     const script = document.createElement("script");
     script.src = src;
     script.async = true;
     document.body.appendChild(script);
-    script.onload = onLoad;
   };
 
   // // Закрытие модального окна 
   const handleClose = (e) => {
     setOpen(false);
-    // console.log(inputOne)
   };
 
   useEffect(() => {
     loadScript("https://api-maps.yandex.ru/2.1?apikey=1aa68c91-3c36-46a3-9d6c-b1a840b26ad8&lang=ru_RU", () => {
-      window.ymaps.ready(init);
     });
   }, []);
 
-  //Разобраться с нежелательным поведением
   const init = () => {
-    new window.ymaps.SuggestView('suggest', { results: 3, });
+    new window.ymaps.SuggestView('suggest');
   };
 
   async function saveGarden() {
-    const response = await fetch('/modaladdGarden', {
+    const response = await fetch('/modals/garden', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +73,6 @@ function ModalAddGarden(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="title"
             label="Введите название"
             type="text"
             fullWidth
@@ -85,15 +81,16 @@ function ModalAddGarden(props) {
           />
         </DialogContent>
         <DialogContent>
-          <input
-            // Надо переписать этот инпут!
+          <TextField
             autoFocus
             margin="dense"
             id="suggest"
             label="Введите населенный пункт"
             type="text"
-          // fullWidth
-          // onСhange={() => init()}
+            fullWidth
+            onChange={init}
+            onSelect={(e) => handleChange(e)}
+            name="location"
           />
         </DialogContent>
         <DialogContent>
