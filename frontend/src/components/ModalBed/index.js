@@ -17,7 +17,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const StyledTextField = withStyles({
   root: {
     width: '140%',
-    marginLeft: '-18%',
+    marginLeft: '-20%',
   },
 })(TextField);
 

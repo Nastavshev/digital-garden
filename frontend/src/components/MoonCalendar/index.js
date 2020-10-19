@@ -42,7 +42,7 @@ function MoonCalendar() {
           <img src="/images/moonCalImg.jpg" className={styles.image} />
         </div>
         <div className={styles.content}>
-          <h1>Лунный календарь</h1>
+          <h1>Лунный календарь на 2020 год</h1>
           <p>Чтобы ознакомиться с этим календарем, выберите в таблице интересующий Вас месяц, нажмите на него и узнайте самые подробные рекомендации на каждый день этого месяца.</p>
         </div>
         <div className={styles.divFlex}>

@@ -3,5 +3,56 @@
   bottom: 0;
   width: 100%; */
   background: linear-gradient(to top, #a3de83, #2eb872) !important;
-  height: 50px;
+  min-height: 50px;
+}
+
+.wrapperFooter {
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  justify-content: space-around;
+  padding-bottom: 1%;
+  color: black;
+  padding-top: 1%;
+}
+
+.wrapperFooter p {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.social li {
+  list-style-type: none;
+  width: 33%;
+  margin: 0;
+  display: inline-block;
+}
+
+.social ul {
+  margin: 0;
+  padding: 0;
+}
+
+.social img {
+  width: 30px;
+  height: 30px;
+}
+
+.divInfo li {
+  list-style-type: none;
+}
+
+.divInfo ul {
+  margin: 0;
+  padding: 0;
+}
+
+.divInfo a {
+  color: black;
+}
+
+.divInfo a:hover {
+  color: #feffe4;
 }
