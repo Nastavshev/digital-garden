@@ -18,7 +18,10 @@ function Main() {
 
   return (
     <>
+      <div>Mainnnnnnnnnn</div>
+
       <div className={styles.main}>Main</div>
+
       <div className={styles.gifDiv}>
         {/* <img src="../images/screen.gif" /> */}
       </div>

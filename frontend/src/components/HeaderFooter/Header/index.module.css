@@ -1,4 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Amatic+SC'); */
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+
+
 .bar {
   color: #feffe4 !important;
   background: linear-gradient(to top, #2eb872, #a3de83) !important;
@@ -15,4 +18,18 @@
 
 .link{
   text-decoration: none;
+}
+
+.logoIcon {
+  width: 50px;
+}
+
+.logoText {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.wrapperLogo {
+  display: flex;
+  margin: 0 auto;
+justify-content: center;
 }
