@@ -11,6 +11,9 @@ import ModalBed from '../ModalBed';
 import Main from '../Main';
 import MonthCalendar from '../MonthCalendar';
 import MoonCalendar from '../MoonCalendar';
+import Policy from '../Policy';
+import Contacts from '../Contacts';
+import AboutProject from '../AboutProject';
 import Footer from '../HeaderFooter/Footer';
 import Header from '../HeaderFooter/Header';
 import './App.css';
@@ -47,6 +50,15 @@ function App() {
           </Route>
           <Route exact path='/logup'>
             <Logup />
+          </Route>
+          <Route exact path='/policy'>
+            <Policy />
+          </Route>
+          <Route exact path='/contacts'>
+            <Contacts />
+          </Route>
+          <Route exact path='/about'>
+            <AboutProject />
           </Route>
         </Switch>
         <Footer />

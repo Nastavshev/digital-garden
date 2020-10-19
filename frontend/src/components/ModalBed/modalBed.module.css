@@ -9,8 +9,8 @@
 }
 
 .accordionDetails {
-  display: block;
   margin: 0 auto;
+  width: 70%;
 }
 
 .accordion {
@@ -20,10 +20,7 @@
 }
 
 .textField {
-  margin-left: -15%;
   margin-bottom: 3%;
-  /* background-color: brown; */
-  width: 130%;
 }
 
 .centerDiv {
