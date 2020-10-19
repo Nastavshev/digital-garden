@@ -43,7 +43,7 @@ function Login(props) {
       });
       if (response.status === 200) {
         dispatch(setLogin());
-        return history.push('/secret');
+        return history.push('/user/account');
       }
       dispatch(setFault());
       const resp = await response.json();
