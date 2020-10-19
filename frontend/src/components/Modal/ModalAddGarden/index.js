@@ -49,7 +49,7 @@ function ModalAddGarden(props) {
   }, []);
 
   const init = () => {
-    new window.ymaps.SuggestView('suggest');
+    new window.ymaps.SuggestView('suggest', { results: 3 });
   };
 
   async function saveGarden() {
@@ -78,21 +78,26 @@ function ModalAddGarden(props) {
             fullWidth
             onChange={(e) => handleChange(e)}
             name="title"
+            required
           />
         </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="suggest"
-            label="Введите населенный пункт"
-            type="text"
-            fullWidth
-            onChange={init}
-            onSelect={(e) => handleChange(e)}
-            name="location"
-          />
-        </DialogContent>
+        {/* <DialogContent> */}
+        {/* <div style={}> */}
+        <TextField
+          autoFocus
+          margin="dense"
+          // fullWidth
+          id="suggest"
+          label="Введите населенный пункт"
+          type="text"
+          onChange={init}
+          onSelect={(e) => handleChange(e)}
+          name="location"
+          // сlassname={styles.suggest}
+          required
+        />
+        {/* </div> */}
+        {/* </DialogContent> */}
         <DialogContent>
           <TextField
             autoFocus
