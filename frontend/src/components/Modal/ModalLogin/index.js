@@ -10,6 +10,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFault, setLogin } from '../../../redux/authActions.js';
 import { modalLogin } from '../../../redux/modalLoginActions';
+import styles from './index.module.css';
 
 function Login() {
 
@@ -43,6 +44,7 @@ function Login() {
       });
       if (response.status === 200) {
         dispatch(setLogin());
+        dispatch(modalLogin());
         return history.push('/user/account');
       }
       dispatch(setFault());
@@ -97,12 +99,12 @@ function Login() {
             required
           />
         </DialogContent>
-        <DialogContent className="error">{error}</DialogContent>
+        <DialogContent className={styles.error}>{error}</DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
+          <Button onClick={(e) => { handleSubmit(e); }} color="primary">
             Войти!
           </Button>
         </DialogActions>

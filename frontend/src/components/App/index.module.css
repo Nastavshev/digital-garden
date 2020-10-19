@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
 
-*{
+*, p {
   font-family: 'Raleway', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 }
