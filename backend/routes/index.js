@@ -81,8 +81,8 @@ router.post('/articles/:id/newMessage', async (req, res) => {
 router.get('/articles/:id/:page', async (req, res) => {
   console.log('>>>> get /articles/:idTheme');
   console.log(req.params);
-  const { idArticle, page } = req.params;
-  console.log(idArticle, page);
+  const { id, page } = req.params;
+  console.log('>>>>>>>>>>>>>', id, page);
   const options = {
     page,
     limit: 2,
