@@ -75,11 +75,8 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
-<<<<<<< HEAD
-=======
           handleClose()
-          sendEmail(e);
->>>>>>> da3b7b616dcbacfdd6ba31ff4400b92782ae7c3b
+          // sendEmail(e);
           return history.push('/user/account');
         }
         dispatch(setFault());

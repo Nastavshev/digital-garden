@@ -7,7 +7,6 @@ import moonReducer from './moonReducer';
 import articleReducer from './articleReducer';
 import modalLoginReducer from './modalLoginReducer';
 import pageReducer from './pageReducer';
-import thunkMiddleware from 'redux-thunk';
 import isSession from './sessionReducer';
 
 
@@ -20,11 +19,8 @@ const store = createStore(
     mooncalendar: moonReducer,
     articles: articleReducer,
     modalLogin: modalLoginReducer,
-<<<<<<< HEAD
     pageNumber: pageReducer,
-=======
     user: isSession,
->>>>>>> da3b7b616dcbacfdd6ba31ff4400b92782ae7c3b
   }),
   JSON.parse(preloadedState),
   // {

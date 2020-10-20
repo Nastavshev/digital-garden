@@ -28,10 +28,6 @@ function MoonCalendar() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getMonthThunk());
-  // }, [dispatch]);
-
   const monthArray = useSelector((state) => state.mooncalendar[0].year.month);
   console.log(monthArray);
 
