@@ -28,7 +28,7 @@ router.put('/logup', async (req, res) => {
       };
       return res.end();
     }
-    return res.status(401).json({ message: 'пользователь с таким email уже существует' });
+    return res.status(401);
   } catch (err) {
     console.log(err);
     return res.json({ message: 'ошибка регистации пользователя' });
@@ -44,13 +44,14 @@ router.post('/login', async (req, res) => {
       if (isValidPassword) {
         req.session.user = {
           id: user._id,
+          userName: user.userName,
           email,
         };
         return res.end();
       }
-      return res.status(401).json({ message: 'Неправильно введен пароль' });
+      return res.status(401);
     }
-    return res.status(401).json({ message: 'Пользователя с таким именем не существует' });
+    return res.status(401);
   } catch (err) {
     console.error(err);
     return res.json(err);
@@ -62,6 +63,10 @@ router.get('/logout', (req, res) => {
     res.clearCookie('connect.sid');
     res.end();
   });
+});
+
+router.get('/isSession', (req, res) => {
+  res.json(req.session.user);
 });
 
 export default router;
