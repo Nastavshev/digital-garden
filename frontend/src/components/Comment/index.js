@@ -34,7 +34,7 @@ function Comment(props) {
       const result = await response.json();
       setPaginatArray(result.paginatArray);
       setMessages(result.commentFromBD);
-      console.log(result.commentFromBD);
+      // console.log(result.commentFromBD);
     })()
   }, [pageNumber])
 
@@ -82,7 +82,7 @@ function Comment(props) {
 
         <>
           <div className={styles.paginWrapper}>Выбор страницы:
-            {paginatArray.map((element) =>
+            {paginatArray?.map((element) =>
             <div className={styles.page} key={element.page}>
               <button onClick={() => changePage(`${element.page}`)}>
                 <span>{element.page}</span>
@@ -94,8 +94,8 @@ function Comment(props) {
       </div >
       <h3>Комментарии: </h3>
       <div className={styles.messages}>
-        {messages.map((element) =>
-          <div className={styles.messageCard}>
+        {messages?.map((element) =>
+          <div key={element._id} className={styles.messageCard}>
             <div className={styles.userField} key={element._id}>Имя: {element.authorName}
               <br />
             Город: {element.city}</div>
