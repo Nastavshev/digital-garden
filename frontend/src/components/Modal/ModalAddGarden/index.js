@@ -10,6 +10,8 @@ import styles from './index.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
+import Garden from '../../Garden'
+import { Link } from 'react-router-dom';
 
 function ModalAddGarden(props) {
 
@@ -114,9 +116,9 @@ function ModalAddGarden(props) {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={() => { handleClose(); saveGarden() }} color="primary">
+          <Link to='/user/garden'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
             Создать!
-          </Button>
+          </Button></Link>
         </DialogActions>
       </Dialog >
     </div >

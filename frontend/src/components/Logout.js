@@ -18,7 +18,7 @@ function Logout() {
   }, []);
   return (
     <>
-    <div>logout</div>
+      <div>logout</div>
     </>
   );
 }
