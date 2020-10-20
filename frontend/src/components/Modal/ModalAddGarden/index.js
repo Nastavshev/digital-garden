@@ -12,10 +12,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
 import Garden from '../../Garden'
 import { Link } from 'react-router-dom';
+import { createGarden } from '../../../redux/createGaredenActions';
 
 function ModalAddGarden(props) {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const garden = useSelector((state) => state.garden);
 
   const { setOpen, open } = props;
 
@@ -41,8 +43,6 @@ function ModalAddGarden(props) {
     document.body.appendChild(script);
   };
 
-
-
   // // Закрытие модального окна 
   const handleClose = (e) => {
     setOpen(false);
@@ -65,7 +65,11 @@ function ModalAddGarden(props) {
       },
       body: JSON.stringify({ inputsGarden, idUser })
     });
+    const data = await response.json();
+    console.log(data);
+    dispatch(createGarden(data));
   }
+
 
   return (
     <div>

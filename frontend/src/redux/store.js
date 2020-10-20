@@ -8,6 +8,7 @@ import articleReducer from './articleReducer';
 import modalLoginReducer from './modalLoginReducer';
 import pageReducer from './pageReducer';
 import isSession from './sessionReducer';
+import createGardenReducer from './createGardenReducer';
 
 
 const preloadedState = window.localStorage.getItem('state') || '{}';
@@ -21,6 +22,7 @@ const store = createStore(
     modalLogin: modalLoginReducer,
     pageNumber: pageReducer,
     user: isSession,
+    garden: createGardenReducer,
   }),
   JSON.parse(preloadedState),
   // {
