@@ -51,6 +51,9 @@ export default function MenuAppBar() {
           <Link className={styles.link} to='/mooncalendar'>
             <Button size="small" className={styles.bar}>Лунный календарь</Button>
           </Link>
+          <Link className={styles.link} to='/articles'>
+            <Button size="small" className={styles.bar}>Статьи</Button>
+          </Link>
 
           <Typography variant="h6" className={classes.title}>
             <div className={styles.wrapperLogo}>
