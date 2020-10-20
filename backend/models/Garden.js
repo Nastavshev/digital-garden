@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
 
 const GardenSchema = new mongoose.Schema({
-  // userId: {
-  //   type: ObjectId,
-  //   required: true,
-  //   unique: true,
-  // },
   title: {
     type: String,
     required: true,
