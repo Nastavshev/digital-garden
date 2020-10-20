@@ -75,7 +75,7 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
-          handleClose();
+          handleClose()
           // sendEmail(e);
           return history.push('/user/account');
         }
