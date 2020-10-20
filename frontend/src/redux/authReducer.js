@@ -3,7 +3,7 @@ import {
 } from './actionTypes';
 
 function authorization(state = false, action) {
-  console.log('action >>>>', action);
+  // console.log('action >>>>', action);
   switch (action.type) {
     case AUTHENTICATED_SUCCESSULLY:
       return true;

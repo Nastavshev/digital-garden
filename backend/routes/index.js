@@ -55,7 +55,7 @@ router.get('/articles', async (req, res) => {
 router.post('/articles/:id/newMessage', async (req, res) => {
   console.log(req.session.user);
   const { message, id } = req.body;
-  console.log(id, message);
+  // console.log(id, message);
   let newComment;
   try {
     newComment = new commentModel({
@@ -69,23 +69,22 @@ router.post('/articles/:id/newMessage', async (req, res) => {
     currentArticle.comments.push(newComment);
     await currentArticle.save();
     await newComment.save();
-    console.log(newComment);
+    // console.log(newComment);
   } catch (error) {
     return res.status(404).json({
       errorMessage: error.message,
     });
   }
-  return res.status(200).json({newComment});
+  return res.status(200).json({ newComment });
 });
 
 router.get('/articles/:id/:page', async (req, res) => {
-  console.log('>>>> get /articles/:idTheme');
-  console.log(req.params);
+  // console.log('>>>> get /articles/:idTheme');
+  // console.log(req.params);
   const { id, page } = req.params;
-  console.log('>>>>>>>>>>>>>', id, page);
   const options = {
     page,
-    limit: 2,
+    limit: 6,
   };
   let dataPagin;
   await commentModel.paginate({}, options, (error, result) => {
@@ -95,16 +94,14 @@ router.get('/articles/:id/:page', async (req, res) => {
       dataPagin = result;
     }
   });
-  console.log(dataPagin);
   let commentFromBD;
   const paginatArray = [];
   try {
-    commentFromBD = await commentModel.find({ idArticle: idArticle })
+    commentFromBD = await commentModel.find({ articleId: id })
       .skip(dataPagin.prevPage * dataPagin.limit)
-      .limit(dataPagin.limit);
+      .limit(dataPagin.limit).sort({ date: -1 });
 
-      commentFromBD = JSON.parse(JSON.stringify(commentFromBD));
-    // console.log(messageFromBD);
+    commentFromBD = JSON.parse(JSON.stringify(commentFromBD));
 
     for (let i = 1; i <= dataPagin.totalPages; i++) {
       paginatArray.push({ page: `${i}` });
@@ -114,6 +111,7 @@ router.get('/articles/:id/:page', async (req, res) => {
       errorMessage: error.message,
     });
   }
+  // console.log(commentFromBD, paginatArray);
   return res.status(200).json({ commentFromBD, paginatArray });
 });
 

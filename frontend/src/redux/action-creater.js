@@ -1,4 +1,4 @@
-import { GET_VEGETABLES_DB, GET_MOONCALENDAR_DB, GET_ARTICLE_DB, PAGE_THEME, UPDATE_COMMENTS_ARRAY } from './actionTypes';
+import { GET_VEGETABLES_DB, GET_MOONCALENDAR_DB, GET_ARTICLE_DB, PAGE_THEME, PAGE_DEFAULT, UPDATE_COMMENTS_ARRAY } from './actionTypes';
 
 export function getTasks(vegetablesArray) {
   return {
@@ -65,4 +65,10 @@ export function updateArrayComment(task) {
     type: UPDATE_COMMENTS_ARRAY,
     payload: task,
   };
+}
+
+export function pageDefault() {
+  return {
+    type: PAGE_DEFAULT,
+  }
 }

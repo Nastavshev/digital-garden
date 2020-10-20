@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import woman from '../../../logo/housekeeper.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './index.module.css';
 import Signup from '../../Modal/ModalSignup';
 import Login from '../../Modal/ModalLogin';
@@ -45,15 +45,21 @@ export default function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="static" className={styles.bar}>
         <Toolbar>
-          <Link className={styles.link} to='/'>
-            <Button size="small" className={styles.bar}>Главная</Button>
-          </Link>
-          <Link className={styles.link} to='/mooncalendar'>
-            <Button size="small" className={styles.bar}>Лунный календарь</Button>
-          </Link>
-          <Link className={styles.link} to='/articles'>
-            <Button size="small" className={styles.bar}>Статьи</Button>
-          </Link>
+        <div className={styles.link}>
+          <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to='/'>Главная
+            {/* <Button size="small" className={styles.bar}>Главная</Button> */}
+          </NavLink>
+          </div>
+          <div className={styles.link}>
+          <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/mooncalendar'>Лунный календарь
+            {/* <Button size="small" className={styles.bar}>Лунный календарь</Button> */}
+          </NavLink>
+          </div>
+          <div className={styles.link}>
+          <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/articles'>Статьи
+            {/* <Button size="small" className={styles.bar}>Статьи</Button> */}
+          </NavLink>
+          </div>
 
           <Typography variant="h6" className={classes.title}>
             <div className={styles.wrapperLogo}>

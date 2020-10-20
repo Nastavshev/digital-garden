@@ -2,9 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
 
 .bar {
-  color: #feffe4 !important;
-  background: linear-gradient(to top, #2eb872, #a3de83) !important;
-  height: 80px;
+  color: #feffe4;
+  background: linear-gradient(to top, #2eb872, #a3de83);
+  /* height: 0px; */
+  text-decoration: none;
+  margin-right: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.link {
+  vertical-align: middle;
+  width: 10%;
+}
+
+.link a {
+  height: 55px;
+  display: block;
+  padding-top: 30px;
+}
+
+.link a:hover {
+  background: #feffe4;
+  color: black;
+  font-size: 18px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .main {
@@ -31,6 +52,13 @@
 .wrapperLogo {
   display: flex;
   margin: 0 auto;
-  justify-content: center;
+  /* justify-content: center; */
+  margin-left: 19%;
   align-items: center;
+}
+
+.activeLink {
+  color: black !important;
+  background: linear-gradient(to top, #a3de83, #feffe4);
+  height: 80px;
 }
