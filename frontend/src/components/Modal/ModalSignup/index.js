@@ -90,8 +90,7 @@ function Logup(props) {
   }
 
   return (
-
-    <div>
+    <>
       <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
         <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
         <DialogContent>
@@ -154,12 +153,12 @@ function Logup(props) {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e) }} color="primary">
+          <Button onClick={handleSubmit} color="primary">
             Зарегистрироваться!
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 

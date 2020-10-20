@@ -23,12 +23,13 @@ function ModalAddGarden(props) {
     location: '',
   });
 
-  const { title, comment, location } = inputsGarden;
+  // const { title, comment, location } = inputsGarden;
   function handleChange({ target: { name, value } }) {
     setInputsGarden({
       ...inputsGarden,
       [name]: value,
     });
+    console.log(value);
   }
 
   const loadScript = (src) => {
@@ -81,23 +82,18 @@ function ModalAddGarden(props) {
             required
           />
         </DialogContent>
-        {/* <DialogContent> */}
-        {/* <div style={}> */}
-        <TextField
-          autoFocus
-          margin="dense"
-          // fullWidth
-          id="suggest"
-          label="Введите населенный пункт"
-          type="text"
-          onChange={init}
-          onSelect={(e) => handleChange(e)}
-          name="location"
-          // сlassname={styles.suggest}
-          required
-        />
-        {/* </div> */}
-        {/* </DialogContent> */}
+        <div className={styles.inputsLocation}>
+          <TextField
+            autoFocus
+            fullWidth
+            id="suggest"
+            label="Введите населенный пункт"
+            type="text"
+            onSelect={(e) => { init(); handleChange(e) }}
+            name="location"
+            required
+          />
+        </div>
         <DialogContent>
           <TextField
             autoFocus
@@ -116,7 +112,7 @@ function ModalAddGarden(props) {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(event) => { handleClose(); saveGarden(event) }} color="primary">
+          <Button onClick={() => { handleClose(); saveGarden() }} color="primary">
             Создать!
           </Button>
         </DialogActions>
