@@ -34,9 +34,14 @@
   flex-direction: row;
 }
 .personalGarden{
-  height: 50px;
+  min-height: 50px;
   margin: 25px;
-  background: linear-gradient(to top, #2eb872, #a3de83) !important;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+  padding: 10px;
+  /* background: linear-gradient(to top, #2eb872, #a3de83) !important; */
 }
 
 .mainPersonal{
@@ -59,3 +64,11 @@
 .flexGarden{
   display: flex;
 }
+.shovel{
+  height: 50px;
+  width: 50px;
+}
+.buttonOnPersonalPage{
+  
+}
+
