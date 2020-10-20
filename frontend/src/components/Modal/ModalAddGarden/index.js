@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import styles from './index.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
 
@@ -22,7 +22,7 @@ function ModalAddGarden(props) {
     comment: '',
     location: '',
   });
-
+  const idUser = useSelector((state) => state.user.id);
   // const { title, comment, location } = inputsGarden;
   function handleChange({ target: { name, value } }) {
     setInputsGarden({
@@ -38,6 +38,8 @@ function ModalAddGarden(props) {
     script.async = true;
     document.body.appendChild(script);
   };
+
+
 
   // // Закрытие модального окна 
   const handleClose = (e) => {
@@ -59,7 +61,7 @@ function ModalAddGarden(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ inputsGarden })
+      body: JSON.stringify({ inputsGarden, idUser })
     });
   }
 
@@ -89,7 +91,7 @@ function ModalAddGarden(props) {
             id="suggest"
             label="Введите населенный пункт"
             type="text"
-            onChange={(e) => { init(); handleChange(e); }}
+            onSelect={(e) => { init(e); handleChange(e); }}
             name="location"
             required
           />
