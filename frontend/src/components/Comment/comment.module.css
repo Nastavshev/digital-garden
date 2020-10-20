@@ -1,0 +1,44 @@
+.messageWrapper {
+  background-color: #cccc99;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2%;;
+}
+
+.paginWrapper {
+  display: flex;
+}
+
+.page {
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.messageCard {
+  display: flex;
+  box-shadow: 0 0 30px rgba(2, 2, 2, 0.7);
+  margin-bottom: 1%;
+}
+
+.messages {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.userField {
+  width: 20%;
+  border: 1px solid #999966;
+  background-color: #CCCCCC;
+}
+
+.messageField {
+  border: 1px solid #999966;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.messageDate {
+    text-align: start;
+    margin-bottom: 1%;
+}

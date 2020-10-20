@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import '../misc/db.js';
+import mailer from '../nodemailer.js';
 // import '../misc/env';
 
 const router = express.Router();
@@ -13,7 +14,7 @@ router.put('/logup', async (req, res) => {
   try {
     const userFinded = await User.findOne({ email });
     if (!userFinded) {
-      console.log('flag !!!!!!!!!!!!!!!!!!');
+      // console.log('flag !!!!!!!!!!!!!!!!!!');
       // process.env.SALT_ROUNDS
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = new User({
@@ -26,9 +27,19 @@ router.put('/logup', async (req, res) => {
         id: user._id,
         email,
       };
-      return res.end();
-    }
-    return res.status(401).json({ message: 'Пользователь с таким email уже существует' });
+      const message = {
+        from: 'vasin.ogorod@yandex.ru',
+        to: email,
+        subject: 'Vasin ogorod!',
+        // html: `<h1>privet</h1>`
+        html: 
+        `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
+        <p>Данное письмо не требует ответа.<p>`
+            };
+            mailer(message);
+            return res.end();
+            }
+    return res.status(401).json({ message: 'пользователь с таким email уже существует' });
   } catch (err) {
     console.log(err);
     return res.json({ message: 'Ошибка регистации пользователя' });
@@ -70,3 +81,10 @@ router.get('/isSession', (req, res) => {
 });
 
 export default router;
+
+
+{/* <i>данные вашей учетной записи:</i> */}
+        // <ul>
+        //     <li>login: {{email}}</li>
+        //     <li>password: {{password}}</li>
+        // </ul>

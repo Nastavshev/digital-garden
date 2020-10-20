@@ -42,21 +42,21 @@ function Logup(props) {
     password: password
   }
 
-  function sendEmail(e) {
-    // e.preventDefault();
-    console.log('send email');
-    emailjs.send(
-      'yandex',
-      'template_tswrqnv',
-      data,
-      'user_fgtM1ILKeawxufmu65ncd',
-    )
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
-  }
+  // function sendEmail(e) {
+  //   // e.preventDefault();?>?,.mnbvbnm,.
+  //   console.log('send email');
+  //   emailjs.send(
+  //     'yandex',
+  //     'outlook',
+  //     data,
+  //     'user_fgtM1ILKeawxufmu65ncd',
+  //   )
+  //     .then((result) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,8 +75,11 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
+<<<<<<< HEAD
+=======
           handleClose()
           sendEmail(e);
+>>>>>>> da3b7b616dcbacfdd6ba31ff4400b92782ae7c3b
           return history.push('/user/account');
         }
         dispatch(setFault());

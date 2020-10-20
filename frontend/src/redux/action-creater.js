@@ -1,4 +1,4 @@
-import { GET_VEGETABLES_DB, GET_MOONCALENDAR_DB } from './actionTypes';
+import { GET_VEGETABLES_DB, GET_MOONCALENDAR_DB, GET_ARTICLE_DB, PAGE_THEME, UPDATE_COMMENTS_ARRAY } from './actionTypes';
 
 export function getTasks(vegetablesArray) {
   return {
@@ -30,5 +30,39 @@ export function getMonthThunk() {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+
+export function getArticleThunk() {
+  return async function (dispatch) {
+    try {
+    const response = await fetch('/articles');
+    const result = await response.json();
+    dispatch(getArticle(result.articlesFromBD));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getArticle(articleArray) {
+  return {
+    type: GET_ARTICLE_DB,
+    payload: articleArray,
+  };
+}
+
+export function setPageNumber(pageNumber) {
+  return {
+    type: PAGE_THEME,
+    payload: pageNumber,
+  }
+}
+
+export function updateArrayComment(task) {
+  return {
+    type: UPDATE_COMMENTS_ARRAY,
+    payload: task,
   };
 }
