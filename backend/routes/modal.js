@@ -18,7 +18,7 @@ router.post('/garden', async (req, res) => {
   const userObj = await User.findOne({ _id: idUser }).populate('garden');
   userObj.garden.push(newGarden._id);
   userObj.save();
-  res.status(200);
+  res.json(newGarden);
 });
 
 export default router;

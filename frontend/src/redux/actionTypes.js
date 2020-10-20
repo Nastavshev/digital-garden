@@ -17,5 +17,6 @@ export const GET_ARTICLE_DB = 'GET_ARTICLE_DB';
 export const MODAL_LOGIN = 'MODAL_LOGIN'
 export const PAGE_THEME = 'PAGE_THEME'
 export const UPDATE_COMMENTS_ARRAY = 'UPDATE_COMMENTS_ARRAY';
+export const CREATE_GARDEN = 'CREATE_GARDEN';
 
 
