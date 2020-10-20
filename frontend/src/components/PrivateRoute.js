@@ -10,15 +10,17 @@ function PrivateRoute({ children, ...rest }) {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
-  useEffect(async () => {
+  useEffect(() => {
     try {
-      const response = await fetch('/auth/isSession');
+      (async () => {
+        const response = await fetch('/auth/isSession');
       const resp = await response.json();
       dispatch(setSession(resp));
+      })();
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Route {...rest}>
