@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import RedAddButton from '../Button/RedAddButton';
 import { Paper } from '@material-ui/core';
 import woman from '../../logo/housekeeper.png';
+import shovel from '../../logo/shovel.png';
+import sprout from '../../logo/sprout.png'
 import ModalAddGarden from '../Modal/ModalAddGarden';
 import styles from './index.module.css'
+
 export default function Personal() {
 
   const [open, setOpen] = useState(false);
@@ -34,12 +37,22 @@ export default function Personal() {
         <div className={styles.flexGarden}>
           <Paper elevation={3} className={styles.garden}>
             <h3><strong>МОИ ОГОРОДЫ</strong></h3>
-            {/* <Paper elevation={3} className={styles.personalGarden}>
-              Грядка
-            </Paper> */}
+            <Paper elevation={3} className={styles.personalGarden}>
+              <div>
+                <h5>Название участка:</h5>
+                <h6>Месторасположение:</h6>
+                <h6>Комментарий:</h6>
+              </div>
+              <div>
+                <img alt="sprout" className={styles.shovel} src={sprout} />
+                <div>Редактировать</div>
+                <img alt="shovel" className={styles.shovel} src={shovel} />
+                <div>Удалить</div>
+              </div>
+            </Paper>
             <p>К сожалению, Ваша история пуста</p>
             <div>Для создания нового участка нажмите красную кнопку ниже</div>
-            <div onClick={handleClickOpen}><RedAddButton /></div>
+            <div onClick={handleClickOpen} className={styles.buttonOnPersonalPage}><RedAddButton /></div>
             <ModalAddGarden setOpen={setOpen} open={open} />
           </Paper>
         </div>
