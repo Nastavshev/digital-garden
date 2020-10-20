@@ -10,7 +10,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFault, setLogin } from '../../../redux/authActions.js';
 import { modalLogin } from '../../../redux/modalLoginActions';
-import styles from './index.module.css'
+import styles from './index.module.css';
 
 function Login() {
 
@@ -104,7 +104,7 @@ function Login() {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={(e) => { handleSubmit(e) }} color="primary">
             Войти!
           </Button>
         </DialogActions>

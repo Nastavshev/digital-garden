@@ -28,10 +28,10 @@ router.put('/logup', async (req, res) => {
       };
       return res.end();
     }
-    return res.status(401);
+    return res.status(401).json({ message: 'Пользователь с таким email уже существует' });
   } catch (err) {
     console.log(err);
-    return res.json({ message: 'ошибка регистации пользователя' });
+    return res.json({ message: 'Ошибка регистации пользователя' });
   }
 });
 
@@ -49,9 +49,9 @@ router.post('/login', async (req, res) => {
         };
         return res.end();
       }
-      return res.status(401);
+      return res.status(401).json({ message: 'Неправильно введен пароль' });
     }
-    return res.status(401);
+    return res.status(401).json({ message: 'Пользователя с таким именем не существует' });
   } catch (err) {
     console.error(err);
     return res.json(err);
