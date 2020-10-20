@@ -89,7 +89,7 @@ function ModalAddGarden(props) {
             id="suggest"
             label="Введите населенный пункт"
             type="text"
-            onSelect={(e) => { init(); handleChange(e) }}
+            onChange={(e) => { init(); handleChange(e); }}
             name="location"
             required
           />
