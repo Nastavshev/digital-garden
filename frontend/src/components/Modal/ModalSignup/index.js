@@ -41,21 +41,21 @@ function Logup(props) {
     password: password
   }
 
-  function sendEmail(e) {
-    // e.preventDefault();
-    console.log('send email');
-    emailjs.send(
-      'yandex',
-      'template_tswrqnv',
-      data,
-      'user_fgtM1ILKeawxufmu65ncd',
-    )
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
-  }
+  // function sendEmail(e) {
+  //   // e.preventDefault();?>?,.mnbvbnm,.
+  //   console.log('send email');
+  //   emailjs.send(
+  //     'yandex',
+  //     'outlook',
+  //     data,
+  //     'user_fgtM1ILKeawxufmu65ncd',
+  //   )
+  //     .then((result) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -74,7 +74,6 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
-          sendEmail(e);
           return history.push('/user/account');
         }
         dispatch(setFault());

@@ -8,6 +8,9 @@ import PrivateRoute from '../PrivateRoute';
 import Logout from '../Logout';
 // import Logup from '../Logup';
 import ModalBed from '../ModalBed';
+import Articles from '../Articles';
+import CreateMessage from '../CreateMessage';
+import CurrentArticle from '../CurrentArticle';
 import Main from '../Main';
 import MonthCalendar from '../MonthCalendar';
 import MoonCalendar from '../MoonCalendar';
@@ -59,6 +62,15 @@ function App() {
           </Route>
           <Route exact path='/about'>
             <AboutProject />
+          </Route>
+          <Route exact path='/articles'>
+            <Articles />
+          </Route>
+          <Route exact path='/articles/:idArticle'>
+            <CurrentArticle />
+          </Route>
+          <Route path="/articles/:idArticle/newMessage" exact>
+            <CreateMessage />
           </Route>
         </Switch>
         <Footer />

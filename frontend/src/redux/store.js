@@ -3,7 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import authorization from './authReducer';
 import vegetReducer from './vegetReducer';
 import moonReducer from './moonReducer';
+import articleReducer from './articleReducer';
 import modalLoginReducer from './modalLoginReducer';
+import pageReducer from './pageReducer';
 import thunkMiddleware from 'redux-thunk';
 
 const preloadedState = window.localStorage.getItem('state') || '{}';
@@ -13,7 +15,9 @@ const store = createStore(
     isAuthenticated: authorization,
     vegetables: vegetReducer,
     mooncalendar: moonReducer,
+    articles: articleReducer,
     modalLogin: modalLoginReducer,
+    pageNumber: pageReducer,
   }),
   JSON.parse(preloadedState),
   // {
