@@ -7,9 +7,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import styles from './index.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
+import Garden from '../../Garden'
+import { Link } from 'react-router-dom';
 
 function ModalAddGarden(props) {
 
@@ -22,13 +24,14 @@ function ModalAddGarden(props) {
     comment: '',
     location: '',
   });
-
-  const { title, comment, location } = inputsGarden;
+  const idUser = useSelector((state) => state.user.id);
+  // const { title, comment, location } = inputsGarden;
   function handleChange({ target: { name, value } }) {
     setInputsGarden({
       ...inputsGarden,
       [name]: value,
     });
+    console.log(value);
   }
 
   const loadScript = (src) => {
@@ -37,6 +40,8 @@ function ModalAddGarden(props) {
     script.async = true;
     document.body.appendChild(script);
   };
+
+
 
   // // Закрытие модального окна 
   const handleClose = (e) => {
@@ -58,7 +63,7 @@ function ModalAddGarden(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ inputsGarden })
+      body: JSON.stringify({ inputsGarden, idUser })
     });
   }
 
@@ -81,23 +86,18 @@ function ModalAddGarden(props) {
             required
           />
         </DialogContent>
-        {/* <DialogContent> */}
-        {/* <div style={}> */}
-        <TextField
-          autoFocus
-          margin="dense"
-          // fullWidth
-          id="suggest"
-          label="Введите населенный пункт"
-          type="text"
-          onChange={init}
-          onSelect={(e) => handleChange(e)}
-          name="location"
-          // сlassname={styles.suggest}
-          required
-        />
-        {/* </div> */}
-        {/* </DialogContent> */}
+        <div className={styles.inputsLocation}>
+          <TextField
+            autoFocus
+            fullWidth
+            id="suggest"
+            label="Введите населенный пункт"
+            type="text"
+            onSelect={(e) => { init(e); handleChange(e); }}
+            name="location"
+            required
+          />
+        </div>
         <DialogContent>
           <TextField
             autoFocus
@@ -116,9 +116,9 @@ function ModalAddGarden(props) {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(event) => { handleClose(); saveGarden(event) }} color="primary">
+          <Link to='/user/garden'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
             Создать!
-          </Button>
+          </Button></Link>
         </DialogActions>
       </Dialog >
     </div >

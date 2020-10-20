@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  garden: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'Garden',
+  }],
 });
 
 export default mongoose.model('User', UserSchema);

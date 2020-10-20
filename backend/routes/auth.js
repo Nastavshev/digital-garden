@@ -42,7 +42,7 @@ router.put('/logup', async (req, res) => {
     return res.status(401).json({ message: 'пользователь с таким email уже существует' });
   } catch (err) {
     console.log(err);
-    return res.json({ message: 'ошибка регистации пользователя' });
+    return res.json({ message: 'Ошибка регистации пользователя' });
   }
 });
 
@@ -55,6 +55,7 @@ router.post('/login', async (req, res) => {
       if (isValidPassword) {
         req.session.user = {
           id: user._id,
+          userName: user.userName,
           email,
         };
         return res.end();
@@ -73,6 +74,10 @@ router.get('/logout', (req, res) => {
     res.clearCookie('connect.sid');
     res.end();
   });
+});
+
+router.get('/isSession', (req, res) => {
+  res.json(req.session.user);
 });
 
 export default router;

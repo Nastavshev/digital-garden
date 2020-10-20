@@ -10,6 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import emailjs from 'emailjs-com';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import styles from './index.module.css';
 
 function Logup(props) {
   const { setOpenSignup, openSignup } = props;
@@ -74,10 +75,15 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
+<<<<<<< HEAD
+=======
+          handleClose()
+          sendEmail(e);
+>>>>>>> da3b7b616dcbacfdd6ba31ff4400b92782ae7c3b
           return history.push('/user/account');
         }
         dispatch(setFault());
-        return setError('пользователь с таким email уже существует');
+        return setError('Пользователь с таким email уже существует');
       }
       return setError('Пароль не совпадает');
     } catch (err) {
@@ -87,8 +93,7 @@ function Logup(props) {
   }
 
   return (
-
-    <div>
+    <>
       <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
         <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
         <DialogContent>
@@ -146,17 +151,17 @@ function Logup(props) {
             required
           />
         </DialogContent>
-        <DialogContent>{error}</DialogContent>
+        <DialogContent className={styles.error}>{error}</DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e); handleClose() }} color="primary">
+          <Button onClick={handleSubmit} color="primary">
             Зарегистрироваться!
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 

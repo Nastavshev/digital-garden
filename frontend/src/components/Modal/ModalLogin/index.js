@@ -104,7 +104,7 @@ function Login() {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e); }} color="primary">
+          <Button onClick={(e) => { handleSubmit(e) }} color="primary">
             Войти!
           </Button>
         </DialogActions>
