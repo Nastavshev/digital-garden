@@ -14,24 +14,20 @@ export default function Personal() {
 
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
-  const idUser = useSelector((state) => state.user.id);
-  // const dispatch = useDispatch();
   const [gardens, setGardens] = useState([]);
+  const idUser = useSelector((state) => state.user?.id);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/modals/personal', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idUser })
-      });
-      const data = await response.json();
-      setGardens(data);
+      if (idUser) {
+        const response = await fetch(`/modals/personal/${idUser}`);
+        const data = await response.json();
+        setGardens(data);
+        console.log(data);
+      }
+      // await setId(idUser);
     })()
-    // dispatch(personalGarden(data));
-  }, []);
+  }, [idUser]);
 
   console.log('это стейт', gardens);
 
