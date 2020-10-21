@@ -57,21 +57,14 @@ function MonthCalendar() {
   const { idMonth } = useParams();
   console.log(idMonth);
 
-  const monthArray = useSelector((state) => state.mooncalendar[0].year.month)
-  // console.log((monthArray));
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-  // function findInfoAbout() {
+  const monthArray = useSelector((state) => state.mooncalendar[0].year.month)
+ 
   let data = monthArray.find((element) => element._id === idMonth)
   console.log(data.article.text);
-  //   setNecessaryInfo(data)
-  // }
-
-  // const dispatch = useDispatch();
-  // const monthArray = useSelector((state) => state.mooncalendar[0])
-  // console.log(monthArray?.year?.nameYear?.month);
-  // useEffect(() => {
-  //   dispatch(getMonthThunk());
-  // }, [dispatch]);
 
   return (
     <div className={styles.wrapperMoon}>
