@@ -5,9 +5,14 @@ const gardenBedSchema = mongoose.Schema({
   grade: String,
   comment: String,
   datePlant: String,
-  // userId: {
-  //     type: mongoose.Schema.Types.ObjectId, ref: 'users',
-  // },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+  },
+  gardenId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'gardens',
+  },
   // userName: {
   //     type: mongoose.Schema.Types.String, ref: 'users',
   // }
