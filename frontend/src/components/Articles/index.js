@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './articles.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { pageDefault } from '../../redux/action-creater'; 
 
 function Articles() {
-
   const articles = useSelector((state) => state.articles);
+  const dispatch = useDispatch();
 
-
+  useEffect(() => {
+    (async () => {
+     dispatch(pageDefault())
+    })()
+  }, [])
 
   return (
     <>

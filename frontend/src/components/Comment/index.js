@@ -13,8 +13,10 @@ function Comment(props) {
   // console.log(idArticle);
   const [paginatArray, setPaginatArray] = useState([])
   const [showForm, setShowForm] = useState(false)
-  console.log(showForm);
+  // console.log(showForm);
+
   const [messages, setMessages] = useState([])
+  console.log(messages);
   const [input, setInput] = useState('');
 
   function changeInputs(event) {
@@ -34,13 +36,12 @@ function Comment(props) {
       const result = await response.json();
       setPaginatArray(result.paginatArray);
       setMessages(result.commentFromBD);
-      // console.log(result.commentFromBD);
     })()
   }, [pageNumber])
 
   async function createMessage(event) {
     event.preventDefault();
-    const response = await fetch(`/articles/:idArticle/newMessage`, {
+    const response = await fetch(`/articles/${idArticle}/newMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,12 +52,11 @@ function Comment(props) {
       })
     });
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     if (response.status === 200) {
+      // console.log(response.status);
       dispatch(updateArrayComment(result.newComment));
-      // console.log('privet');
-      // console.log(idTheme);
-      // return history.push(`/articles/${idArticle}`);
+      setMessages([...messages, result.newComment])
     }
   }
 
@@ -64,7 +64,6 @@ function Comment(props) {
   return (
     <>
       <div className={styles.messageWrapper}>
-
         <h2>Здесь можно читать комментарии по данной теме и оставлять свои</h2>
         <>
           {showForm
@@ -77,9 +76,6 @@ function Comment(props) {
             <Button variant="contained" onClick={() => setShowForm(state => !state)}>Оставить комментарий по этой теме</Button>
           }
         </>
-
-
-
         <>
           <div className={styles.paginWrapper}>Выбор страницы:
             {paginatArray?.map((element) =>
@@ -90,7 +86,6 @@ function Comment(props) {
             </div>)}
           </div>
         </>
-
       </div >
       <h3>Комментарии: </h3>
       <div className={styles.messages}>
@@ -111,6 +106,3 @@ function Comment(props) {
 }
 
 export default Comment;
-
-
-{/* <Button variant="contained"><Link to={`/articles/${idArticle}/newMessage`}>Оставить комментарий по этой теме</Link></Button> */ }
