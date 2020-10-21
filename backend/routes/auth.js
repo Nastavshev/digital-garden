@@ -27,6 +27,7 @@ router.put('/logup', async (req, res) => {
         userName: user.userName,
         id: user._id,
         email,
+        userName: user.userName,
       };
       const message = {
         from: 'vasin.ogorod@yandex.ru',
@@ -34,8 +35,8 @@ router.put('/logup', async (req, res) => {
         subject: 'Vasin ogorod!',
         // html: `<h1>privet</h1>`
         html:
-        `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
-        <p>Данное письмо не требует ответа.<p>`,
+          `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
+        <p>Данное письмо не требует ответа.<p>`
       };
       // mailer(message);
       return res.end();
@@ -83,10 +84,9 @@ router.get('/isSession', (req, res) => {
 
 export default router;
 
-
-{ /* <i>данные вашей учетной записи:</i> */ }
-// <ul>
-//     <li>login: {{email}}</li>
-//     <li>password: {{password}}</li>
-// </ul>
+{/* <i>данные вашей учетной записи:</i> */ }
+        // <ul>
+        //     <li>login: {{email}}</li>
+        //     <li>password: {{password}}</li>
+        // </ul>
 
