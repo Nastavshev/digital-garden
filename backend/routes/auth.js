@@ -24,6 +24,7 @@ router.put('/logup', async (req, res) => {
       });
       await user.save();
       req.session.user = {
+        userName: user.userName,
         id: user._id,
         email,
       };
@@ -32,13 +33,13 @@ router.put('/logup', async (req, res) => {
         to: email,
         subject: 'Vasin ogorod!',
         // html: `<h1>privet</h1>`
-        html: 
-        `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
+        html:
+          `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
         <p>Данное письмо не требует ответа.<p>`
-            };
-            mailer(message);
-            return res.end();
-            }
+      };
+      // mailer(message);
+      return res.end();
+    }
     return res.status(401).json({ message: 'пользователь с таким email уже существует' });
   } catch (err) {
     console.log(err);
@@ -83,7 +84,7 @@ router.get('/isSession', (req, res) => {
 export default router;
 
 
-{/* <i>данные вашей учетной записи:</i> */}
+{/* <i>данные вашей учетной записи:</i> */ }
         // <ul>
         //     <li>login: {{email}}</li>
         //     <li>password: {{password}}</li>
