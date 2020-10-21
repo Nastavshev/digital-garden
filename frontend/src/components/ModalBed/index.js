@@ -72,14 +72,10 @@ function ModalBed() {
     })
   }
 
-  
-
-
   function findInfoAbout(event) {
     let data = vegetablesArray.find((element) => element.vegetableName === event.target.value)
     setNecessaryInfo(data)
   }
-
 
   async function saveInfoGardenBed() {
     // event.preventDefault();

@@ -21,4 +21,17 @@ router.post('/garden', async (req, res) => {
   res.json(newGarden);
 });
 
+router.post('/personal', async (req, res) => {
+  const { idUser } = req.body;
+  const userObj = await User.findOne({ _id: idUser }).populate('garden');
+  res.json(userObj.garden);
+});
+
+router.post('/delete', async (req, res) => {
+  const { deleteId, idUser } = req.body;
+  await Garden.deleteOne({ _id: deleteId });
+  const userObj = await User.findOne({ _id: idUser }).populate('garden');
+  res.json(userObj.garden);
+});
+
 export default router;
