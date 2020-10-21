@@ -8,11 +8,11 @@ import moonCalendarModel from '../models/moonCalendarModel.js';
 
 const router = express.Router();
 
-// router.get('/secret', checkSession, (req, res) => {
-//   res.json({
-//     email: req.session.user.email,
-//   });
-// });
+router.get('/secret', checkSession, (req, res) => {
+  res.json({
+    email: req.session.user.email,
+  });
+});
 
 router.get('/moonmonth', async (req, res) => {
   // console.log('getttttt');
