@@ -27,7 +27,7 @@ router.put('/logup', async (req, res) => {
         userName: user.userName,
         id: user._id,
         email,
-        userName: user.userName,
+        admin: user.admin,
       };
       const message = {
         from: 'vasin.ogorod@yandex.ru',
@@ -59,6 +59,7 @@ router.post('/login', async (req, res) => {
           id: user._id,
           userName: user.userName,
           email,
+          admin: user.admin,
         };
         return res.end();
       }
