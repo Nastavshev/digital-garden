@@ -12,8 +12,7 @@ const style = {
 
 export default function GardenArea() {
   const dispatch = useDispatch();
-  const stateCount = useSelector((state) => state.gardenBed.count)
-  console.log("state GARDENAREA", stateCount.count);
+  const stateCount = useSelector((state) => state.gardenBed.count);
   
   function addComponent() {
     dispatch(ADD_ELEMENT({ position: {x:0, y:0}, size: {width:"100px", height: "100px"} , status: false})); 
@@ -23,7 +22,7 @@ export default function GardenArea() {
     <>
       <button onClick={addComponent}>Добавить грядочку</button>
     <div style={{ width: '100%', height: '100%' }}>
-    <div className="bounds" style={{ border: '2px solid grey', width: '90%', height: '70%', position: 'absolute' }}>
+    <div className="bounds" style={{ margin: "5px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
       <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
       </div>
      {

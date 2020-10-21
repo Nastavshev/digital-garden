@@ -10,7 +10,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './index.module.css';
 import Signup from '../../Modal/ModalSignup';
 import Login from '../../Modal/ModalLogin';
-import { Button } from '@material-ui/core';
+import { Button, Icon } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalLogin } from '../../../redux/modalLoginActions';
 
@@ -45,20 +45,20 @@ export default function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="static" className={styles.bar}>
         <Toolbar>
-        <div className={styles.link}>
-          <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to='/'>Главная
+          <div className={styles.link}>
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to='/'>Главная
             {/* <Button size="small" className={styles.bar}>Главная</Button> */}
-          </NavLink>
+            </NavLink>
           </div>
           <div className={styles.link}>
-          <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/mooncalendar'>Лунный календарь
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/mooncalendar'>Лунный календарь
             {/* <Button size="small" className={styles.bar}>Лунный календарь</Button> */}
-          </NavLink>
+            </NavLink>
           </div>
           <div className={styles.link}>
-          <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/articles'>Статьи
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/articles'>Статьи
             {/* <Button size="small" className={styles.bar}>Статьи</Button> */}
-          </NavLink>
+            </NavLink>
           </div>
 
           <Typography variant="h6" className={classes.title}>
@@ -76,20 +76,13 @@ export default function MenuAppBar() {
           {isAuthenticated
             ?
             <>
-              <Link className={styles.link} to='/user/logout'>
-                <Button variant="contained" size="small" className={styles.bar}>Выйти</Button>
+              <Link to='/user/logout'  >
+                <Button size="small" style={{ color: '#feffe4' }}>Выйти</Button>
               </Link>
-              <Link className={styles.link} to='/user/account'>
-                <Button variant="contained" size="small" className={styles.bar}>Личный кабинет</Button>
+              <Link to='/user/account' className={styles.buttonHeader}>
+                <Button size="small" style={{ color: '#feffe4' }}>Личный кабинет</Button>
               </Link>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-              // onClick={handleMenu}
-              >
-                <Avatar src={woman} />
-              </IconButton>
+              <Avatar src={woman} />
             </>
             :
             <>

@@ -1,9 +1,10 @@
 .messageWrapper {
-  background-color: #cccc99;
+  background-color: #feffe4;
   width: 82%;
   margin: 0 auto;
   margin-bottom: 2%;
   margin-top: 1%;
+  box-shadow: 0 0 10px rgba(2, 2, 2, 0.7);
 }
 
 .paginWrapper {
@@ -23,7 +24,7 @@
 }
 
 .messages {
-  width: 80%;
+  width: 82%;
   margin: 0 auto;
 }
 
@@ -81,3 +82,4 @@ color: #fa4659;
   transition: .07s;
   background-color: #FFF;
 } */
+

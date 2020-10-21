@@ -9,9 +9,11 @@ import styles from './index.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // import { personalGarden } from '../../../redux/personalGardenActions'
+import Audio from '../Audio';
+import {useHistory} from 'react-router-dom'
 
 export default function Personal() {
-
+const history = useHistory();
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
   const [gardens, setGardens] = useState([]);
@@ -39,6 +41,16 @@ export default function Personal() {
     setGardens(data);
   }
 
+  async function openElement(deleteId) {
+    const response = await fetch(`/modals/garden/${deleteId}`)
+    const data = await response.json()
+    console.log(data);
+    console.log(response.status);
+    if (response.status === 200) {
+      history.push('/user/garden')
+    }
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -49,43 +61,46 @@ export default function Personal() {
         <div className={styles.welcomeContainer}>
           <Paper elevation={3} className={styles.welcome}>
             <img alt="woman" className={styles.avatar} src={woman} />
-            <h2><strong>ДOБРО ПОЖАЛОВАТЬ, {userName}!</strong></h2>
+            <div className={styles.title}><strong>ДOБРО ПОЖАЛОВАТЬ, {userName}!</strong></div>
              На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>ПОГОДА</strong></h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate saepe debitis nihil sunt nulla nam officia amet quibusdam recusandae labore qui illo commodi laborum, reiciendis aut aliquam optio necessitatibus vitae!
+            <h3><strong>РЕКЛАМА</strong></h3>
+           По вопросам размещения рекламы пишите на электронную почту: vasin.ogorod@yandex.ru
           </Paper>
 
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>ЛУННЫЙ КАЛЕНДАРЬ</strong></h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse commodi totam dolor ratione, nihil iusto, maiores consectetur voluptatum autem, optio similique tenetur et ipsum animi velit reiciendis natus nemo adipisci.
+            <h3><strong>АУДИО-ПРОИГРЫВАТЕЛЬ</strong></h3>
+            <Audio />
           </Paper>
         </div>
         <div className={styles.flexGarden}>
           <Paper elevation={3} className={styles.garden}>
-            <h3><strong>МОИ ОГОРОДЫ</strong></h3>
+            <h3 className={styles.title}><strong>МОИ ОГОРОДЫ</strong></h3>
             {gardens && gardens.map((el) => (
               <div key={el._id}>
                 <Paper elevation={3} className={styles.personalGarden}>
                   <div >
-                    <p>{el.title}</p>
-                    <h3>Месторасположение:{el.location}</h3>
-                    <h4>Комментарий:{el.comment}</h4>
+                    <p className={styles.greentitle}>{el.title}</p>
+                    <div>Месторасположение:{el.location}</div>
+                    <div>Комментарий:{el.comment}</div>
                   </div>
                   <div>
-                    {/* <img alt="sprout" className={styles.shovel} src={sprout} />
-                    <div>Редактировать</div> */}
+                    <Button onClick={() => openElement(el._id)}><img alt="sprout" className={styles.shovel} src={sprout} />
+                      <div className={styles.redtext}>Редактировать/ показать участок</div></Button>
                     <Button onClick={() => deleteElement(el._id)}><img alt="shovel" className={styles.shovel} src={shovel} />
-                      <div>Удалить</div>
+                      <div className={styles.redtext}>Удалить</div>
                     </Button>
                   </div>
                 </Paper>
               </div>
             )
             )}
-            <p>К сожалению, Ваша история пуста</p>
+            {gardens.length === 0
+              ? <p>К сожалению, Ваша история пуста!</p>
+              : ''}
             <div>Для создания нового участка нажмите красную кнопку ниже</div>
+
             <div onClick={handleClickOpen} className={styles.buttonOnPersonalPage}><RedAddButton /></div>
             <ModalAddGarden setOpen={setOpen} open={open} />
           </Paper>

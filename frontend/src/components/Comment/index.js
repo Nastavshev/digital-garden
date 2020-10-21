@@ -5,15 +5,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPageNumber, updateArrayComment } from '../../redux/action-creater';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { modalLogin } from '../../redux/modalLoginActions';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
+      width: '25ch',
     },
   },
 }));
+
+const StyledTextField = withStyles({
+  root: {
+    width: '70%',
+    // marginLeft: '20%',
+  },
+})(TextField);
 
 function Comment(props) {
   const classes = useStyles();
@@ -65,9 +75,7 @@ function Comment(props) {
       })
     });
     const result = await response.json();
-    // console.log(result);
     if (response.status === 200) {
-      // console.log(response.status);
       dispatch(updateArrayComment(result.newComment));
       setMessages([...messages, result.newComment])
     }
@@ -84,9 +92,23 @@ function Comment(props) {
             <>
               {showForm
                 ?
-                <div>
-                  <input placeholder="текст сообщения" name="message" onChange={changeInputs} />
-                  <button type="button" onClick={(e) => { createMessage(e); setShowForm(state => !state) }}>Отправить комментарий</button>
+                <div className={styles.commentDivWrapper}>
+                  <div>
+                    <StyledTextField
+                      name="comment"
+                      onChange={changeInputs}
+                      id="filled-multiline-static"
+                      label=""
+                      multiline
+                      rows={4}
+                      defaultValue=""
+                      variant="filled"
+                      placeholder="текст сообщения" name="message" onChange={changeInputs}
+                    />
+                  </div>
+                  <div>
+                    <Button variant="contained" type="button" onClick={(e) => { createMessage(e); setShowForm(state => !state) }}>Отправить комментарий</Button>
+                  </div>
                 </div>
                 :
                 <Button variant="contained" onClick={() => setShowForm(state => !state)}>Оставить комментарий по этой теме</Button>
@@ -107,6 +129,7 @@ function Comment(props) {
         </>
       </div >
       <h3>Комментарии: </h3>
+      <br />
       <div className={styles.messages}>
         {messages?.map((element) =>
           <div key={element._id} className={styles.messageCard}>

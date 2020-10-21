@@ -37,4 +37,17 @@ router.post('/delete', async (req, res) => {
   res.json(user.garden);
 });
 
+router.get('/garden/:id', async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+  let currentGarden;
+  try {
+    currentGarden = await Garden.findOne({ _id: id });
+    // console.log(currentGarden);
+    res.json(currentGarden)
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 export default router;
