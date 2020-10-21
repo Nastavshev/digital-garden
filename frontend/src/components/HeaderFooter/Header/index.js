@@ -77,10 +77,10 @@ export default function MenuAppBar() {
             ?
             <>
               <Link className={styles.link} to='/user/logout'>
-                <Button size="small" className={styles.bar}>Выйти</Button>
+                <Button variant="contained" size="small" className={styles.bar}>Выйти</Button>
               </Link>
               <Link className={styles.link} to='/user/account'>
-                <Button size="small" className={styles.bar}>Личный кабинет</Button>
+                <Button variant="contained" size="small" className={styles.bar}>Личный кабинет</Button>
               </Link>
               <IconButton
                 aria-label="account of current user"
@@ -93,9 +93,9 @@ export default function MenuAppBar() {
             </>
             :
             <>
-              <Button size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
+              <Button variant="contained" size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
               <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
-              <Button size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
+              <Button variant="contained" size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
               <Login />
             </>
           }

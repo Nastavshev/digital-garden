@@ -4,11 +4,11 @@
 .bar {
   color: #feffe4;
   background: linear-gradient(to top, #2eb872, #a3de83);
-  /* height: 0px; */
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: 20px;
   font-family: 'Raleway', sans-serif;
 }
+
 
 .link {
   vertical-align: middle;
@@ -53,7 +53,7 @@
   display: flex;
   margin: 0 auto;
   /* justify-content: center; */
-  margin-left: 19%;
+  margin-left: 23%;
   align-items: center;
 }
 

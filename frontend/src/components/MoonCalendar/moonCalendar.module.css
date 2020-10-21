@@ -54,7 +54,7 @@ a {
   text-indent: 1em;
 }
 
-.image{
+.image {
   height: auto;
   width: 100%;
   display: inline-block;
@@ -63,9 +63,9 @@ a {
 
 .image img {
   transition: 1s;
-    display: block;
+  display: block;
 }
 
-.image img:hover{
+.image img:hover {
   transform: scale(1.2);
-  }
+}
