@@ -1,10 +1,13 @@
 import express from 'express';
 import session from 'express-session';
+import FileStoreGeneral from 'session-file-store';
 import authRouter from './routes/auth.js';
 import indexRouter from './routes/index.js';
 import modalsRouter from './routes/modal.js';
 import './misc/db.js';
 import './misc/env.js';
+
+const FileStore = FileStoreGeneral(session);
 
 const app = express();
 
@@ -12,9 +15,14 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use(session({
+  store: new FileStore(),
+  key: 'user_sid',
   secret: process.env.SESSION_KEY,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    expires: 1000 * 60 * 60 * 24 * 365,
+  },
 }));
 
 app.post('/modal', async (req, res) => {

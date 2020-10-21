@@ -4,11 +4,14 @@
 .bar {
   color: #feffe4;
   background: linear-gradient(to top, #2eb872, #a3de83);
-  /* height: 0px; */
   text-decoration: none;
-  margin-right: 10px;
-  font-family: 'Raleway', sans-serif;
+  margin-right: 20px;
+  /* font-family: 'Raleway', sans-serif; */
 }
+
+/* .buttonHeader{
+  color:#feffe4 !important;
+} */
 
 .link {
   vertical-align: middle;
@@ -53,7 +56,7 @@
   display: flex;
   margin: 0 auto;
   /* justify-content: center; */
-  margin-left: 19%;
+  margin-left: 23%;
   align-items: center;
 }
 
@@ -62,3 +65,4 @@
   background: linear-gradient(to top, #a3de83, #feffe4);
   height: 80px;
 }
+
