@@ -6,28 +6,25 @@ import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForG
 export default function GardenBed(props) {
   const {position, size, status} = props;
   const dispatch = useDispatch();
-  const reduxFlagStatus = useSelector((state) => state.status);
-  const statePosition = useSelector((state) => state.count)
-  const reduxSize = useSelector((state) => state.size )
-  const reduxPosition = useSelector((state) => state.position)
-  
+  const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
+  const reduxSize = useSelector((state) => state.size );
+  const reduxPosition = useSelector((state) => state.position);
+
   const style = {
     backgroundColor: 'green',
     border: '3px dashed red',
     borderLeft: "none",
     borderTop: "none",
     userSelect: "none",
-  }
+  };
   
   function setNewPlace(e, data) {
     const id = e.target.id;
     dispatch(ADD_POSITION({ position: {x: data.x, y: data.y}, size: reduxSize, status: reduxFlagStatus, id } ));
-   
   }
 
   function setSize(e, direction, ref) {
     const id = e.target.parentElement?.id;
-    console.log(id)
     dispatch(ADD_SIZE({ position: reduxPosition, size: { width: ref.style.width, height: ref.style.height }, status: reduxFlagStatus, id }));
   }
 
@@ -43,9 +40,7 @@ export default function GardenBed(props) {
       bounds=".bounds"
       id={props.id}
       // default={{x: 0, y: 0}}
-      // position={ {x: reduxPosition[props.id].x, y: reduxPosition[props.id].y  }}
-      // size={{ width: reduxSize[props.id].width, height: reduxSize[props.id].height  }}
-      
+      // position={ {x: reduxPosition[props.id].x, y: reduxPosition[props.id].y }}
       disableDragging={ reduxFlagStatus }
       enableResizing={{
         top: false,
@@ -57,11 +52,9 @@ export default function GardenBed(props) {
       minWidth='100px'
       maxHeight= '99%'
       maxWidth='99%'
-
     >
-      <button onClick={setStatus}>{reduxFlagStatus === false? '+': '#'}</button>
+      <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button>
     </Rnd>
-
   )
 }
 
