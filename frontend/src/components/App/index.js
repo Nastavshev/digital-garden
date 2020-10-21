@@ -21,7 +21,8 @@ import Footer from '../HeaderFooter/Footer';
 import Header from '../HeaderFooter/Header';
 import styles from './index.module.css';
 import Personal from '../Personal';
-import Garden from '../Garden'
+import Garden from '../Garden';
+import Chat from '../Chat';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         <Switch>
           <Route exact path="/user/logout">
             Выход
-        <Logout />
+            <Logout />
           </Route>
           <PrivateRoute exact path="/user/account">
             <Personal />
@@ -48,25 +49,25 @@ function App() {
           <Route exact path="/mooncalendar">
             <MoonCalendar />
           </Route>
-          <Route exact path='/mooncalendar/:idMonth'>
+          <Route exact path="/mooncalendar/:idMonth">
             <MonthCalendar />
           </Route>
           {/* <Route exact path='/logup'>
             <Logup />
           </Route> */}
-          <Route exact path='/policy'>
+          <Route exact path="/policy">
             <Policy />
           </Route>
-          <Route exact path='/contacts'>
+          <Route exact path="/contacts">
             <Contacts />
           </Route>
-          <Route exact path='/about'>
+          <Route exact path="/about">
             <AboutProject />
           </Route>
-          <Route exact path='/articles'>
+          <Route exact path="/articles">
             <Articles />
           </Route>
-          <Route exact path='/articles/:idArticle'>
+          <Route exact path="/articles/:idArticle">
             <CurrentArticle />
           </Route>
           <Route path="/articles/:idArticle/newMessage" exact>
@@ -76,7 +77,7 @@ function App() {
         <Footer />
       </Router>
     </div>
-  )
+  );
 }
 
 export default App;

@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'Garden',
   }],
+  admin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model('User', UserSchema);

@@ -9,9 +9,11 @@ import styles from './index.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // import { personalGarden } from '../../../redux/personalGardenActions'
+import Audio from '../Audio';
+import {useHistory} from 'react-router-dom'
 
 export default function Personal() {
-
+const history = useHistory();
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
   const [gardens, setGardens] = useState([]);
@@ -39,6 +41,16 @@ export default function Personal() {
     setGardens(data);
   }
 
+  async function openElement(deleteId) {
+    const response = await fetch(`/modals/garden/${deleteId}`)
+    const data = await response.json()
+    console.log(data);
+    console.log(response.status);
+    if (response.status === 200) {
+      history.push('/user/garden')
+    }
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -53,13 +65,13 @@ export default function Personal() {
              На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>ПОГОДА</strong></h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate saepe debitis nihil sunt nulla nam officia amet quibusdam recusandae labore qui illo commodi laborum, reiciendis aut aliquam optio necessitatibus vitae!
+            <h3><strong>РЕКЛАМА</strong></h3>
+           По вопросам размещения рекламы пишите на электронную почту: vasin.ogorod@yandex.ru
           </Paper>
 
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>ЛУННЫЙ КАЛЕНДАРЬ</strong></h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse commodi totam dolor ratione, nihil iusto, maiores consectetur voluptatum autem, optio similique tenetur et ipsum animi velit reiciendis natus nemo adipisci.
+            <h3><strong>АУДИО-ПРОИГРЫВАТЕЛЬ</strong></h3>
+            <Audio />
           </Paper>
         </div>
         <div className={styles.flexGarden}>
@@ -74,8 +86,8 @@ export default function Personal() {
                     <div>Комментарий:{el.comment}</div>
                   </div>
                   <div>
-                    {/* <img alt="sprout" className={styles.shovel} src={sprout} />
-                    <div>Редактировать</div> */}
+                    <Button onClick={() => openElement(el._id)}><img alt="sprout" className={styles.shovel} src={sprout} />
+                      <div className={styles.redtext}>Редактировать/ показать участок</div></Button>
                     <Button onClick={() => deleteElement(el._id)}><img alt="shovel" className={styles.shovel} src={shovel} />
                       <div className={styles.redtext}>Удалить</div>
                     </Button>

@@ -1,0 +1,11 @@
+.chat {
+  position: relative;
+  border: black solid 1px;
+  min-height: 200px;
+  width: 300px;
+}
+
+.chat > form {
+  bottom: 0;
+  position: absolute;
+}

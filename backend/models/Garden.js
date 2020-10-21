@@ -12,6 +12,9 @@ const GardenSchema = new mongoose.Schema({
   // size: [Number],
   // beds: [{}],
   comment: String,
+  gardenBedId: [{
+    type: mongoose.Schema.Types.ObjectId, ref: 'gardenBeds',
+  }],
 });
 
 export default mongoose.model('Garden', GardenSchema);
