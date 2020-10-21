@@ -5,13 +5,14 @@ import RedAddButton from '../Button/RedAddButton';
 import tomato from '../../logo/tomato.png';
 import aaa from '../../logo/carrot.png';
 import { Paper } from '@material-ui/core';
+import GardenArea from '../GardenArea/GardenArea';
 
 export default function Garden() {
 
   return (
     <>
       <div className={styles.mainGarden}>
-        Здесь будет Вовин сад
+        <GardenArea/>
         <div className={styles.flex}>
           <div className={styles.example}>
             Вариант оформления грядки
