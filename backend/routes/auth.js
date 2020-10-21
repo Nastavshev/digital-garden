@@ -24,6 +24,7 @@ router.put('/logup', async (req, res) => {
       });
       await user.save();
       req.session.user = {
+        userName: user.userName,
         id: user._id,
         email,
       };
@@ -82,8 +83,10 @@ router.get('/isSession', (req, res) => {
 
 export default router;
 
+
 { /* <i>данные вашей учетной записи:</i> */ }
 // <ul>
 //     <li>login: {{email}}</li>
 //     <li>password: {{password}}</li>
 // </ul>
+

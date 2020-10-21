@@ -6,10 +6,12 @@ import shovel from '../../logo/shovel.png';
 import sprout from '../../logo/sprout.png'
 import ModalAddGarden from '../Modal/ModalAddGarden';
 import styles from './index.module.css'
+import { useSelector } from 'react-redux';
 
 export default function Personal() {
 
   const [open, setOpen] = useState(false);
+  const idUser = useSelector((state) => state.user.userName);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,7 +23,7 @@ export default function Personal() {
         <div className={styles.welcomeContainer}>
           <Paper elevation={3} className={styles.welcome}>
             <img alt="woman" className={styles.avatar} src={woman} />
-            <h2><strong>ДOБРО ПОЖАЛОВАТЬ, ВАСИЛИСА АЛЬБЕРТОВНА!</strong></h2>
+            <h2><strong>ДOБРО ПОЖАЛОВАТЬ, {idUser}!</strong></h2>
              Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis molestias consequuntur nihil, at doloribus eveniet debitis? Corrupti facilis, explicabo rerum maxime hic et itaque vitae ab neque animi deleniti cumque?
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>

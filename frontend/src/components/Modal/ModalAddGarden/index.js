@@ -17,7 +17,7 @@ import { createGarden } from '../../../redux/createGaredenActions';
 function ModalAddGarden(props) {
 
   const dispatch = useDispatch();
-  const garden = useSelector((state) => state.garden);
+  // const garden = useSelector((state) => state.garden);
 
   const { setOpen, open } = props;
 
