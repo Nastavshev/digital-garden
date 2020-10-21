@@ -6,9 +6,12 @@
   background: linear-gradient(to top, #2eb872, #a3de83);
   text-decoration: none;
   margin-right: 20px;
-  font-family: 'Raleway', sans-serif;
+  /* font-family: 'Raleway', sans-serif; */
 }
 
+/* .buttonHeader{
+  color:#feffe4 !important;
+} */
 
 .link {
   vertical-align: middle;
@@ -62,3 +65,4 @@
   background: linear-gradient(to top, #a3de83, #feffe4);
   height: 80px;
 }
+
