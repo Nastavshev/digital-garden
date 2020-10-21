@@ -3,20 +3,43 @@ import { Link, StaticRouter, useParams } from 'react-router-dom';
 import styles from './comment.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setPageNumber, updateArrayComment } from '../../redux/action-creater';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { modalLogin } from '../../redux/modalLoginActions';
+import { withStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+const StyledTextField = withStyles({
+  root: {
+    width: '70%',
+    // marginLeft: '20%',
+  },
+})(TextField);
 
 function Comment(props) {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { pageNumber } = useSelector(state => state.pageNumber);
-  // console.log(pageNumber);
   const { idArticle } = props;
-  // console.log(idArticle);
   const [paginatArray, setPaginatArray] = useState([])
   const [showForm, setShowForm] = useState(false)
-  // console.log(showForm);
+  const isAuthenticated = useSelector(state => state.isAuthenticated)
+  const { userName, email } = useSelector(state => state.user)
 
   const [messages, setMessages] = useState([])
-  console.log(messages);
+  // console.log(messages[0]?.commentDate.toDateString());
+
+  let b = messages[0]?.commentDate;
+  console.log(b);
   const [input, setInput] = useState('');
 
   function changeInputs(event) {
@@ -52,9 +75,7 @@ function Comment(props) {
       })
     });
     const result = await response.json();
-    // console.log(result);
     if (response.status === 200) {
-      // console.log(response.status);
       dispatch(updateArrayComment(result.newComment));
       setMessages([...messages, result.newComment])
     }
@@ -66,14 +87,34 @@ function Comment(props) {
       <div className={styles.messageWrapper}>
         <h2>Здесь можно читать комментарии по данной теме и оставлять свои</h2>
         <>
-          {showForm
+          {isAuthenticated
             ?
-            <div>
-              <input placeholder="текст сообщения" name="message" onChange={changeInputs} />
-              <button type="button" onClick={(e) => { createMessage(e); setShowForm(state => !state) }}>Отправить комментарий</button>
-            </div>
-            :
-            <Button variant="contained" onClick={() => setShowForm(state => !state)}>Оставить комментарий по этой теме</Button>
+            <>
+              {showForm
+                ?
+                <div className={styles.commentDivWrapper}>
+                  <div>
+                    <StyledTextField
+                      name="comment"
+                      onChange={changeInputs}
+                      id="filled-multiline-static"
+                      label=""
+                      multiline
+                      rows={4}
+                      defaultValue=""
+                      variant="filled"
+                      placeholder="текст сообщения" name="message" onChange={changeInputs}
+                    />
+                  </div>
+                  <div>
+                    <Button variant="contained" type="button" onClick={(e) => { createMessage(e); setShowForm(state => !state) }}>Отправить комментарий</Button>
+                  </div>
+                </div>
+                :
+                <Button variant="contained" onClick={() => setShowForm(state => !state)}>Оставить комментарий по этой теме</Button>
+              }
+            </>
+            : <div className={styles.divLink}>Для отправки комментария вам необходимо <Button size="small" variant="contained" color="success" className={styles.buttonLogin} onClick={() => dispatch(modalLogin())}>авторизоваться</Button></div>
           }
         </>
         <>
@@ -88,12 +129,11 @@ function Comment(props) {
         </>
       </div >
       <h3>Комментарии: </h3>
+      <br />
       <div className={styles.messages}>
         {messages?.map((element) =>
           <div key={element._id} className={styles.messageCard}>
-            <div className={styles.userField} key={element._id}>Имя: {element.authorName}
-              <br />
-            Город: {element.city}</div>
+            <div className={styles.userField} key={element._id}>Имя: {userName}</div>
             <div className={styles.messageField}>
               <div className={styles.messageDate}>Опубликовано: {element.commentDate}</div>
               <div>{element.commentText}</div>

@@ -14,26 +14,18 @@ export default function Personal() {
 
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
-  const idUser = useSelector((state) => state.user.id);
-  // const dispatch = useDispatch();
   const [gardens, setGardens] = useState([]);
+  const idUser = useSelector((state) => state.user?.id);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/modals/personal', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idUser })
-      });
-      const data = await response.json();
-      setGardens(data);
+      if (idUser) {
+        const response = await fetch(`/modals/personal/${idUser}`);
+        const data = await response.json();
+        setGardens(data);
+      }
     })()
-    // dispatch(personalGarden(data));
-  }, []);
-
-  console.log('это стейт', gardens);
+  }, [idUser]);
 
   async function deleteElement(deleteId) {
     const response = await fetch('/modals/delete', {
@@ -57,8 +49,8 @@ export default function Personal() {
         <div className={styles.welcomeContainer}>
           <Paper elevation={3} className={styles.welcome}>
             <img alt="woman" className={styles.avatar} src={woman} />
-            <h2><strong>ДOБРО ПОЖАЛОВАТЬ, {userName}!</strong></h2>
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis molestias consequuntur nihil, at doloribus eveniet debitis? Corrupti facilis, explicabo rerum maxime hic et itaque vitae ab neque animi deleniti cumque?
+            <div className={styles.title}><strong>ДOБРО ПОЖАЛОВАТЬ, {userName}!</strong></div>
+             На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
             <h3><strong>ПОГОДА</strong></h3>
@@ -72,28 +64,31 @@ export default function Personal() {
         </div>
         <div className={styles.flexGarden}>
           <Paper elevation={3} className={styles.garden}>
-            <h3><strong>МОИ ОГОРОДЫ</strong></h3>
+            <h3 className={styles.title}><strong>МОИ ОГОРОДЫ</strong></h3>
             {gardens && gardens.map((el) => (
               <div key={el._id}>
                 <Paper elevation={3} className={styles.personalGarden}>
                   <div >
-                    <h5>Название участка:{el.title}</h5>
-                    <h6>Месторасположение:{el.location}</h6>
-                    <h6>Комментарий:{el.comment}</h6>
+                    <p className={styles.greentitle}>{el.title}</p>
+                    <div>Месторасположение:{el.location}</div>
+                    <div>Комментарий:{el.comment}</div>
                   </div>
                   <div>
-                    <img alt="sprout" className={styles.shovel} src={sprout} />
-                    <div>Редактировать</div>
+                    {/* <img alt="sprout" className={styles.shovel} src={sprout} />
+                    <div>Редактировать</div> */}
                     <Button onClick={() => deleteElement(el._id)}><img alt="shovel" className={styles.shovel} src={shovel} />
-                      <div>Удалить</div>
+                      <div className={styles.redtext}>Удалить</div>
                     </Button>
                   </div>
                 </Paper>
               </div>
             )
             )}
-            <p>К сожалению, Ваша история пуста</p>
+            {gardens.length === 0
+              ? <p>К сожалению, Ваша история пуста!</p>
+              : ''}
             <div>Для создания нового участка нажмите красную кнопку ниже</div>
+
             <div onClick={handleClickOpen} className={styles.buttonOnPersonalPage}><RedAddButton /></div>
             <ModalAddGarden setOpen={setOpen} open={open} />
           </Paper>

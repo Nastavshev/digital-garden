@@ -1,8 +1,10 @@
 .messageWrapper {
-  background-color: #cccc99;
-  width: 80%;
+  background-color: #feffe4;
+  width: 82%;
   margin: 0 auto;
-  margin-bottom: 2%;;
+  margin-bottom: 2%;
+  margin-top: 1%;
+  box-shadow: 0 0 10px rgba(2, 2, 2, 0.7);
 }
 
 .paginWrapper {
@@ -22,7 +24,7 @@
 }
 
 .messages {
-  width: 80%;
+  width: 82%;
   margin: 0 auto;
 }
 
@@ -42,3 +44,42 @@
     text-align: start;
     margin-bottom: 1%;
 }
+
+.divLink a:hover{
+font-size: 20px;
+color: #fa4659;
+}
+
+/* .buttonLogin {
+  width:180px;
+  text-align:center;
+  display:block;
+  font-family: arial;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 20px;
+  border: black 3px solid;
+  color: black;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+   margin: 20px auto;
+  transition: .5s;
+  border-radius: 0px;
+}
+
+.buttonLogin:hover {
+  top: 5px;
+  transition: .5s;
+  color: #fa4659;
+  border: #fa4659 1px solid;
+  border-radius: 10px;
+}
+
+.buttonLogin:active {
+  color: black;
+  border: black 1px solid;
+  transition: .07s;
+  background-color: #FFF;
+} */
+
