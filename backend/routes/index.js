@@ -53,7 +53,7 @@ router.get('/articles', async (req, res) => {
 
 // запись нового комментария в БД
 router.post('/articles/:id/newMessage', async (req, res) => {
-  console.log(req.session.user);
+  // console.log(req.session.user);
   const { message, id } = req.body;
   // console.log(id, message);
   let newComment;
@@ -84,7 +84,7 @@ router.get('/articles/:id/:page', async (req, res) => {
   const { id, page } = req.params;
   const options = {
     page,
-    limit: 6,
+    limit: 3,
   };
   let dataPagin;
   await commentModel.paginate({}, options, (error, result) => {
