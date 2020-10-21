@@ -9,6 +9,7 @@ import modalLoginReducer from './modalLoginReducer';
 import pageReducer from './pageReducer';
 import isSession from './sessionReducer';
 import createGardenReducer from './createGardenReducer';
+import reducerGardenBed from './reducerGardenBed';
 
 
 const preloadedState = window.localStorage.getItem('state') || '{}';
@@ -23,6 +24,7 @@ const store = createStore(
     pageNumber: pageReducer,
     user: isSession,
     garden: createGardenReducer,
+    gardenBed: reducerGardenBed,
   }),
   JSON.parse(preloadedState),
   // {
@@ -37,6 +39,7 @@ const store = createStore(
 
 store.subscribe(() => {
   const state = store.getState();
+  console.log("state", state)
   window.localStorage.setItem('state', JSON.stringify(state));
 });
 

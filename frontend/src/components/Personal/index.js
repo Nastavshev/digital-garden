@@ -14,26 +14,18 @@ export default function Personal() {
 
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
-  const idUser = useSelector((state) => state.user.id);
-  // const dispatch = useDispatch();
   const [gardens, setGardens] = useState([]);
+  const idUser = useSelector((state) => state.user?.id);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/modals/personal', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idUser })
-      });
-      const data = await response.json();
-      setGardens(data);
+      if (idUser) {
+        const response = await fetch(`/modals/personal/${idUser}`);
+        const data = await response.json();
+        setGardens(data);
+      }
     })()
-    // dispatch(personalGarden(data));
-  }, []);
-
-  console.log('это стейт', gardens);
+  }, [idUser]);
 
   async function deleteElement(deleteId) {
     const response = await fetch('/modals/delete', {
@@ -58,7 +50,7 @@ export default function Personal() {
           <Paper elevation={3} className={styles.welcome}>
             <img alt="woman" className={styles.avatar} src={woman} />
             <h2><strong>ДOБРО ПОЖАЛОВАТЬ, {userName}!</strong></h2>
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis molestias consequuntur nihil, at doloribus eveniet debitis? Corrupti facilis, explicabo rerum maxime hic et itaque vitae ab neque animi deleniti cumque?
+             На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
             <h3><strong>ПОГОДА</strong></h3>
@@ -77,13 +69,13 @@ export default function Personal() {
               <div key={el._id}>
                 <Paper elevation={3} className={styles.personalGarden}>
                   <div >
-                    <h5>Название участка:{el.title}</h5>
-                    <h6>Месторасположение:{el.location}</h6>
-                    <h6>Комментарий:{el.comment}</h6>
+                    <p>{el.title}</p>
+                    <h3>Месторасположение:{el.location}</h3>
+                    <h4>Комментарий:{el.comment}</h4>
                   </div>
                   <div>
-                    <img alt="sprout" className={styles.shovel} src={sprout} />
-                    <div>Редактировать</div>
+                    {/* <img alt="sprout" className={styles.shovel} src={sprout} />
+                    <div>Редактировать</div> */}
                     <Button onClick={() => deleteElement(el._id)}><img alt="shovel" className={styles.shovel} src={shovel} />
                       <div>Удалить</div>
                     </Button>

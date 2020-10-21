@@ -84,7 +84,7 @@ router.get('/isSession', (req, res) => {
 
 export default router;
 
-/* <i>данные вашей учетной записи:</i> */
+//  <i>данные вашей учетной записи:</i> 
         // <ul>
         //     <li>login: {{email}}</li>
         //     <li>password: {{password}}</li>
