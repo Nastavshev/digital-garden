@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { getVegetThunk } from '../../redux/action-creater';
 import { useDispatch, useSelector } from 'react-redux';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 
 const StyledTextField = withStyles({
   root: {
@@ -39,8 +40,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ModalBed() {
-  const [necessaryInfo, setNecessaryInfo] = useState('')
+function ModalBed(props) {
+  console.log(props);
+  const { setOpenModalBed, openModalBed } = props;
+  const [necessaryInfo, setNecessaryInfo] = useState('');
+  console.log(props);
+
+  // // Закрытие модального окна 
+  const handleClose = () => {
+    setOpenModalBed(false);
+  };
+
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -94,6 +104,7 @@ function ModalBed() {
   }
 
   return (
+    <Dialog open={openModalBed} onClose={handleClose} aria-labelledby="form-dialog-title" className={styles.dialog}>
       <div className={styles.wrapperModal}>
         <div className={styles.greeting}>
           <h3>А сейчас Вам нужно будет заполнить форму ниже, чтобы в любой момент можно было узнать что и на какой грядке растет</h3>
@@ -153,18 +164,19 @@ function ModalBed() {
             </AccordionDetails>
           </Accordion>
           <Button onClick={saveInfoGardenBed} variant="contained" style={{ margin: "3%" }}>Сохранить информацию о посаженных культурах</Button>
-          {necessaryInfo 
-          ?
+          {necessaryInfo
+            ?
             <div className={styles.info}>
               <p>Время от посева до появления всходов, дни</p>
               <p>в открытом грунте: {necessaryInfo?.referenceInfo?.timeFromSowingToEmergence?.openGround}</p>
               <p>в закрытом грунте: {necessaryInfo?.referenceInfo?.timeFromSowingToEmergence?.closedGround}</p>
               <p>Минимальная температура прорастания, t C: {necessaryInfo?.referenceInfo?.temperature}</p>
             </div>
-              : ''
-            }
+            : ''
+          }
         </div>
       </div>
+    </Dialog>
   )
 }
 
