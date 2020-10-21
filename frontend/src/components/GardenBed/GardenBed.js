@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
 
 export default function GardenBed(props) {
-  const {position, size, status} = props;
+  // const {position, size, status} = props;
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
-  const reduxSize = useSelector((state) => state.size );
-  const reduxPosition = useSelector((state) => state.position);
+  const reduxSize = useSelector((state) => state.gardenBed.count[props.id].size);
+  const reduxPosition = useSelector((state) => state.gardenBed.count);
+  console.log("count>>>>", reduxSize);
 
   const style = {
     backgroundColor: 'green',
@@ -39,8 +40,9 @@ export default function GardenBed(props) {
       style={style}
       bounds=".bounds"
       id={props.id}
-      // default={{x: 0, y: 0}}
-      // position={ {x: reduxPosition[props.id].x, y: reduxPosition[props.id].y }}
+      default={{x: 0, y: 0}}
+      position={{ x: reduxPosition[props.id].position.x, y: reduxPosition[props.id].position.y }}
+      size={{width: reduxSize.width, height: reduxSize.height}}
       disableDragging={ reduxFlagStatus }
       enableResizing={{
         top: false,
