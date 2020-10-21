@@ -28,15 +28,15 @@ router.put('/logup', async (req, res) => {
         id: user._id,
         email,
       };
-      const message = {
-        from: 'vasin.ogorod@yandex.ru',
-        to: email,
-        subject: 'Vasin ogorod!',
-        // html: `<h1>privet</h1>`
-        html:
-        `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
-        <p>Данное письмо не требует ответа.<p>`,
-      };
+      // const message = {
+      //   from: 'vasin.ogorod@yandex.ru',
+      //   to: email,
+      //   subject: 'Vasin ogorod!',
+      //   // html: `<h1>privet</h1>`
+      //   html:
+      //   `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
+      //   <p>Данное письмо не требует ответа.<p>`,
+      // };
       // mailer(message);
       return res.end();
     }
