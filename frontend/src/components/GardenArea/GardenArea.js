@@ -20,7 +20,7 @@ export default function GardenArea() {
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
 
   function addComponent() {
-    dispatch(ADD_ELEMENT({ position: { x: 0, y: 0 }, size: { width: "100px", height: "100px" }, status: false }));
+    dispatch(ADD_ELEMENT({ position: { x: 0, y: 0 }, size: { width: "100px", height: "100px" }, status: false, id: Math.random() }));
   }
 
   function setStatus(e) {
@@ -39,7 +39,7 @@ export default function GardenArea() {
           stateCount && stateCount.map((element, index) => {
             return (
               <div key={index}>
-                <GardenBed id={index} position={element.position} size={element.size} status={element.status} />
+                <GardenBed index={index} id={element.id} position={element.position} size={element.size} status={element.status} />
               </div>
             )
           })
