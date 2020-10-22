@@ -116,7 +116,9 @@ function ModalBed(props) {
           style={{ width: '100%' }}
           renderInput={(params) => <TextField {...params} label="Название культуры" variant="outlined" name="name" onSelect={(e) => { changeInputs(e); findInfoAbout(e) }} />}
         />
-        <TextField className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" margin="dense" fullWidth />
+        <form autocomplete="off">
+        <TextField autocomplete="off" className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" margin="dense" fullWidth />
+        </form>
         <TextField
           name="datePlant"
           onChange={changeInputs}

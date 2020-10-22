@@ -8,7 +8,7 @@ return (
     <>
     <AudioPlayer
       autoPlay
-      src="https://mc.yandex.ru/clmap/65755567?page-url=https%3A%2F%2Fzvukogram.com%2Fcategory%2Fzvuki-travyi%2F&pointer-click=rn%3A138863584%3Ax%3A37864%3Ay%3A23301%3At%3A811%3Ap%3AAAAA5AA1AA1%3AX%3A396%3AY%3A924&browser-info=ti%3A4%3Arqnl%3A1%3Ast%3A1603300655%3Au%3A16033005741068262097%3App%3A3629563401"
+      src="https://s21vla.storage.yandex.net/get-mp3/9ede1a44c4dfb06e4be9fd9f05bcdbed/0005b244e73258cc/rmusic/U2FsdGVkX18-ELTBtVBfIfWexRsiUW7dM3ClU6StKJcE7K4c7Xo8HJaOVkK5HlBbEnUhzHcr-TJi7fPINo5RcWjEx4IY8kjOSSjo3Usldv8/eb4e679ac76ec7ec5af9941e59a8909dd8e7904c58261767138d236839c9282f?track-id=36318979&play=false"
       onPlay={e => console.log("onPlay")}
     // other props here
     />
