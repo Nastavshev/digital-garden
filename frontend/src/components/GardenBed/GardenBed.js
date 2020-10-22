@@ -6,9 +6,11 @@ import styles from './index.module.css'
 import RedAddButton from '../Button/RedAddButton';
 import { useState } from 'react';
 import ModalBed from '../ModalBed';
+import { useParams } from 'react-router-dom';
 
 export default function GardenBed(props) {
   const { position, size, status } = props;
+  const { idGarden } = useParams();
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
   const reduxSize = useSelector((state) => state.size);
@@ -34,9 +36,9 @@ export default function GardenBed(props) {
   }
 
   const handleClickOpenModalGardenBed = () => {
-    console.log('на меня нажали')
+    // console.log('на меня нажали')
     setOpenModalBed(true);
-    console.log(openModalBed);
+    // console.log(openModalBed);
   };
   // function setStatus(e) {
   //   const id = e.target.parentElement.id;
@@ -65,7 +67,7 @@ export default function GardenBed(props) {
       maxWidth='99%'
     >
       <div className={styles.redButtonOnGarden} onClick={handleClickOpenModalGardenBed}><RedAddButton /></div>
-      <ModalBed setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
+      <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
       {/* <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button> */}
     </Rnd>
   )

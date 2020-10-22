@@ -15,6 +15,9 @@ const GardenSchema = new mongoose.Schema({
   gardenBedId: [{
     type: mongoose.Schema.Types.ObjectId, ref: 'gardenBeds',
   }],
+  idUser: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'users',
+  },
 });
 
 export default mongoose.model('Garden', GardenSchema);

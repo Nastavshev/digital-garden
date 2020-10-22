@@ -40,7 +40,7 @@ function App() {
           <PrivateRoute exact path="/user/account">
             <Personal />
           </PrivateRoute>
-          <PrivateRoute exact path="/user/garden">
+          <PrivateRoute exact path="/user/garden/:idGarden">
             <Garden />
           </PrivateRoute>
           <Route exact path="/">
