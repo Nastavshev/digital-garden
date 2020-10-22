@@ -18,6 +18,7 @@ function ModalAddGarden(props) {
 
   const dispatch = useDispatch();
   // const garden = useSelector((state) => state.garden);
+  const [gardenId, setGardenId] = useState();
 
   const { setOpen, open } = props;
 
@@ -55,6 +56,7 @@ function ModalAddGarden(props) {
 
   const init = () => {
     new window.ymaps.SuggestView('suggest', { results: 3 });
+
   };
 
   async function saveGarden() {
@@ -66,7 +68,7 @@ function ModalAddGarden(props) {
       body: JSON.stringify({ inputsGarden, idUser })
     });
     const data = await response.json();
-    console.log(data);
+    setGardenId(data._id);
     dispatch(createGarden(data));
   }
 
@@ -79,6 +81,7 @@ function ModalAddGarden(props) {
           <DialogContentText>
             Заполните, пожалуста, информацию для создания модели вашего участка
           </DialogContentText>
+          <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -88,9 +91,12 @@ function ModalAddGarden(props) {
             onChange={(e) => handleChange(e)}
             name="title"
             required
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <div className={styles.inputsLocation}>
+        <form autocomplete="off">
           <TextField
             autoFocus
             fullWidth
@@ -100,9 +106,12 @@ function ModalAddGarden(props) {
             onSelect={(e) => { init(e); handleChange(e); }}
             name="location"
             required
+            autocomplete="off"
           />
+          </form>
         </div>
         <DialogContent>
+        <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -114,13 +123,15 @@ function ModalAddGarden(props) {
             fullWidth
             onChange={(e) => handleChange(e)}
             name="comment"
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Link to='/user/garden'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
+          <Link to='/user/garden/new'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
             Создать!
           </Button></Link>
         </DialogActions>

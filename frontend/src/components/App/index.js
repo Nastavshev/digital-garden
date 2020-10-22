@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, Route,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Login from '../Login';
 import Secret from '../Secret';
 import PrivateRoute from '../PrivateRoute';
@@ -25,11 +26,12 @@ import Garden from '../Garden';
 import Chat from '../Chat';
 
 function App() {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   return (
     <div className={styles.App}>
       <Router>
         <Header />
-        <Chat />
+        {isAuthenticated && <Chat />}
         <Switch>
           <Route exact path="/user/logout">
             Выход
@@ -38,7 +40,7 @@ function App() {
           <PrivateRoute exact path="/user/account">
             <Personal />
           </PrivateRoute>
-          <PrivateRoute exact path="/user/garden">
+          <PrivateRoute exact path="/user/garden/:idGarden">
             <Garden />
           </PrivateRoute>
           <Route exact path="/">

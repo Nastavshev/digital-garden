@@ -9,7 +9,7 @@ function Logout() {
   const history = useHistory();
   useEffect(() => {
     (async () => {
-      console.log('logout');
+      // console.log('logout');
       await fetch('/auth/logout');
       dispatch(setLogout());
       dispatch(setDeleteSession());

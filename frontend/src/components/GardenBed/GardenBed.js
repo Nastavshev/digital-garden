@@ -1,59 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Rnd } from "react-rnd";
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
+import { ADD_POSITION, ADD_SIZE, DELETE_GARDENBED } from '../../redux/actionForGarden';
+import styles from './index.module.css'
+import WhiteAddButton from '../Button/WhiteAddButton';
+// import { useState } from 'react';
+import ModalBed from '../ModalBed';
+import { useParams } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export default function GardenBed(props) {
-  const {position, size, status} = props;
+
+  const { position, size, status } = props;
+  const { idGarden } = useParams();
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
-  const reduxSize = useSelector((state) => state.size );
-  const reduxPosition = useSelector((state) => state.position);
+  const reduxSize = useSelector((state) => state.gardenBed.count[props.index].size);
+  const reduxPosition = useSelector((state) => state.gardenBed.count[props.index].position);
+  const [openModalBed, setOpenModalBed] = useState(false);
+
 
   const style = {
-    backgroundColor: 'green',
-    border: '3px dashed red',
+    border: '3px dashed #fa4659',
     borderLeft: "none",
     borderTop: "none",
     userSelect: "none",
   };
-  
+
   function setNewPlace(e, data) {
     const id = e.target.id;
-    dispatch(ADD_POSITION({ position: {x: data.x, y: data.y}, size: reduxSize, status: reduxFlagStatus, id } ));
+    dispatch(ADD_POSITION({ position: { x: data.x, y: data.y }, size: reduxSize, status: reduxFlagStatus, id }));
   }
 
   function setSize(e, direction, ref) {
-    const id = e.target.parentElement?.id;
+    let id = e.target.parentElement.id;
     dispatch(ADD_SIZE({ position: reduxPosition, size: { width: ref.style.width, height: ref.style.height }, status: reduxFlagStatus, id }));
   }
 
-  function setStatus(e) {
-    const id = e.target.parentElement.id;
-    dispatch(SET_ANCHOR_STATE(reduxFlagStatus))
+  const handleClickOpenModalGardenBed = () => {
+    setOpenModalBed(true);
+  };
+
+  function deleteGardenBed(e) {
+    const id = e.target.closest('div').parentElement.parentElement.id;
+    console.log("id", id);
+    dispatch(DELETE_GARDENBED(id))
   }
 
   return (
     <Rnd onDragStop={setNewPlace}
+      className={styles.gardenBed}
       onResizeStop={setSize}
       style={style}
       bounds=".bounds"
       id={props.id}
-      // default={{x: 0, y: 0}}
-      // position={ {x: reduxPosition[props.id].x, y: reduxPosition[props.id].y }}
-      disableDragging={ reduxFlagStatus }
+      position={{ x: reduxPosition.x, y: reduxPosition.y }}
+      size={{ width: reduxSize.width, height: reduxSize.height }}
       enableResizing={{
         top: false,
         right: !reduxFlagStatus,
         bottom: !reduxFlagStatus,
         left: false,
       }}
-      minHeight= '100px'
+      disableDragging={reduxFlagStatus}
+      minHeight='100px'
       minWidth='100px'
-      maxHeight= '99%'
+      maxHeight='99%'
       maxWidth='99%'
     >
-      <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button>
+      <div className={styles.littleFlex}>
+        <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
+        <div className={styles.deleteGarden}><DeleteForeverIcon onClick={deleteGardenBed} /></div>
+      </div>
+      <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
+      {/* <p>{? "" : gregerg}</p> */}
     </Rnd>
   )
 }

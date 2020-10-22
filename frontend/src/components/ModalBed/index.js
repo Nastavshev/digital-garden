@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { getVegetThunk } from '../../redux/action-creater';
 import { useDispatch, useSelector } from 'react-redux';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 
 const StyledTextField = withStyles({
   root: {
@@ -21,26 +22,34 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-  root: {
-    '& > *': {
-      margin: theme.spacing(2),
-      // width: '60%',
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: 200,
+//   },
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(2),
+//       // width: '60%',
+//     },
+//   },
+// }));
 
-function ModalBed() {
-  const [necessaryInfo, setNecessaryInfo] = useState('')
+function ModalBed(props) {
+  console.log(props);
+  const { idGarden, setOpenModalBed, openModalBed } = props;
+  const [necessaryInfo, setNecessaryInfo] = useState('');
+
+  // // Закрытие модального окна 
+  const handleClose = () => {
+    setOpenModalBed(false);
+  };
+
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -48,9 +57,9 @@ function ModalBed() {
   // }, [dispatch]);
 
   const vegetablesArray = useSelector((state) => state.vegetables);
-  console.log(vegetablesArray);
+  // console.log(vegetablesArray);
 
-  const classes = useStyles();
+  // const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
@@ -78,93 +87,94 @@ function ModalBed() {
   }
 
   async function saveInfoGardenBed() {
-    // event.preventDefault();
-    console.log('>>>>>>>>createTheme');
-    const response = await fetch('/modal', {
+    // console.log('>>>>>>>>createTheme');
+    const response = await fetch(`/modal/${idGarden}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ input })
     });
-    // if (response.status === 200) {
-    //   console.log('status 200');
-    //   return history.push('/forum');
-    // }
+    if (response.status === 200) {
+      // console.log('status 200');
+      setOpenModalBed(!openModalBed)
+    }
   }
 
   return (
-      <div className={styles.wrapperModal}>
-        <div className={styles.greeting}>
-          <h3>А сейчас Вам нужно будет заполнить форму ниже, чтобы в любой момент можно было узнать что и на какой грядке растет</h3>
-        </div>
-        <div className={styles.centerDiv}>
-          <div className={styles.divInput}>
-            <Autocomplete
-
-              id="combo-box-demo"
-              options={vegetablesArray}
-              getOptionLabel={(option) => option.vegetableName}
-              style={{ width: '100%' }}
-              renderInput={(params) => <TextField {...params} label="Название культуры" variant="outlined" name="name" onSelect={(e) => { changeInputs(e); findInfoAbout(e) }} />}
-            />
-          </div>
-          <div className={styles.divInput}>
-            <TextField className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" />
-          </div>
-          <div className={styles.divInput}>
+    <Dialog open={openModalBed} onClose={handleClose} aria-labelledby="form-dialog-title" className={styles.dialog}>
+      <DialogTitle id="form-dialog-title">Посадка</DialogTitle>
+      <DialogContent>
+        <DialogContentText>А сейчас Вам нужно будет заполнить форму ниже, чтобы в любой момент можно было узнать что и на какой грядке растет</DialogContentText>
+        <DialogContent>
+        </DialogContent>
+        <Autocomplete
+          margin="dense"
+          id="combo-box-demo"
+          options={vegetablesArray}
+          getOptionLabel={(option) => option.vegetableName}
+          style={{ width: '100%' }}
+          renderInput={(params) => <TextField {...params} label="Название культуры" variant="outlined" name="name" onSelect={(e) => { changeInputs(e); findInfoAbout(e) }} />}
+        />
+        <form autocomplete="off">
+        <TextField autocomplete="off" className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" margin="dense" fullWidth />
+        </form>
+        <TextField
+          name="datePlant"
+          onChange={changeInputs}
+          id="date"
+          label="Дата высадки"
+          type="date"
+          defaultValue="2020-10-01"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Accordion>
+          <AccordionSummary
+            margin="dense"
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>Добавить комментарий о данной культуре</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
             <TextField
-
-              name="datePlant"
+              margin="dense"
+              name="comment"
               onChange={changeInputs}
-              id="date"
-              label="Дата высадки"
-              type="date"
-              defaultValue="2020-10-01"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              id="filled-multiline-static"
+              label=""
+              multiline
+              fullWidth
+              defaultValue=""
+              variant="filled"
             />
-          </div>
-          <Accordion className={styles.accordion} style={{ margin: "0 auto" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>Добавить комментарий о данной культуре</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className={styles.accordionDetails}>
-                <div className={styles.textField}>
-                  <StyledTextField
-                    name="comment"
-                    onChange={changeInputs}
-                    id="filled-multiline-static"
-                    label=""
-                    multiline
-                    rows={4}
-                    defaultValue=""
-                    variant="filled"
-                  />
-                </div>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-          <Button onClick={saveInfoGardenBed} variant="contained" style={{ margin: "3%" }}>Сохранить информацию о посаженных культурах</Button>
-          {necessaryInfo 
-          ?
+          </AccordionDetails>
+        </Accordion>
+      </DialogContent>
+      <DialogContent>
+        <DialogContentText>
+          {necessaryInfo
+            ?
             <div className={styles.info}>
               <p>Время от посева до появления всходов, дни</p>
               <p>в открытом грунте: {necessaryInfo?.referenceInfo?.timeFromSowingToEmergence?.openGround}</p>
               <p>в закрытом грунте: {necessaryInfo?.referenceInfo?.timeFromSowingToEmergence?.closedGround}</p>
               <p>Минимальная температура прорастания, t C: {necessaryInfo?.referenceInfo?.temperature}</p>
             </div>
-              : ''
-            }
-        </div>
-      </div>
+            : ''
+          }
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          Отмена
+          </Button>
+        <Button onClick={saveInfoGardenBed} color="primary">Сохранить информацию о посаженных культурах</Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 

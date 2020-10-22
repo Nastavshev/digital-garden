@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthThunk, getVegetThunk, getArticleThunk } from '../../redux/action-creater';
 import styles from './main.module.css';
+import mainImage from '../../logo/3387351.jpg';
 
 function Main() {
   const dispatch = useDispatch();
@@ -20,13 +21,12 @@ function Main() {
 
   return (
     <>
-      <div>Mainnnnnnnnnn</div>
-
-      <div className={styles.main}>Main</div>
-
-      <div className={styles.gifDiv}>
-        {/* <img src="../images/screen.gif" /> */}
-      </div>
+      {/* <div className={styles.main}>
+        <div className={styles.gifDiv}> */}
+      {/* <img src="../gif/signup.gif" /> */}
+      <img className={styles.image} alt="mainImage" src={mainImage} />
+      {/* </div>
+      </div> */}
     </>
   );
 }

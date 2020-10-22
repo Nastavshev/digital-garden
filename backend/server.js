@@ -28,22 +28,21 @@ app.use(session({
   },
 }));
 
-app.post('/modal', async (req, res) => {
-  // console.log(req.body)
-  // console.log(req.session.user)
+app.post('/modal/:gardenId', async (req, res) => {
+  const { gardenId } = req.params;
   const {
     name, grade, comment, datePlant,
   } = req.body.input;
-  let userId = req.session.user.id
+  const userId = req.session.user.id;
   const newGardenBed = await gardenBedModel({
     name,
     grade,
     comment,
     datePlant,
     userId,
+    gardenId,
   });
   await newGardenBed.save();
-  console.log(newGardenBed);
   res.end();
 });
 

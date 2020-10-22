@@ -243,7 +243,17 @@ async function createInfo() {
     vegetableName: 'Шпинат',
     referenceInfo: {
       timeFromSowingToEmergence: {
-        openGround: '8-12	',
+        openGround: '8-12',
+        closedGround: '-',
+      },
+      temperature: '1-2',
+    },
+  });
+  const veg25 = await new vegetModel({
+    vegetableName: 'Картофель',
+    referenceInfo: {
+      timeFromSowingToEmergence: {
+        openGround: '8-12',
         closedGround: '-',
       },
       temperature: '1-2',
@@ -274,6 +284,7 @@ async function createInfo() {
   await veg22.save();
   await veg23.save();
   await veg24.save();
+  await veg25.save();
 }
 
 createInfo();
