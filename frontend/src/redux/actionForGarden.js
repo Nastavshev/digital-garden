@@ -9,3 +9,5 @@ export const ADD_SIZE = (size) => ({
 export const SET_ANCHOR_STATE = (data) => ({ type: "SET_ANCHOR_STATE", payload: !data});
 
 export const ADD_ELEMENT = (element) => ({ type: "ADD_ELEMENT", payload: element });
+
+export const DELETE_GARDENBED = (id) => ({ type: "DELETE_GARDENBED", payload: id})

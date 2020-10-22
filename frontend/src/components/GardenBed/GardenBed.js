@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Rnd } from "react-rnd";
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
 import styles from './index.module.css'
 import WhiteAddButton from '../Button/WhiteAddButton';
-import { useState } from 'react';
+// import { useState } from 'react';
 import ModalBed from '../ModalBed';
 import { useParams } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -34,13 +34,18 @@ export default function GardenBed(props) {
   }
 
   function setSize(e, direction, ref) {
-    const id = e.target.parentElement?.id;
+    let id =  e.target.parentElement.id;
     dispatch(ADD_SIZE({ position: reduxPosition, size: { width: ref.style.width, height: ref.style.height }, status: reduxFlagStatus, id }));
   }
 
   const handleClickOpenModalGardenBed = () => {
     setOpenModalBed(true);
   };
+
+  // function deleteGardenBed(e) {
+  //   const id =  e.target.parentElement.id;
+  //   dispatch(DELETE_GARDENBED(id))
+  // }
 
   return (
     <Rnd onDragStop={setNewPlace}
