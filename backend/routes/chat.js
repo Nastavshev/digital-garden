@@ -19,7 +19,7 @@ router.get('/messages', checkSession, async (req, res) => {
 
 router.put('/message', checkSession, async (req, res) => {
   const { id } = req.session.user;
-  console.log('body >>>>>>>>>>', req.body);
+  // console.log('body >>>>>>>>>>', req.body);
   const chat = await Chat.findOne({ userId: id });
   chat.messages.push(req.body);
   chat.save();

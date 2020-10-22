@@ -34,27 +34,29 @@ function UserChat() {
     // if (chat.length) {
     ws.onmessage = (event) => {
       console.log('event.data >>>>>>>', event.data);
+      const id = event.data.userId;
+      const adminMessage = event.data.message;
       setChat((prev) => [
         ...prev,
-        JSON.parse(event.data),
+        { id, message: adminMessage },
       ]);
       // };
-      // try {
-      //   (async () => {
-      //     await fetch('/chat/message', {
-      //       method: 'PUT',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify({
-      //         id,
-      //         message,
-      //       }),
-      //     });
-      //   })();
-      // } catch (err) {
-      //   setError('ERROR', JSON.stringify(err));
-      // }
+      try {
+        (async () => {
+          await fetch('/chat/message', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id,
+              message,
+            }),
+          });
+        })();
+      } catch (err) {
+        setError('ERROR', JSON.stringify(err));
+      }
     };
   }, []);
 
