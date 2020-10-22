@@ -86,9 +86,9 @@ export default function MenuAppBar() {
             </>
             :
             <>
-              <Button variant="contained" size="small" className={styles.bar} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
+              <Button  size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
               <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
-              <Button variant="contained" size="small" className={styles.bar} onClick={handleClickOpenLogin}>Войти</Button>
+              <Button size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenLogin}>Войти</Button>
               <Login />
             </>
           }
