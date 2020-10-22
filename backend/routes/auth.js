@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import '../misc/db.js';
-import mailer from '../nodemailer.js';
+import nodemailer from 'nodemailer'
 // import '../misc/env';
 
 const router = express.Router();
@@ -29,15 +29,37 @@ router.put('/logup', async (req, res) => {
         email,
         admin: user.admin,
       };
-      const message = {
+      // console.log("EMAIL>>>>>>>>>>>>>", email);
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.yandex.ru',
+        port: 465,
+        secure: true,
+        // service: 'yandex',
+        auth: {
+          user: 'vasin.ogorod@yandex.ru',
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
+      const mailOptions = {
         from: 'vasin.ogorod@yandex.ru',
         to: email,
         subject: 'Vasin ogorod!',
-        // html: `<h1>privet</h1>`
-        html:
-          `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
-        <p>Данное письмо не требует ответа.<p>`
+        text: `Поздравляем, Вы успешно зарегистрировались на нашем сайте!
+        Данное письмо не требует ответа.`,
       };
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) console.log(err);
+        else console.log(`email sent${info.response}`);
+      });
+      // const message = {
+      //   from: 'vasin.ogorod@yandex.ru',
+      //   to: email,
+      // subject: 'Vasin ogorod!',
+      // html: `<h1>privet</h1>`
+      html:
+      //   `<h2>Поздравляем, Вы успешно зарегистрировались на нашем сайте!</h2>
+      // <p>Данное письмо не требует ответа.<p>`
+      // };
       // mailer(message);
       return res.end();
     }
