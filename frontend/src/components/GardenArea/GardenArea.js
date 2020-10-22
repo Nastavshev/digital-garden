@@ -15,21 +15,21 @@ export default function GardenArea() {
   const stateCount = useSelector((state) => state.gardenBed.count);
   
   function addComponent() {
-    dispatch(ADD_ELEMENT({ position: {x:0, y:0}, size: {width:"100px", height: "100px"} , status: false})); 
+    dispatch(ADD_ELEMENT({ position: {x:0, y:0}, size: {width:"100px", height: "100px"} , status: false, id: Math.random()})); 
   }
 
   return (
     <>
       <button onClick={addComponent}>Добавить грядочку</button>
     <div style={{ width: '100%', height: '100%' }}>
-    <div className="bounds" style={{ margin: "5px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
+    <div className="bounds" style={{ margin: "10px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
       <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
       </div>
      {
         stateCount && stateCount.map((element, index) => {
         return (
           <div  key={index}>
-            <GardenBed id={index} position={element.position} size={element.size} status={element.status} />
+            <GardenBed index={index} id={element.id} position={element.position} size={element.size} status={element.status} />
           </div>    
         )
       })

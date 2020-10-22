@@ -55,6 +55,7 @@ function ModalAddGarden(props) {
 
   const init = () => {
     new window.ymaps.SuggestView('suggest', { results: 3 });
+
   };
 
   async function saveGarden() {

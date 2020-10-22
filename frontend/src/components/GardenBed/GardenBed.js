@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Rnd } from "react-rnd";
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
+import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE, DELETE_GARDENBED } from '../../redux/actionForGarden';
 
 export default function GardenBed(props) {
-  // const {position, size, status} = props;
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
-  const reduxSize = useSelector((state) => state.gardenBed.count[props.id].size);
-  const reduxPosition = useSelector((state) => state.gardenBed.count);
-  console.log("count>>>>", reduxSize);
+  const reduxSize = useSelector((state) => state.gardenBed.count[props.index].size);
+  const reduxPosition = useSelector((state) => state.gardenBed.count[props.index].position);
+  console.log("position", reduxPosition)
 
   const style = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: 'green',
     border: '3px dashed red',
     borderLeft: "none",
@@ -24,8 +26,8 @@ export default function GardenBed(props) {
     dispatch(ADD_POSITION({ position: {x: data.x, y: data.y}, size: reduxSize, status: reduxFlagStatus, id } ));
   }
 
-  function setSize(e, direction, ref) {
-    const id = e.target.parentElement?.id;
+  function setSize(e, direction, ref, delta, position) {
+    let id =  e.target.parentElement.id;
     dispatch(ADD_SIZE({ position: reduxPosition, size: { width: ref.style.width, height: ref.style.height }, status: reduxFlagStatus, id }));
   }
 
@@ -34,14 +36,20 @@ export default function GardenBed(props) {
     dispatch(SET_ANCHOR_STATE(reduxFlagStatus))
   }
 
+  // function deleteGardenBed(e) {
+  //   const id =  e.target.parentElement.id;
+  //   dispatch(DELETE_GARDENBED(id))
+  // }
+
   return (
-    <Rnd onDragStop={setNewPlace}
-      onResizeStop={setSize}
+    <Rnd 
+    onDragStop={setNewPlace}
+    onResizeStop={setSize}
       style={style}
       bounds=".bounds"
       id={props.id}
       default={{x: 0, y: 0}}
-      position={{ x: reduxPosition[props.id].position.x, y: reduxPosition[props.id].position.y }}
+      position={{ x: reduxPosition.x, y: reduxPosition.y }}
       size={{width: reduxSize.width, height: reduxSize.height}}
       disableDragging={ reduxFlagStatus }
       enableResizing={{
@@ -56,6 +64,7 @@ export default function GardenBed(props) {
       maxWidth='99%'
     >
       <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button>
+      {/* <button onClick={deleteGardenBed}>Del</button> */}
     </Rnd>
   )
 }
