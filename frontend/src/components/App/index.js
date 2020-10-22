@@ -29,6 +29,7 @@ function App() {
     <div className={styles.App}>
       <Router>
         <Header />
+        <Chat />
         <Switch>
           <Route exact path="/user/logout">
             Выход
