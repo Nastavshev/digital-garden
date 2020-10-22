@@ -61,10 +61,10 @@ function Comment(props) {
       setPaginatArray(result.paginatArray);
       setMessages(result.commentFromBD);
       console.log(messages);
-      let newArray = messages.map((element) => {
-        element.commentDate = element.commentDate.split(" ")
-        return element
-      })
+      // let newArray = messages.map((element) => {
+      //   element.commentDate = element.commentDate.split(" ")
+      //   return element
+      // })
       // setMessages(newArray);
     })()
   }, [pageNumber])
