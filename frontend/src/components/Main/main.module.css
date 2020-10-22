@@ -12,3 +12,8 @@
 .main{
   height: 100vh;
 }
+.image{
+  margin: 50px;
+  width: 60%;
+  height: 750px;
+}
