@@ -36,10 +36,15 @@ function Comment(props) {
   const { userName, email } = useSelector(state => state.user)
 
   const [messages, setMessages] = useState([])
-  // console.log(messages[0]?.commentDate.toDateString());
+  console.log(messages[0]);
 
-  let b = messages[0]?.commentDate;
-  console.log(b);
+  let newArray = messages.map(function(element) {
+    element.commentDate.split(" ")
+    // console.log(element.commentDate);
+  return element.commentDate
+  })
+
+  console.log(newArray);
   const [input, setInput] = useState('');
 
   function changeInputs(event) {
