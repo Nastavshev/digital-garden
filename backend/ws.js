@@ -24,7 +24,7 @@ wsServer.on('connection', (client) => {
 
     // console.log('clients >>>>>>>>>>>>', clients);
     // console.log('admin.id >>>>>>>', admin.id);
-    clients[sentMessage.id]?.send(sentMessage.message);
-    clients[admin.id]?.send(sentMessage.message);
+    // clients[sentMessage.id]?.send(sentMessage.message);
+    // clients[admin.id]?.send(sentMessage.message);
   });
 });

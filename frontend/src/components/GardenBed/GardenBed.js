@@ -3,7 +3,7 @@ import { Rnd } from "react-rnd";
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
 import styles from './index.module.css'
-import RedAddButton from '../Button/RedAddButton';
+import WhiteAddButton from '../Button/WhiteAddButton';
 import { useState } from 'react';
 import ModalBed from '../ModalBed';
 
@@ -11,13 +11,14 @@ export default function GardenBed(props) {
   const { position, size, status } = props;
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
-  const reduxSize = useSelector((state) => state.size);
-  const reduxPosition = useSelector((state) => state.position);
+  const reduxSize = useSelector((state) => state.gardenBed.count[props.id].size);
+  const reduxPosition = useSelector((state) => state.gardenBed.count);
   const [openModalBed, setOpenModalBed] = useState(false);
+  console.log(reduxSize);
 
   const style = {
     // backgroundColor: 'green',
-    border: '3px dashed red',
+    border: '3px dashed #fa4659',
     borderLeft: "none",
     borderTop: "none",
     userSelect: "none",
@@ -50,8 +51,9 @@ export default function GardenBed(props) {
       style={style}
       bounds=".bounds"
       id={props.id}
-      // default={{x: 0, y: 0}}
-      // position={ {x: reduxPosition[props.id].x, y: reduxPosition[props.id].y }}
+      default={{ x: 0, y: 0 }}
+      position={{ x: reduxPosition[props.id].position.x, y: reduxPosition[props.id].position.y }}
+      size={{ width: reduxSize.width, height: reduxSize.height }}
       disableDragging={reduxFlagStatus}
       enableResizing={{
         top: false,
@@ -64,7 +66,7 @@ export default function GardenBed(props) {
       maxHeight='99%'
       maxWidth='99%'
     >
-      <div className={styles.redButtonOnGarden} onClick={handleClickOpenModalGardenBed}><RedAddButton /></div>
+      <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
       <ModalBed setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
       {/* <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button> */}
     </Rnd>

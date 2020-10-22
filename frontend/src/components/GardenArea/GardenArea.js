@@ -24,7 +24,7 @@ export default function GardenArea() {
   }
 
   function setStatus(e) {
-    const id = e.target.parentElement.id;
+    // const id = e.target.parentElement.id;
     dispatch(SET_ANCHOR_STATE(reduxFlagStatus))
   }
 
@@ -32,7 +32,7 @@ export default function GardenArea() {
     <>
       {/* <button onClick={addComponent}>Добавить грядочку</button> */}
       {/* <div style={{ width: '100%', height: '100%' }}> */}
-      <div className="bounds" style={{ margin: "5px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
+      <div className="bounds" style={{ margin: "20px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
         <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
         </div>
         {
