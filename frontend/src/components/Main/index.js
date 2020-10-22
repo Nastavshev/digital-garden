@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMonthThunk, getVegetThunk, getArticleThunk } from '../../redux/action-creater';
 import styles from './main.module.css';
 
-
 function Main() {
   const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ function Main() {
         {/* <img src="../images/screen.gif" /> */}
       </div>
     </>
-  )
+  );
 }
 
 export default Main;

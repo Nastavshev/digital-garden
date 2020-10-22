@@ -4,6 +4,8 @@ import FileStoreGeneral from 'session-file-store';
 import authRouter from './routes/auth.js';
 import indexRouter from './routes/index.js';
 import modalsRouter from './routes/modal.js';
+import chatRouter from './routes/chat.js';
+import './ws.js';
 import gardenBedModel from './models/gardenBedModel.js';
 import './misc/db.js';
 import './misc/env.js';
@@ -41,11 +43,13 @@ app.post('/modal', async (req, res) => {
     userId,
   });
   await newGardenBed.save();
-  // console.log(newGardenBed);
+  console.log(newGardenBed);
+  res.end();
 });
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/chat', chatRouter);
 app.use('/modals', modalsRouter);
 
 app.listen(process.env.PORT || 3001, () => {

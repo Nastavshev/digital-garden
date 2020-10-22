@@ -10,7 +10,7 @@ import pageReducer from './pageReducer';
 import isSession from './sessionReducer';
 import createGardenReducer from './createGardenReducer';
 import reducerGardenBed from './reducerGardenBed';
-
+import isChat from './chatReducer';
 
 const preloadedState = window.localStorage.getItem('state') || '{}';
 
@@ -25,11 +25,9 @@ const store = createStore(
     user: isSession,
     garden: createGardenReducer,
     gardenBed: reducerGardenBed,
+    currentChat: isChat,
   }),
   JSON.parse(preloadedState),
-  // {
-  //   isAuthenticated: false,
-  // },
   composeWithDevTools(
     applyMiddleware(
       thunkMiddleware,
@@ -39,7 +37,7 @@ const store = createStore(
 
 store.subscribe(() => {
   const state = store.getState();
-  console.log("state", state)
+  console.log('state', state);
   window.localStorage.setItem('state', JSON.stringify(state));
 });
 

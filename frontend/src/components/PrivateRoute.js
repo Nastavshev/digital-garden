@@ -14,8 +14,8 @@ function PrivateRoute({ children, ...rest }) {
     try {
       (async () => {
         const response = await fetch('/auth/isSession');
-      const resp = await response.json();
-      dispatch(setSession(resp));
+        const resp = await response.json();
+        dispatch(setSession(resp));
       })();
     } catch (err) {
       console.error(err);
