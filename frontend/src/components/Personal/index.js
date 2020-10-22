@@ -41,13 +41,13 @@ const history = useHistory();
     setGardens(data);
   }
 
-  async function openElement(deleteId) {
-    const response = await fetch(`/modals/garden/${deleteId}`)
+  async function openElement(openId) {
+    const response = await fetch(`/modals/garden/${openId}`)
     const data = await response.json()
     console.log(data);
     console.log(response.status);
     if (response.status === 200) {
-      history.push('/user/garden')
+      history.push(`/user/garden/${openId}`)
     }
   }
 
