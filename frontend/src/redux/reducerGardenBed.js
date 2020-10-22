@@ -44,16 +44,18 @@ export default function reducerGardenBed(state = initialState, action) {
           return newState;
         }
         break;
-        // case "DELETE_GARDENBED":
-        //   {
-        //     let stateAfterDelete = { ...state};
-        //     stateAfterDelete.count = state.count.filter((el, i) => {
-        //       let eachGardenBed = { ...el};
-        //       return el;
-        //       // return el[i] !== action.payload;
-        //     })
-        //     // return stateAfterDelete;
-        //   }
+        case "DELETE_GARDENBED":
+          {
+            let stateAfterDelete = { ...state};
+            stateAfterDelete.count = state.count.filter((el, i) => {
+              let eachGardenBed = { ...el};
+              console.log("elid",el.id,"payload=", action.payload );
+              if (el.id != action.payload) {
+                return el;
+              }
+            })
+            return stateAfterDelete;
+          }
     default:
       return state;
       break;
