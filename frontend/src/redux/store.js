@@ -37,7 +37,6 @@ const store = createStore(
 
 store.subscribe(() => {
   const state = store.getState();
-  console.log('state', state);
   window.localStorage.setItem('state', JSON.stringify(state));
 });
 
