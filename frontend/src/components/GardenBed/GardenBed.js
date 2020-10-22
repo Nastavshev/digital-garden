@@ -7,6 +7,8 @@ import WhiteAddButton from '../Button/WhiteAddButton';
 import { useState } from 'react';
 import ModalBed from '../ModalBed';
 import { useParams } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export default function GardenBed(props) {
 
@@ -60,7 +62,10 @@ export default function GardenBed(props) {
       maxHeight='99%'
       maxWidth='99%'
     >
-      <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
+      <div className={styles.littleFlex}>
+        <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
+        <div className={styles.deleteGarden}><DeleteForeverIcon /></div>
+      </div>
       <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
     </Rnd>
   )
