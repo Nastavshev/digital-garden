@@ -10,7 +10,7 @@ const clients = {};
 const adminPromis = User.findOne({ admin: true });
 wsServer.on('connection', (client) => {
   client.on('message', async (message) => {
-    console.log('message >>>>>>>>>', message);
+    // console.log('message >>>>>>>>>', message);
     try {
       const admin = await adminPromis;
       const sentMessage = JSON.parse(message);

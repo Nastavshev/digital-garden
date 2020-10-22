@@ -11,7 +11,7 @@ function UserChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('user ????????????', user.id);
+    // console.log('user ????????????', user.id);
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -44,7 +44,7 @@ function UserChat() {
   async function sendMessage(e) {
     e.preventDefault();
     const { id } = user;
-    console.log('currentChat>>>>>>', currentChat);
+    // console.log('currentChat>>>>>>', currentChat);
     ws.send(JSON.stringify({ id, message }));
     try {
       await fetch('/chat/message', {

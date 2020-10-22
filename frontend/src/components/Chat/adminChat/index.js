@@ -15,7 +15,7 @@ function AdminChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('user ????????????', user.id);
+    // console.log('user ????????????', user.id);
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -26,7 +26,7 @@ function AdminChat() {
         // if (response.status === 200) {
         const resp = await response.json();
         setAdminChats(resp);
-        console.log('adminChats >>>>>>>>>', adminChats);
+        // console.log('adminChats >>>>>>>>>', adminChats);
         // }
         // const resp = await response.json();
         // setError(JSON.stringify(resp))
@@ -38,7 +38,7 @@ function AdminChat() {
 
   useEffect(() => {
     ws.onmessage = (event) => {
-      console.log('event >>>>>>>>>>>>>>>>', event);
+      // console.log('event >>>>>>>>>>>>>>>>', event);
       if (currentChat) {
         setChat((prev) => [
           ...prev,

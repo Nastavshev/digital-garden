@@ -7,12 +7,12 @@ const router = express.Router();
 
 router.get('/messages', checkSession, async (req, res) => {
   const { id } = req.session.user;
-  console.log('req.session.user;!!!!!!!!!!', id);
+  // console.log('req.session.user;!!!!!!!!!!', id);
   let chat = await Chat.findOne({ userId: id });
   if (!chat) {
     chat = await Chat.create({ userId: id });
   }
-  console.log('chat.messages!!!!!!!!!!', chat.messages);
+  // console.log('chat.messages!!!!!!!!!!', chat.messages);
   res.json(chat.messages);
 });
 
