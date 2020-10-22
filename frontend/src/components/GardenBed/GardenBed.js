@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Rnd } from "react-rnd";
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_POSITION, ADD_SIZE, SET_ANCHOR_STATE } from '../../redux/actionForGarden';
+import { ADD_POSITION, ADD_SIZE, DELETE_GARDENBED } from '../../redux/actionForGarden';
 import styles from './index.module.css'
 import WhiteAddButton from '../Button/WhiteAddButton';
 // import { useState } from 'react';
@@ -42,10 +42,11 @@ export default function GardenBed(props) {
     setOpenModalBed(true);
   };
 
-  // function deleteGardenBed(e) {
-  //   const id =  e.target.parentElement.id;
-  //   dispatch(DELETE_GARDENBED(id))
-  // }
+  function deleteGardenBed(e) {
+    const id =  e.target.closest('div').parentElement.parentElement.id;
+    console.log("id", id);
+    dispatch(DELETE_GARDENBED(id))
+  }
 
   return (
     <Rnd onDragStop={setNewPlace}
@@ -69,9 +70,10 @@ export default function GardenBed(props) {
     >
       <div className={styles.littleFlex}>
         <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
-        <div className={styles.deleteGarden}><DeleteForeverIcon /></div>
+        <div className={styles.deleteGarden}><DeleteForeverIcon onClick={deleteGardenBed}/></div>
       </div>
       <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
+    {/* <p>{? "" : gregerg}</p> */}
     </Rnd>
   )
 }
