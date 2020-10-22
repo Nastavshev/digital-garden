@@ -21,7 +21,7 @@ export default function GardenArea() {
 
   function addComponent() {
 
-    dispatch(ADD_ELEMENT({ position: {x:0, y:0}, size: {width:"100px", height: "100px"} , status: false, id: Math.random()})); 
+    dispatch(ADD_ELEMENT({ position: { x: 0, y: 0 }, size: { width: "100px", height: "100px" }, status: false, id: Math.random() }));
   }
 
   function setStatus(e) {
@@ -31,9 +31,6 @@ export default function GardenArea() {
 
   return (
     <>
-
-      {/* <button onClick={addComponent}>Добавить грядочку</button> */}
-      {/* <div style={{ width: '100%', height: '100%' }}> */}
       <div className="bounds" style={{ margin: "20px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
         <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
         </div>
@@ -48,18 +45,7 @@ export default function GardenArea() {
         }
 
       </div>
-     {
-        stateCount && stateCount.map((element, index) => {
-        return (
-          <div  key={index}>
-            <GardenBed index={index} id={element.id} position={element.position} size={element.size} status={element.status} />
-          </div>    
-        )
-      })
-     } 
-    </div>
-  </div>
-    <div onClick={addComponent} ><RedAddButton /></div>
+      <div onClick={addComponent} ><RedAddButton /></div>
       <div onClick={setStatus}><GreenSaveButton /></div>
     </>
   )
