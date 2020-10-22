@@ -1,7 +1,8 @@
-const initialState =  { position: {x:0, y:0}, size: {width:"100px", height: "100px"} , status: false, count:[] };
+const initialState = { position: { x: 0, y: 0 }, size: { width: "100px", height: "100px" }, status: false, count: [] };
 
-export default function reducerGardenBed( state = initialState , action) {
+export default function reducerGardenBed(state = initialState, action) {
   switch (action.type) {
+
       case 'ADD_SIZE':
         { 
           const newState = {...state};
@@ -17,18 +18,18 @@ export default function reducerGardenBed( state = initialState , action) {
         }
         break;
 
-      case 'SET_ANCHOR_STATE':
-        return {
-          ...state,
-          status: action.payload,
-        }
-        break;
+    case 'SET_ANCHOR_STATE':
+      return {
+        ...state,
+        status: action.payload,
+      }
+      break;
 
-      case 'ADD_ELEMENT':
-        return {
-          ...state,  count: [ ...state.count, action.payload ] 
-        }
-        break;
+    case 'ADD_ELEMENT':
+      return {
+        ...state, count: [...state.count, action.payload]
+      }
+      break;
 
         case 'ADD_POSITION':   
         { 
