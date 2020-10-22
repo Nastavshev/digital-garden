@@ -13,6 +13,7 @@ router.post('/garden', async (req, res) => {
     title,
     comment,
     location,
+    idUser
   });
   await newGarden.save();
   const userObj = await User.findOne({ _id: idUser }).populate('garden');
@@ -35,6 +36,19 @@ router.post('/delete', async (req, res) => {
   await Garden.deleteOne({ _id: deleteId });
   const user = await User.findOne({ _id: idUser }).populate('garden');
   res.json(user.garden);
+});
+
+router.get('/garden/:id', async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+  let currentGarden;
+  try {
+    currentGarden = await Garden.findOne({ _id: id });
+    // console.log(currentGarden);
+    res.json(currentGarden)
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 export default router;

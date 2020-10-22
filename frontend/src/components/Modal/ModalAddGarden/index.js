@@ -18,6 +18,7 @@ function ModalAddGarden(props) {
 
   const dispatch = useDispatch();
   // const garden = useSelector((state) => state.garden);
+  const [gardenId, setGardenId] = useState();
 
   const { setOpen, open } = props;
 
@@ -67,7 +68,7 @@ function ModalAddGarden(props) {
       body: JSON.stringify({ inputsGarden, idUser })
     });
     const data = await response.json();
-    console.log(data);
+    setGardenId(data._id);
     dispatch(createGarden(data));
   }
 
@@ -121,7 +122,7 @@ function ModalAddGarden(props) {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Link to='/user/garden'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
+          <Link to='/user/garden/new'><Button onClick={() => { saveGarden(); handleClose() }} color="primary">
             Создать!
           </Button></Link>
         </DialogActions>
