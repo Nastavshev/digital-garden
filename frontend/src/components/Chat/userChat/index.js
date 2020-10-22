@@ -4,16 +4,14 @@ import { useSelector } from 'react-redux';
 const ws = new WebSocket('ws://localhost:3333');
 
 function UserChat() {
-  const currentChat = useSelector((state) => state.currentChat);
   const user = useSelector((state) => state.user);
   const [chat, setChat] = useState([]);
   const [error, setError] = useState('');
   const [message, setMessage] = useState();
 
-  ws.onopen = () => {
-    console.log('user ????????????', user.id);
-    ws.send(JSON.stringify({ userId: user.id }));
-  };
+  // ws.onopen = () => {
+  //   ws.send(JSON.stringify({ userId: user.id }));
+  // };
 
   useEffect(() => {
     try {
@@ -23,7 +21,7 @@ function UserChat() {
           const resp = await response.json();
           setChat((prev) => [
             ...prev,
-            resp,
+            ...resp,
           ]);
         }
       })();
@@ -33,18 +31,40 @@ function UserChat() {
   }, []);
 
   useEffect(() => {
+    // if (chat.length) {
     ws.onmessage = (event) => {
+      console.log('event.data >>>>>>>', event.data);
       setChat((prev) => [
         ...prev,
-        event.data,
+        JSON.parse(event.data),
       ]);
+      // };
+      // try {
+      //   (async () => {
+      //     await fetch('/chat/message', {
+      //       method: 'PUT',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify({
+      //         id,
+      //         message,
+      //       }),
+      //     });
+      //   })();
+      // } catch (err) {
+      //   setError('ERROR', JSON.stringify(err));
+      // }
     };
   }, []);
+
+  console.log('userChat >>>>>>', chat);
+  // console.log('userChat >>>>>>', me);
 
   async function sendMessage(e) {
     e.preventDefault();
     const { id } = user;
-    console.log('currentChat>>>>>>', currentChat);
+    // console.log(' 47 id >>>>>>', id);
     ws.send(JSON.stringify({ id, message }));
     try {
       await fetch('/chat/message', {
@@ -53,7 +73,8 @@ function UserChat() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          send: message,
+          id,
+          message,
         }),
       });
     } catch (err) {
@@ -66,7 +87,7 @@ function UserChat() {
       <form onSubmit={sendMessage}>
         <div>
           {
-            chat.map((el) => <p>{el}</p>)
+            chat.map((el) => <p key={el.id}>{el.message}</p>)
           }
         </div>
         <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
