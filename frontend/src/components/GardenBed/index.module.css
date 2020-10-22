@@ -1,8 +1,11 @@
 .gardenBed{
   background: linear-gradient(to bottom right, #2eb872, #a3de83) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
-/* .redButtonOnGarden{
-  vertical-align: middle !important; */
-  /* position: absolute;
-  /* margin: auto; */
-/* } */
+/* .whiteButtonOnGarden{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
