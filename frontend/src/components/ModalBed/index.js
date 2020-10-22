@@ -42,9 +42,8 @@ const StyledTextField = withStyles({
 
 function ModalBed(props) {
   console.log(props);
-  const { setOpenModalBed, openModalBed } = props;
+  const { idGarden, setOpenModalBed, openModalBed } = props;
   const [necessaryInfo, setNecessaryInfo] = useState('');
-  console.log(props);
 
   // // Закрытие модального окна 
   const handleClose = () => {
@@ -58,7 +57,7 @@ function ModalBed(props) {
   // }, [dispatch]);
 
   const vegetablesArray = useSelector((state) => state.vegetables);
-  console.log(vegetablesArray);
+  // console.log(vegetablesArray);
 
   // const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
@@ -88,19 +87,18 @@ function ModalBed(props) {
   }
 
   async function saveInfoGardenBed() {
-    // event.preventDefault();
-    console.log('>>>>>>>>createTheme');
-    const response = await fetch('/modal', {
+    // console.log('>>>>>>>>createTheme');
+    const response = await fetch(`/modal/${idGarden}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ input })
     });
-    // if (response.status === 200) {
-    //   console.log('status 200');
-    //   return history.push('/forum');
-    // }
+    if (response.status === 200) {
+      // console.log('status 200');
+      setOpenModalBed(!openModalBed)
+    }
   }
 
   return (

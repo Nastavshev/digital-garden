@@ -6,9 +6,11 @@ import styles from './index.module.css'
 import WhiteAddButton from '../Button/WhiteAddButton';
 import { useState } from 'react';
 import ModalBed from '../ModalBed';
+import { useParams } from 'react-router-dom';
 
 export default function GardenBed(props) {
   const { position, size, status } = props;
+  const { idGarden } = useParams();
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
   const reduxSize = useSelector((state) => state.gardenBed.count[props.id].size);
@@ -17,7 +19,6 @@ export default function GardenBed(props) {
   console.log(reduxSize);
 
   const style = {
-    // backgroundColor: 'green',
     border: '3px dashed #fa4659',
     borderLeft: "none",
     borderTop: "none",
@@ -35,14 +36,8 @@ export default function GardenBed(props) {
   }
 
   const handleClickOpenModalGardenBed = () => {
-    console.log('на меня нажали')
     setOpenModalBed(true);
-    console.log(openModalBed);
   };
-  // function setStatus(e) {
-  //   const id = e.target.parentElement.id;
-  //   dispatch(SET_ANCHOR_STATE(reduxFlagStatus))
-  // }
 
   return (
     <Rnd onDragStop={setNewPlace}
@@ -67,8 +62,7 @@ export default function GardenBed(props) {
       maxWidth='99%'
     >
       <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
-      <ModalBed setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
-      {/* <button onClick={setStatus}>{reduxFlagStatus === false? 'закрепить': 'изменить'}</button> */}
+      <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
     </Rnd>
   )
 }

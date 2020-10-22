@@ -13,6 +13,7 @@ router.post('/garden', async (req, res) => {
     title,
     comment,
     location,
+    idUser
   });
   await newGarden.save();
   const userObj = await User.findOne({ _id: idUser }).populate('garden');
