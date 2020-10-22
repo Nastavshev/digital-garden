@@ -81,6 +81,7 @@ function ModalAddGarden(props) {
           <DialogContentText>
             Заполните, пожалуста, информацию для создания модели вашего участка
           </DialogContentText>
+          <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -90,9 +91,12 @@ function ModalAddGarden(props) {
             onChange={(e) => handleChange(e)}
             name="title"
             required
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <div className={styles.inputsLocation}>
+        <form autocomplete="off">
           <TextField
             autoFocus
             fullWidth
@@ -102,9 +106,12 @@ function ModalAddGarden(props) {
             onSelect={(e) => { init(e); handleChange(e); }}
             name="location"
             required
+            autocomplete="off"
           />
+          </form>
         </div>
         <DialogContent>
+        <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -116,7 +123,9 @@ function ModalAddGarden(props) {
             fullWidth
             onChange={(e) => handleChange(e)}
             name="comment"
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

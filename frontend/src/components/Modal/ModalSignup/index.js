@@ -97,6 +97,7 @@ function Logup(props) {
           <DialogContentText>
             Заполните, пожалуста, все поля для регистрации
           </DialogContentText>
+          <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -106,9 +107,12 @@ function Logup(props) {
             onChange={handleChange}
             name="name"
             value={name}
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <DialogContent>
+        <form autocomplete="off">
           <TextField
             autoFocus
             margin="dense"
@@ -119,7 +123,9 @@ function Logup(props) {
             name="email"
             required
             value={email}
+            autocomplete="off"
           />
+          </form>
         </DialogContent>
         <DialogContent>
           <TextField
