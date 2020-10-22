@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import setUserChat from '../../../redux/chatAction';
+import style from './adminChat.module.css';
 
 const ws = new WebSocket('ws://localhost:3333');
 
@@ -26,7 +27,6 @@ function AdminChat() {
         // if (response.status === 200) {
         const resp = await response.json();
         setAdminChats(resp);
-        // console.log('adminChats >>>>>>>>>', adminChats);
         // }
         // const resp = await response.json();
         // setError(JSON.stringify(resp))
@@ -35,6 +35,7 @@ function AdminChat() {
       setError('ERROR', JSON.stringify(err));
     }
   }, []);
+  console.log('adminChats >>>>>>>>>', adminChats);
 
   useEffect(() => {
     ws.onmessage = (event) => {
@@ -52,9 +53,9 @@ function AdminChat() {
     setFlag(!flag);
     dispatch(setUserChat(id));
     adminChats.map((el) => {
-      // if (id === el.userId) {
-      //   setChat(el.messages);
-      // }
+      if (id === el.userId) {
+        setChat(el.messages);
+      }
     });
   }
 
@@ -72,22 +73,22 @@ function AdminChat() {
           ? (
             <div>
               {adminChats.map((el) => (
-                <h5 id={el.userId} onClick={(e) => handleSwitch(e.target.id)}>
-                  {el.userId}
+                <h5 className={style.chats} id={el.userId} onClick={(e) => handleSwitch(e.target.id)}>
+                  {el.userName}
                 </h5>
               ))}
-              <button type="button">Назад</button>
             </div>
           )
           : (
             <form onSubmit={sendMessage}>
-              <div>
+              <div className={style.content}>
                 {
-                  chat.map((el) => <p>{el.message}</p>)
+                  chat.map((el) => <p className={style.message}>{el.message}</p>)
                 }
               </div>
               <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
               <button type="submit">Отправить</button>
+              <button onClick={() => setFlag(!flag)} type="button">Назад</button>
             </form>
           )
       }

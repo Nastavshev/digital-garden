@@ -23,10 +23,10 @@ function UserChat() {
         const response = await fetch('/chat/messages');
         if (response.status == 200) {
           const resp = await response.json();
-          // setChat((prev) => [
-          //   ...prev,
-          //   resp,
-          // ]);
+          setChat((prev) => [
+            ...prev,
+            ...resp,
+          ]);
         }
       })();
     } catch (err) {
@@ -42,6 +42,23 @@ function UserChat() {
         data,
       ]);
       console.log('data >>>>>>>>>>', data);
+
+      try {
+        (async () => {
+          await fetch('/chat/message', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+              data,
+            ),
+          });
+        })();
+      } catch (err) {
+        setError('ERROR', JSON.stringify(err));
+      }
+
     };
     console.log('chat >>>>>>>>>>', chat);
   }, [chat]);
@@ -58,7 +75,8 @@ function UserChat() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          send: message,
+          id,
+          message,
         }),
       });
     } catch (err) {

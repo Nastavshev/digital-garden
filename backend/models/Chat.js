@@ -11,7 +11,9 @@ const ChatSchema = new mongoose.Schema({
     id: {
       type: mongoose.ObjectId,
     },
-    message: String,
+    message: {
+      type: String,
+    },
   }],
 });
 
