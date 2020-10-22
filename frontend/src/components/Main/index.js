@@ -22,7 +22,7 @@ function Main() {
     <>
       <div className={styles.main}>
         <div className={styles.gifDiv}>
-          {/* <img src="../images/screen.gif" /> */}
+          <img src="../gif/signup.gif" />
         </div>
       </div>
     </>
