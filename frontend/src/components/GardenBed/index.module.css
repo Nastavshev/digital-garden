@@ -3,9 +3,20 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  flex-direction: row-reverse;
 }
 /* .whiteButtonOnGarden{
   display: block;
   margin-left: auto;
   margin-right: auto;
 } */
+.deleteGarden{
+  /* margin-left: 10px; */
+  /* align-self: flex-start;
+  margin-left: 0px; */
+}
+.littleFlex{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center !important;
+}
