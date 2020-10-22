@@ -9,14 +9,15 @@ import ModalBed from '../ModalBed';
 import { useParams } from 'react-router-dom';
 
 export default function GardenBed(props) {
+
   const { position, size, status } = props;
   const { idGarden } = useParams();
   const dispatch = useDispatch();
   const reduxFlagStatus = useSelector((state) => state.gardenBed.status);
-  const reduxSize = useSelector((state) => state.gardenBed.count[props.id].size);
-  const reduxPosition = useSelector((state) => state.gardenBed.count);
+  const reduxSize = useSelector((state) => state.gardenBed.count[props.index].size);
+  const reduxPosition = useSelector((state) => state.gardenBed.count[props.index].position);
   const [openModalBed, setOpenModalBed] = useState(false);
-  console.log(reduxSize);
+
 
   const style = {
     border: '3px dashed #fa4659',
@@ -46,10 +47,8 @@ export default function GardenBed(props) {
       style={style}
       bounds=".bounds"
       id={props.id}
-      default={{ x: 0, y: 0 }}
-      position={{ x: reduxPosition[props.id].position.x, y: reduxPosition[props.id].position.y }}
-      size={{ width: reduxSize.width, height: reduxSize.height }}
-      disableDragging={reduxFlagStatus}
+      position={{ x: reduxPosition.x, y: reduxPosition.y }}
+      size={{width: reduxSize.width, height: reduxSize.height}}
       enableResizing={{
         top: false,
         right: !reduxFlagStatus,
