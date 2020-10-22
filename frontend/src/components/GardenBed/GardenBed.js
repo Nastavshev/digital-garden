@@ -63,6 +63,7 @@ export default function GardenBed(props) {
         bottom: !reduxFlagStatus,
         left: false,
       }}
+      disableDragging={reduxFlagStatus}
       minHeight='100px'
       minWidth='100px'
       maxHeight='99%'
