@@ -6,6 +6,7 @@ import RedAddButton from '../Button/RedAddButton';
 import { SET_ANCHOR_STATE } from '../../redux/actionForGarden';
 import GreenSaveButton from '../Button/GreenSaveButton';
 import styles from './index.module.css';
+import { Paper } from '@material-ui/core';
 
 const style = {
   width: "60%",
@@ -31,22 +32,31 @@ export default function GardenArea() {
 
   return (
     <>
-      <div className="bounds" style={{ margin: "20px", border: '2px solid grey', width: '70%', height: '70%', position: 'absolute' }}>
-        <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
+      <div className={styles.bounds} style={{ margin: "50px", border: '2px solid grey', width: '70.35%', height: '70%', position: 'absolute' }}>
+        <div className="bounds" style={{ width: '100%', height: '100%', position: 'absolute' }}>
+          <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
+          </div>
+          {
+            stateCount && stateCount.map((element, index) => {
+              return (
+                <div key={index}>
+                  <GardenBed index={index} id={element.id} position={element.position} size={element.size} status={element.status} />
+                </div>
+              )
+            })
+          }
         </div>
-        {
-          stateCount && stateCount.map((element, index) => {
-            return (
-              <div key={index}>
-                <GardenBed index={index} id={element.id} position={element.position} size={element.size} status={element.status} />
-              </div>
-            )
-          })
-        }
-
       </div>
-      <div onClick={addComponent} ><RedAddButton /></div>
-      <div onClick={setStatus}><GreenSaveButton /></div>
+      <Paper elevation={3} className={styles.littleContainer}>
+        <p className={styles.title}><strong>Инструкция:</strong></p>
+        <p>1. Для добавления элемента на поле нажмите на красную кнопку</p>
+        <p>2. Редактировать размер грядки можно потянув за линию с красным пунктиром</p>
+        <p>3. Расположить элементы можно перетянув их по полю с сеткой</p>
+        <p>4. Для удаления грядки с поля нажмите на кнопку удаления</p>
+        <p>5. Для сохранения элементов нажмите на зеленую кнопку с галочкой</p>
+      </Paper>
+      <div onClick={addComponent} className={styles.buttonRed}><RedAddButton /></div>
+      <div onClick={setStatus} className={styles.greenRed}><GreenSaveButton /></div>
     </>
   )
 }
