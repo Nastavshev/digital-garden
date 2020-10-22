@@ -31,7 +31,7 @@ function App() {
     <div className={styles.App}>
       <Router>
         <Header />
-        {isAuthenticated && <Chat />}
+        {/* {isAuthenticated && <Chat />} */}
         <Switch>
           <Route exact path="/user/logout">
             Выход

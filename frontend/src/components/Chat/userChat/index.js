@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
+import styles from './index.module.css';
 
 const ws = new WebSocket('ws://localhost:3333');
 
@@ -11,7 +13,7 @@ function UserChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('user ????????????', user.id);
+    // console.log('user ????????????', user.id);
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -44,7 +46,7 @@ function UserChat() {
   async function sendMessage(e) {
     e.preventDefault();
     const { id } = user;
-    console.log('currentChat>>>>>>', currentChat);
+    // console.log('currentChat>>>>>>', currentChat);
     ws.send(JSON.stringify({ id, message }));
     try {
       await fetch('/chat/message', {
@@ -63,14 +65,14 @@ function UserChat() {
 
   return (
     <>
-      <form onSubmit={sendMessage}>
-        <div>
+      <form className={styles.chat} onSubmit={sendMessage}>
+        <div className={styles.chatN}>
           {
             chat.map((el) => <p>{el}</p>)
           }
         </div>
         <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
-        <button type="submit">Отправить</button>
+        <Button color="primary" type="submit">Отправить</Button>
       </form>
       <div>{error}</div>
     </>
