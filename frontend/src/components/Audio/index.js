@@ -8,7 +8,7 @@ return (
     <>
     <AudioPlayer
       autoPlay
-      src="https://s21vla.storage.yandex.net/get-mp3/9ede1a44c4dfb06e4be9fd9f05bcdbed/0005b244e73258cc/rmusic/U2FsdGVkX18-ELTBtVBfIfWexRsiUW7dM3ClU6StKJcE7K4c7Xo8HJaOVkK5HlBbEnUhzHcr-TJi7fPINo5RcWjEx4IY8kjOSSjo3Usldv8/eb4e679ac76ec7ec5af9941e59a8909dd8e7904c58261767138d236839c9282f?track-id=36318979&play=false"
+      src="https://muztron.com/pages/f-186234/b/5f1ef984689ab43b455e80a7a601d916519810b5147768eb85a45731012240a1"
       onPlay={e => console.log("onPlay")}
     // other props here
     />

@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 // import { personalGarden } from '../../../redux/personalGardenActions'
 import Audio from '../Audio';
 import { useHistory } from 'react-router-dom'
+import Weather from '../Weather/Weather';
 
 export default function Personal() {
   const history = useHistory();
@@ -65,8 +66,8 @@ export default function Personal() {
              На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
-            <div className={styles.title}><strong>РЕКЛАМА</strong></div>
-           По вопросам размещения рекламы пишите на электронную почту: vasin.ogorod@yandex.ru
+            <div className={styles.title}><strong>ПОГОДА</strong></div>
+            <Weather/>
           </Paper>
 
           <Paper elevation={3} className={styles.littleContainer}>

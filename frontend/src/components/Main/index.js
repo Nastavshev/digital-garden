@@ -4,6 +4,7 @@ import { getMonthThunk, getVegetThunk, getArticleThunk } from '../../redux/actio
 import styles from './main.module.css';
 import mainImage from '../../logo/3387351.jpg';
 
+
 function Main() {
   const dispatch = useDispatch();
 
@@ -26,7 +27,7 @@ function Main() {
         <h4>Мы рады приветствовать Вас в нашем приложении</h4>
         <p>Краткое обучающее видео для новых пользователей</p>
         <div className={styles.gifDiv}>
-      <img src="../gif/learn.gif" />
+      {/* <img src="../gif/learn.gif" /> */}
       {/* <img className={styles.image} alt="mainImage" src={mainImage} /> */}
       </div>
       </div>
