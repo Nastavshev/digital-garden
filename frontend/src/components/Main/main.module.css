@@ -1,6 +1,8 @@
 .gifDiv {
-  width: 70%;
-  min-height: 440px;
+  width: 80%;
+  height: 250px;
+/*   width: 70%;
+  min-height: 440px; */
   margin: 0 auto;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   /* margin-top: 1%; */
@@ -14,6 +16,24 @@
 color: black;
 margin-right: 100px;
 }
+
+
+.image {
+  height: auto;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.image img {
+  transition: 1s;
+  display: block;
+}
+
+.image img:hover {
+  transform: scale(1.2);
+}
+
 .image{
   margin: 50px;
   width: 60%;
@@ -51,4 +71,5 @@ margin-right: 100px;
   width: 100px;
   margin: 0 auto;
 }
+
 

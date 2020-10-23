@@ -2,8 +2,6 @@ import React from 'react';
 import AudioPlayer from "react-h5-audio-player";
 
 function Audio() {
-
-
   return (
     <>
       <AudioPlayer

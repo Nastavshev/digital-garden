@@ -23,6 +23,9 @@ function Main() {
 
   return (
     <>
+    <div className={styles.image}>
+          <img src="/images/moonCalImg.jpg" className={styles.image} />
+        </div>
       <div className={styles.main}>
         <br />
         <img alt="logoMain" src={logoMain} />
