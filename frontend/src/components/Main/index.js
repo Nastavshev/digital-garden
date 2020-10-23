@@ -21,12 +21,15 @@ function Main() {
 
   return (
     <>
-      {/* <div className={styles.main}>
-        <div className={styles.gifDiv}> */}
-      {/* <img src="../gif/signup.gif" /> */}
-      <img className={styles.image} alt="mainImage" src={mainImage} />
-      {/* </div>
-      </div> */}
+      <div className={styles.main}>
+        <br/>
+        <h4>Мы рады приветствовать Вас в нашем приложении</h4>
+        <p>Краткое обучающее видео для новых пользователей</p>
+        <div className={styles.gifDiv}>
+      <img src="../gif/learn.gif" />
+      {/* <img className={styles.image} alt="mainImage" src={mainImage} /> */}
+      </div>
+      </div>
     </>
   );
 }
