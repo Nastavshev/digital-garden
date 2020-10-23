@@ -11,6 +11,7 @@
 .main {
   /* min-height: 85vh; */
   color: black;
+  height: 100vh;
   /* margin-right: 100px; */
 }
 
@@ -73,6 +74,7 @@
 
 .greeting {
   font-size: 35px;
+  margin: 30px;
 }
 
 .greeting p {
