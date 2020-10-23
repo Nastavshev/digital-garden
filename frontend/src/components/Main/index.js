@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthThunk, getVegetThunk, getArticleThunk } from '../../redux/action-creater';
 import styles from './main.module.css';
-import mainImage from '../../logo/3387351.jpg';
+import digital from '../../logo/smart.png';
+import { Paper } from '@material-ui/core';
+import logoMain from '../../logo/bigstock-Gardening-tools-and-spring-flo-227166823.jpg';
 
 function Main() {
   const dispatch = useDispatch();
@@ -22,13 +24,23 @@ function Main() {
   return (
     <>
       <div className={styles.main}>
-        <br/>
-        <h4>Мы рады приветствовать Вас в нашем приложении</h4>
-        <p>Краткое обучающее видео для новых пользователей</p>
-        <div className={styles.gifDiv}>
-      <img src="../gif/learn.gif" />
-      {/* <img className={styles.image} alt="mainImage" src={mainImage} /> */}
-      </div>
+        <br />
+        <img alt="logoMain" src={logoMain} />
+        {/* <div>Мы рады приветствовать Вас в нашем приложении!</div> */}
+        {/* <p>Краткое обучающее видео для новых пользователей</p> */}
+        <div className={styles.flex}>
+          <div className={styles.gifDiv}>
+            <img src="../gif/learn.gif" />
+            {/* <img className={styles.image} alt="mainImage" src={mainImage} /> */}
+          </div>
+          <Paper elevation={3} className={styles.littleContainer}>
+            <div className={styles.titlegreen}>С помощью нашего приложения Вы сможете:</div>
+            <div className={styles.text}>- Создать удобную схему вашего участка</div>
+            <div className={styles.text}>- Выполнять контроль и учет высаженных культур</div>
+            <div className={styles.text}>- Ознакомиться со справочной информацией на тему сада и огорода</div>
+            <img alt="digital" className={styles.avatar} src={digital} />
+          </Paper>
+        </div>
       </div>
     </>
   );
