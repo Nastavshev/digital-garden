@@ -4,7 +4,7 @@ import { getMonthThunk, getVegetThunk, getArticleThunk } from '../../redux/actio
 import styles from './main.module.css';
 import digital from '../../logo/smart.png';
 import { Paper } from '@material-ui/core';
-import logoMain from '../../logo/bigstock-Gardening-tools-and-spring-flo-227166823.jpg';
+import logoMain from '../../logo/logoMain.jpg';
 
 function Main() {
   const dispatch = useDispatch();
@@ -23,14 +23,13 @@ function Main() {
 
   return (
     <>
-    <div className={styles.image}>
-          <img src="/images/moonCalImg.jpg" className={styles.image} />
-        </div>
+      {/* <div className={styles.image}>
+        <img alt="logoMain" src={logoMain} className={styles.image} />
+      </div> */}
       <div className={styles.main}>
-        <br />
-        <img alt="logoMain" src={logoMain} />
-        {/* <div>Мы рады приветствовать Вас в нашем приложении!</div> */}
-        {/* <p>Краткое обучающее видео для новых пользователей</p> */}
+        <div className={styles.greeting}>Мы рады приветствовать Вас в нашем приложении!
+        <p>Краткое обучающее видео для новых пользователей</p>
+        </div>
         <div className={styles.flex}>
           <div className={styles.gifDiv}>
             <img src="../gif/learn.gif" />
