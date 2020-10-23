@@ -32,7 +32,7 @@ export default function GardenArea() {
 
   return (
     <>
-      <div className={styles.bounds} style={{ margin: "50px", border: '2px solid grey', width: '70.35%', height: '70%', position: 'absolute' }}>
+      <div className={styles.bounds} style={{ margin: "50px", border: '2px solid grey', width: '69.25%', height: '72.7%', position: 'absolute' }}>
         <div className="bounds" style={{ width: '100%', height: '100%', position: 'absolute' }}>
           <div className="offsetParent" style={{ width: '88%', height: '99%', position: 'absolute', left: '0px', top: '0px' }}>
           </div>
