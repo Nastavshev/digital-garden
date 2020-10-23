@@ -4,14 +4,14 @@ import AudioPlayer from "react-h5-audio-player";
 function Audio() {
 
 
-return (
+  return (
     <>
-    <AudioPlayer
-      autoPlay
-      src="https://s21vla.storage.yandex.net/get-mp3/9ede1a44c4dfb06e4be9fd9f05bcdbed/0005b244e73258cc/rmusic/U2FsdGVkX18-ELTBtVBfIfWexRsiUW7dM3ClU6StKJcE7K4c7Xo8HJaOVkK5HlBbEnUhzHcr-TJi7fPINo5RcWjEx4IY8kjOSSjo3Usldv8/eb4e679ac76ec7ec5af9941e59a8909dd8e7904c58261767138d236839c9282f?track-id=36318979&play=false"
-      onPlay={e => console.log("onPlay")}
-    // other props here
-    />
+      <AudioPlayer
+        autoPlay
+        src="https://tr1.muztron.com/a9bf9d7ea00410b97c0b766274a09fcd534f09c623207d83b96d7366ec0bf6b8/zvuki-prirody-atmosfera-derevni_(muztron.com).mp3"
+        onPlay={e => console.log("onPlay")}
+      // other props here
+      />
     </>
   );
 }
