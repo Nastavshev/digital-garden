@@ -48,6 +48,8 @@
 }
 
 .mainPersonal{
+  height: 85vh;
+  background-color:white;
   background-image: url(../../logo/3356666.jpg);
   background-attachment: fixed;
   background-size: 500px 500px;

@@ -11,6 +11,7 @@ import isSession from './sessionReducer';
 import createGardenReducer from './createGardenReducer';
 import reducerGardenBed from './reducerGardenBed';
 import isChat from './chatReducer';
+import isSupport from './supportReducer';
 
 const preloadedState = window.localStorage.getItem('state') || '{}';
 
@@ -26,6 +27,7 @@ const store = createStore(
     garden: createGardenReducer,
     gardenBed: reducerGardenBed,
     currentChat: isChat,
+    supportChat: isSupport,
   }),
   JSON.parse(preloadedState),
   composeWithDevTools(

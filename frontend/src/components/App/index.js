@@ -26,12 +26,11 @@ import Garden from '../Garden';
 import Chat from '../Chat';
 
 function App() {
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const supportChat = useSelector((state) => state.supportChat);
   return (
     <div className={styles.App}>
       <Router>
         <Header />
-        {/* {isAuthenticated && <Chat />} */}
         <Switch>
           <Route exact path="/user/logout">
             Выход
@@ -78,6 +77,7 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+        {supportChat && <Chat />}
       </Router>
     </div>
   );

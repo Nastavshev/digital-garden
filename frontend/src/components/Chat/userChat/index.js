@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
-import styles from './index.module.css';
+import styles from './userChat.module.css';
+import style from './userChat.module.css';
 
 const ws = new WebSocket('ws://localhost:3333');
 
@@ -13,7 +14,7 @@ function UserChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    // console.log('user ????????????', user.id);
+    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -25,7 +26,7 @@ function UserChat() {
           const resp = await response.json();
           setChat((prev) => [
             ...prev,
-            resp,
+            ...resp,
           ]);
         }
       })();
@@ -36,12 +37,32 @@ function UserChat() {
 
   useEffect(() => {
     ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
       setChat((prev) => [
         ...prev,
-        event.data,
+        data,
       ]);
+      console.log('data >>>>>>>>>>', data);
+
+      try {
+        (async () => {
+          await fetch('/chat/message', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(
+              data,
+            ),
+          });
+        })();
+      } catch (err) {
+        setError('ERROR', JSON.stringify(err));
+      }
+
     };
-  }, []);
+    console.log('chat >>>>>>>>>>', chat);
+  }, [chat]);
 
   async function sendMessage(e) {
     e.preventDefault();
@@ -55,7 +76,8 @@ function UserChat() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          send: message,
+          id,
+          message,
         }),
       });
     } catch (err) {
@@ -64,18 +86,18 @@ function UserChat() {
   }
 
   return (
-    <>
+    <div className={style.content}>
       <form className={styles.chat} onSubmit={sendMessage}>
         <div className={styles.chatN}>
           {
-            chat.map((el) => <p>{el}</p>)
+            chat.map((el) => <p className={user.id == el.id ? style.admin : style.notAdmin}>{el.message}</p>)
           }
         </div>
         <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
         <Button color="primary" type="submit">Отправить</Button>
       </form>
       <div>{error}</div>
-    </>
+    </div>
   );
 }
 
