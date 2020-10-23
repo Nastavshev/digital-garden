@@ -20,6 +20,9 @@ function Main() {
 
   return (
     <>
+    <div className={styles.image}>
+          <img src="/images/moonCalImg.jpg" className={styles.image} />
+        </div>
       <div className={styles.main}>
         <div className={styles.gifDiv}>
           <img src="../gif/signup.gif" />
