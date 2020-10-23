@@ -4,12 +4,12 @@ import AudioPlayer from "react-h5-audio-player";
 function Audio() {
   return (
     <>
-      <AudioPlayer
-        autoPlay
-        src="https://tr1.muztron.com/a9bf9d7ea00410b97c0b766274a09fcd534f09c623207d83b96d7366ec0bf6b8/zvuki-prirody-atmosfera-derevni_(muztron.com).mp3"
-        onPlay={e => console.log("onPlay")}
-      // other props here
-      />
+    <AudioPlayer
+      autoPlay
+      src="https://muztron.com/pages/f-186234/b/5f1ef984689ab43b455e80a7a601d916519810b5147768eb85a45731012240a1"
+      onPlay={e => console.log("onPlay")}
+    // other props here
+    />
     </>
   );
 }

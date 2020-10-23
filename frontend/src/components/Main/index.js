@@ -6,6 +6,7 @@ import digital from '../../logo/smart.png';
 import { Paper } from '@material-ui/core';
 import logoMain from '../../logo/logoMain.jpg';
 
+
 function Main() {
   const dispatch = useDispatch();
 
@@ -23,9 +24,6 @@ function Main() {
 
   return (
     <>
-      {/* <div className={styles.image}>
-        <img alt="logoMain" src={logoMain} className={styles.image} />
-      </div> */}
       <div className={styles.main}>
         <div className={styles.greeting}>Мы рады приветствовать Вас в нашем приложении!
         <p>Краткое обучающее видео для новых пользователей</p>

@@ -138,10 +138,10 @@ function Comment(props) {
       <h3>Комментарии: </h3>
       <br />
       <div className={styles.messages}>
-        {messages?.map((element) =>
+        {messages && messages.map((element) =>
           <div key={element._id} className={styles.messageCard}>
-            <div className={styles.userField} key={element._id}>Имя: {userName} <br />
-            Опубликовано: {element.commentDate[2]} {element.commentDate[1]} {element.commentDate[3]}</div>
+            {/* <div className={styles.userField} key={element._id}>Имя: {userName} <br />
+            Опубликовано: {element.commentDate[2]} {element.commentDate[1]} {element.commentDate[3]}</div> */}
             <div className={styles.messageField}>
               <div>{element.commentText}</div>
             </div>
