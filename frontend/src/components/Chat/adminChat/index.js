@@ -16,7 +16,7 @@ function AdminChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    // console.log('user ????????????', user.id);
+    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -80,16 +80,18 @@ function AdminChat() {
             </div>
           )
           : (
-            <form onSubmit={sendMessage}>
-              <div className={style.content}>
-                {
-                  chat.map((el) => <p className={style.message}>{el.message}</p>)
-                }
-              </div>
-              <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
-              <button type="submit">Отправить</button>
-              <button onClick={() => setFlag(!flag)} type="button">Назад</button>
-            </form>
+            <div className={style.content}>
+              <form onSubmit={sendMessage}>
+                <div className={style.content}>
+                  {
+                    chat.map((el) => <p className={user.id == el.id ? style.admin : style.notAdmin}>{el.message}</p>)
+                  }
+                </div>
+                <input onChange={(e) => setMessage(e.target.value)} value={message} type="text" />
+                <button type="submit">Отправить</button>
+                <button onClick={() => setFlag(!flag)} type="button">Назад</button>
+              </form>
+            </div>
           )
       }
       <div>{error}</div>

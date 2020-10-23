@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import styles from './index.module.css'
+import { useSelector } from 'react-redux';
+import styles from './index.module.css';
+import Support from '../../Support';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
-      {'ELBRUS'}
+      ELBRUS
       {' '}
       {new Date().getFullYear()}
     </Typography>
@@ -15,9 +17,10 @@ function Copyright() {
 }
 
 export default function Footer() {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   return (
-    <div className={styles.footer} >
-      <footer align="center" >
+    <div className={styles.footer}>
+      <footer align="center">
         <Container>
           <div className={styles.wrapperFooter}>
             <div className={styles.divInfo}>
@@ -30,23 +33,34 @@ export default function Footer() {
             <div className={styles.social}>
               <p>ДАВАЙТЕ ДРУЖИТЬ!</p>
               <ul>
-                <li><Link to="#" className={styles.socialButton}>
-                  <img src="/icons/odnoklassniki.png" />
-                </Link></li>
-                <li><Link to="#" className={styles.socialButton}>
-                  <img src="/icons/vk.png" />
-                </Link></li>
-                <li><Link to="#" className={styles.socialButton}>
-                  <img src="/icons/instagram.png" /></Link></li>
+                <li>
+                  <Link to="#" className={styles.socialButton}>
+                    <img src="/icons/odnoklassniki.png" />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#" className={styles.socialButton}>
+                    <img src="/icons/vk.png" />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#" className={styles.socialButton}>
+                    <img src="/icons/instagram.png" />
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <p>РАЗРАБОТАНО:</p>
-              <Typography variant="body1">RACCOONS <span role="img" aria-label="raccoons">🦝</span></Typography>
+              <Typography variant="body1">
+                RACCOONS
+                <span role="img" aria-label="raccoons">🦝</span>
+              </Typography>
             </div>
           </div>
+          {isAuthenticated && <Support />}
         </Container>
-      </footer >
-    </div >
+      </footer>
+    </div>
   );
 }
