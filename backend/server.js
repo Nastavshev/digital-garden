@@ -33,6 +33,7 @@ app.post('/modal/:gardenId', async (req, res) => {
   const {
     name, grade, comment, datePlant,
   } = req.body.input;
+  const { id } = req.body;
   const userId = req.session.user.id;
   const newGardenBed = await gardenBedModel({
     name,
@@ -41,6 +42,7 @@ app.post('/modal/:gardenId', async (req, res) => {
     datePlant,
     userId,
     gardenId,
+    id,
   });
   await newGardenBed.save();
   res.end();

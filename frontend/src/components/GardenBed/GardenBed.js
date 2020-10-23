@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_POSITION, ADD_SIZE, DELETE_GARDENBED } from '../../redux/actionForGarden';
 import styles from './index.module.css'
 import WhiteAddButton from '../Button/WhiteAddButton';
+import RedAddButton from '../Button/RedAddButton';
 // import { useState } from 'react';
 import ModalBed from '../ModalBed';
 import { useParams } from 'react-router-dom';
@@ -48,6 +49,9 @@ export default function GardenBed(props) {
     dispatch(DELETE_GARDENBED(id))
   }
 
+  // function nameGarden(id) {
+  //   console.log(id)
+  // }
   return (
     <Rnd onDragStop={setNewPlace}
       className={styles.gardenBed}
@@ -70,10 +74,11 @@ export default function GardenBed(props) {
       maxWidth='99%'
     >
       <div className={styles.littleFlex}>
+        {/* <div onClick={(event) => nameGarden(event.target.value)}><RedAddButton /></div> */}
         <div className={styles.whiteButtonOnGarden} onClick={handleClickOpenModalGardenBed}><WhiteAddButton /></div>
         <div className={styles.deleteGarden}><DeleteForeverIcon onClick={deleteGardenBed} /></div>
       </div>
-      <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} openModalBed={openModalBed} />
+      <ModalBed idGarden={idGarden} setOpenModalBed={setOpenModalBed} id={props.id} openModalBed={openModalBed} />
       {/* <p>{? "" : gregerg}</p> */}
     </Rnd>
   )

@@ -44,6 +44,7 @@ function ModalBed(props) {
   console.log(props);
   const { idGarden, setOpenModalBed, openModalBed } = props;
   const [necessaryInfo, setNecessaryInfo] = useState('');
+  const { id } = props;
 
   // // Закрытие модального окна 
   const handleClose = () => {
@@ -93,7 +94,7 @@ function ModalBed(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ input })
+      body: JSON.stringify({ input, id })
     });
     if (response.status === 200) {
       // console.log('status 200');
@@ -117,7 +118,7 @@ function ModalBed(props) {
           renderInput={(params) => <TextField {...params} label="Название культуры" variant="outlined" name="name" onSelect={(e) => { changeInputs(e); findInfoAbout(e) }} />}
         />
         <form autocomplete="off">
-        <TextField autocomplete="off" className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" margin="dense" fullWidth />
+          <TextField autocomplete="off" className={styles.inputField} onChange={changeInputs} id="filled-basic" label="Сорт" name="grade" variant="filled" margin="dense" fullWidth />
         </form>
         <TextField
           name="datePlant"

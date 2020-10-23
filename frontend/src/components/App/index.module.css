@@ -14,6 +14,7 @@
 body {
   margin:0;
   padding:0; 
+  background: linear-gradient(to top,#a3de8369, #feffe47a );
 }
 
 a {

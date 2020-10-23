@@ -13,6 +13,7 @@ const gardenBedSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'gardens',
   },
+  id: 'string',
   // userName: {
   //     type: mongoose.Schema.Types.String, ref: 'users',
   // }
