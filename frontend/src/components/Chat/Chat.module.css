@@ -1,8 +1,18 @@
-.chat {
+.content {
+  display: flex; 
+  flex-direction: row;
+  justify-content: flex-end;
   position: relative;
+}
+
+.chat {
+  position: absolute;
   border: black solid 1px;
-  min-height: 200px;
+  height: 200px;
   width: 300px;
+  bottom: 0;
+  background-color: white;
+  bottom: 80px;
 }
 
 .chat > form {

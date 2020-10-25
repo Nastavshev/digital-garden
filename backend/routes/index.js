@@ -15,7 +15,6 @@ router.get('/secret', checkSession, (req, res) => {
 });
 
 router.get('/moonmonth', async (req, res) => {
-  // console.log('getttttt');
   let monthFromBD;
   try {
     monthFromBD = await moonCalendarModel.find();
@@ -55,7 +54,6 @@ router.get('/articles', async (req, res) => {
 router.post('/articles/:id/newMessage', async (req, res) => {
   // console.log(req.session.user);
   const { message, id } = req.body;
-  // console.log(id, message);
   let newComment;
   try {
     newComment = new commentModel({

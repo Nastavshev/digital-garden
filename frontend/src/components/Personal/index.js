@@ -10,10 +10,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // import { personalGarden } from '../../../redux/personalGardenActions'
 import Audio from '../Audio';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import Weather from '../Weather/Weather';
 
 export default function Personal() {
-const history = useHistory();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const userName = useSelector((state) => state.user.userName);
   const [gardens, setGardens] = useState([]);
@@ -41,13 +42,13 @@ const history = useHistory();
     setGardens(data);
   }
 
-  async function openElement(deleteId) {
-    const response = await fetch(`/modals/garden/${deleteId}`)
+  async function openElement(openId) {
+    const response = await fetch(`/modals/garden/${openId}`)
     const data = await response.json()
     console.log(data);
     console.log(response.status);
     if (response.status === 200) {
-      history.push('/user/garden')
+      history.push(`/user/garden/${openId}`)
     }
   }
 
@@ -65,12 +66,12 @@ const history = useHistory();
              На этой странице Вы можете добавить или отредактировать информации по вашим участкам!
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>РЕКЛАМА</strong></h3>
-           По вопросам размещения рекламы пишите на электронную почту: vasin.ogorod@yandex.ru
+            <div className={styles.title}><strong>ПОГОДА</strong></div>
+            <Weather/>
           </Paper>
 
           <Paper elevation={3} className={styles.littleContainer}>
-            <h3><strong>АУДИО-ПРОИГРЫВАТЕЛЬ</strong></h3>
+            <div className={styles.title}><strong>АУДИО-ПРОИГРЫВАТЕЛЬ</strong></div>
             <Audio />
           </Paper>
         </div>
@@ -87,7 +88,7 @@ const history = useHistory();
                   </div>
                   <div>
                     <Button onClick={() => openElement(el._id)}><img alt="sprout" className={styles.shovel} src={sprout} />
-                      <div className={styles.redtext}>Редактировать/ показать участок</div></Button>
+                      <div className={styles.greentext}>Редактировать/ показать участок</div></Button>
                     <Button onClick={() => deleteElement(el._id)}><img alt="shovel" className={styles.shovel} src={shovel} />
                       <div className={styles.redtext}>Удалить</div>
                     </Button>

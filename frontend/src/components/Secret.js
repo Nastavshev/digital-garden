@@ -7,8 +7,8 @@ function Secret() {
       try {
         const response = await fetch('/secret');
         const json = await response.json();
-        console.log(data, 'data>>>>>>');
-        console.log(json, 'json>>>>>>');
+        // console.log(data, 'data>>>>>>');
+        // console.log(json, 'json>>>>>>');
         setData(JSON.stringify(json));
       } catch (err) {
         console.error('ERROR ENTER SECRET PAGE', err);

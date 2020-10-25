@@ -16,7 +16,7 @@ export default function GreenSaveButton() {
   return (
     <div>
       <div>
-        <Fab size="small" color="secondary" aria-label="add" className={classes.margin} className={styles.button}>
+        <Fab color="secondary" aria-label="add" className={classes.margin} className={styles.button}>
           <CheckIcon />
         </Fab>
       </div>

@@ -34,12 +34,13 @@ function Comment(props) {
   const [showForm, setShowForm] = useState(false)
   const isAuthenticated = useSelector(state => state.isAuthenticated)
   const { userName, email } = useSelector(state => state.user)
-
   const [messages, setMessages] = useState([])
-  // console.log(messages[0]?.commentDate.toDateString());
 
-  let b = messages[0]?.commentDate;
-  console.log(b);
+  // messages.map((element) => {
+  //   element.commentDate = element.commentDate.split(" ")
+  //   return element
+  // })
+
   const [input, setInput] = useState('');
 
   function changeInputs(event) {
@@ -59,6 +60,12 @@ function Comment(props) {
       const result = await response.json();
       setPaginatArray(result.paginatArray);
       setMessages(result.commentFromBD);
+      console.log(messages);
+      // let newArray = messages.map((element) => {
+      //   element.commentDate = element.commentDate.split(" ")
+      //   return element
+      // })
+      // setMessages(newArray);
     })()
   }, [pageNumber])
 
@@ -131,11 +138,11 @@ function Comment(props) {
       <h3>Комментарии: </h3>
       <br />
       <div className={styles.messages}>
-        {messages?.map((element) =>
+        {messages && messages.map((element) =>
           <div key={element._id} className={styles.messageCard}>
-            <div className={styles.userField} key={element._id}>Имя: {userName}</div>
+            {/* <div className={styles.userField} key={element._id}>Имя: {userName} <br />
+            Опубликовано: {element.commentDate[2]} {element.commentDate[1]} {element.commentDate[3]}</div> */}
             <div className={styles.messageField}>
-              <div className={styles.messageDate}>Опубликовано: {element.commentDate}</div>
               <div>{element.commentText}</div>
             </div>
           </div>

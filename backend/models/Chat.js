@@ -7,7 +7,15 @@ const ChatSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  messages: [String],
+  messages: [{
+    id: {
+      type: mongoose.ObjectId,
+      ref: 'User',
+    },
+    message: {
+      type: String,
+    },
+  }],
 });
 
 export default mongoose.model('Chat', ChatSchema);

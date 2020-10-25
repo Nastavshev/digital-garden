@@ -7,10 +7,12 @@ import UserChat from './userChat';
 function Chat() {
   const user = useSelector((state) => state.user);
   return (
-    <div className={style.chat}>
-      {
-        user.admin ? <AdminChat /> : <UserChat />
-      }
+    <div className={style.content}>
+      <div className={style.chat}>
+        {
+          user.admin ? <AdminChat /> : <UserChat />
+        }
+      </div>
     </div>
   );
 }

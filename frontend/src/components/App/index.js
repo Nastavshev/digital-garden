@@ -26,12 +26,11 @@ import Garden from '../Garden';
 import Chat from '../Chat';
 
 function App() {
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const supportChat = useSelector((state) => state.supportChat);
   return (
     <div className={styles.App}>
       <Router>
         <Header />
-        {isAuthenticated && <Chat />}
         <Switch>
           <Route exact path="/user/logout">
             Выход
@@ -40,7 +39,7 @@ function App() {
           <PrivateRoute exact path="/user/account">
             <Personal />
           </PrivateRoute>
-          <PrivateRoute exact path="/user/garden">
+          <PrivateRoute exact path="/user/garden/:idGarden">
             <Garden />
           </PrivateRoute>
           <Route exact path="/">
