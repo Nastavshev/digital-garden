@@ -1,0 +1,22 @@
+.chats {
+  border: black solid 1px ;
+}
+
+.chats:hover {
+  background-color: rgba(4, 185, 4, 0.342);
+}
+
+.content {
+  height: 100%;
+  overflow-y: scroll;
+  bottom: 0;
+}
+
+.admin {
+  text-align: right;
+}
+
+.notAdmin {
+  text-align: left;
+}
+

@@ -77,6 +77,7 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+        {supportChat && <Chat />}
       </Router>
     </div>
   );

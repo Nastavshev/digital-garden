@@ -7,10 +7,16 @@
 }
 
 .content {
-  height: 200px;
+  height: 100%;
   overflow-y: scroll;
+  bottom: 0;
 }
 
-.message {
+.admin {
   text-align: right;
 }
+
+.notAdmin {
+  text-align: left;
+}
+
