@@ -16,7 +16,6 @@ function AdminChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -35,7 +34,6 @@ function AdminChat() {
       setError('ERROR', JSON.stringify(err));
     }
   }, []);
-  console.log('adminChats >>>>>>>>>', adminChats);
 
   useEffect(() => {
     ws.onmessage = (event) => {
@@ -44,10 +42,8 @@ function AdminChat() {
         ...prev,
         data,
       ]);
-      console.log('data >>>>>>>>>>', data);
     };
   }, [chat]);
-  console.log('chat >xc>>>>>>>>>', chat);
 
   function handleSwitch(id) {
     setFlag(!flag);

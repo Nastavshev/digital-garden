@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Login from './Modal/ModalLogin';
-import Main from './Main';
-import { modalLogin } from '../redux/modalLoginActions';
-import { setSession } from '../redux/sessionActions';
+import { modalLogin } from '../../redux/modalLoginActions';
+import { setSession } from '../../redux/sessionActions';
+import logger from '../../misc/logger';
 
 function PrivateRoute({ children, ...rest }) {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ function PrivateRoute({ children, ...rest }) {
         dispatch(setSession(resp));
       })();
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
   }, [dispatch]);
 

@@ -1,4 +1,8 @@
-import { GET_VEGETABLES_DB, GET_MOONCALENDAR_DB, GET_ARTICLE_DB, PAGE_THEME, PAGE_DEFAULT, UPDATE_COMMENTS_ARRAY } from './actionTypes';
+import logger from '../misc/logger';
+import {
+  GET_VEGETABLES_DB, GET_MOONCALENDAR_DB, GET_ARTICLE_DB,
+  PAGE_THEME, PAGE_DEFAULT, UPDATE_COMMENTS_ARRAY,
+} from './actionTypes';
 
 export function getTasks(vegetablesArray) {
   return {
@@ -24,24 +28,11 @@ export function getMonth(monthArray) {
 export function getMonthThunk() {
   return async function (dispatch) {
     try {
-    const response = await fetch('/moonmonth');
-    const result = await response.json();
-    dispatch(getMonth(result.monthFromBD));
+      const response = await fetch('/moonmonth');
+      const result = await response.json();
+      dispatch(getMonth(result.monthFromBD));
     } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
-
-export function getArticleThunk() {
-  return async function (dispatch) {
-    try {
-    const response = await fetch('/articles');
-    const result = await response.json();
-    dispatch(getArticle(result.articlesFromBD));
-    } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 }
@@ -53,11 +44,22 @@ export function getArticle(articleArray) {
   };
 }
 
+export function getArticleThunk() {
+  return async function (dispatch) {
+    try {
+      const response = await fetch('/articles');
+      const result = await response.json();
+      dispatch(getArticle(result.articlesFromBD));
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+}
 export function setPageNumber(pageNumber) {
   return {
     type: PAGE_THEME,
     payload: pageNumber,
-  }
+  };
 }
 
 export function updateArrayComment(task) {
@@ -70,5 +72,5 @@ export function updateArrayComment(task) {
 export function pageDefault() {
   return {
     type: PAGE_DEFAULT,
-  }
+  };
 }

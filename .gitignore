@@ -38,6 +38,8 @@ bower_components
 build/Release
 
 # Dependency directories
+/client/node_modules
+/server/node_modules
 node_modules/
 jspm_packages/
 
@@ -115,4 +117,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-/sessions
+sessions

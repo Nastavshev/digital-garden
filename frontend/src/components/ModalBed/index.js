@@ -22,26 +22,7 @@ const StyledTextField = withStyles({
   },
 })(TextField);
 
-// const useStyles = makeStyles((theme) => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1),
-//     width: 200,
-//   },
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(2),
-//       // width: '60%',
-//     },
-//   },
-// }));
-
 function ModalBed(props) {
-  console.log(props);
   const { idGarden, setOpenModalBed, openModalBed } = props;
   const [necessaryInfo, setNecessaryInfo] = useState('');
   const { id } = props;
@@ -51,16 +32,8 @@ function ModalBed(props) {
     setOpenModalBed(false);
   };
 
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getVegetThunk());
-  // }, [dispatch]);
-
   const vegetablesArray = useSelector((state) => state.vegetables);
-  // console.log(vegetablesArray);
 
-  // const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
@@ -73,7 +46,6 @@ function ModalBed(props) {
     comment: '',
     datePlant: '',
   });
-  // console.log(input.name);
 
   function changeInputs(event) {
     setInput({
@@ -88,7 +60,6 @@ function ModalBed(props) {
   }
 
   async function saveInfoGardenBed() {
-    // console.log('>>>>>>>>createTheme');
     const response = await fetch(`/modal/${idGarden}`, {
       method: 'POST',
       headers: {
@@ -97,7 +68,6 @@ function ModalBed(props) {
       body: JSON.stringify({ input, id })
     });
     if (response.status === 200) {
-      // console.log('status 200');
       setOpenModalBed(!openModalBed)
     }
   }

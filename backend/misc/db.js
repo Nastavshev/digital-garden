@@ -1,15 +1,8 @@
-// export default [
-//   {
-//     email: 'mail@mail.ru',
-//     password: '123',
-//   }
-// ];
-
 import mongoose from 'mongoose';
+import './env.js';
 
-// process.env.DB_URL
-
-export default mongoose.connect('mongodb://localhost:27017/vasyn_garden', {
+export default mongoose.connect(process.env.DB_URL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useCreateIndex: true,
 });

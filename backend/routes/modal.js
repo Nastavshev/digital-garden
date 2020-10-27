@@ -1,4 +1,5 @@
 import express from 'express';
+import logger from '../misc/logger.js';
 import Garden from '../models/Garden.js';
 import User from '../models/User.js';
 
@@ -22,7 +23,7 @@ router.post('/garden', async (req, res) => {
   res.json(newGarden);
 });
 
-router.get('/personal/:id', async (req, res, next) => {
+router.get('/personal/:id', async (req, res) => {
   const idUser = req.params.id;
   const user = await User.findOne({ _id: idUser }).populate('garden');
   res.status(200).json(user.garden);
@@ -40,10 +41,9 @@ router.get('/garden/:id', async (req, res) => {
   let currentGarden;
   try {
     currentGarden = await Garden.findOne({ _id: id });
-    // console.log(currentGarden);
-    res.json(currentGarden)
+    res.json(currentGarden);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 });
 

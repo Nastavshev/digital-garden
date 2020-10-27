@@ -13,7 +13,6 @@ function UserChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -35,14 +34,12 @@ function UserChat() {
   }, []);
 
   useEffect(() => {
-    // if (chat.length) {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setChat((prev) => [
         ...prev,
         data,
       ]);
-      console.log('data >>>>>>>>>>', data);
 
       try {
         (async () => {
@@ -60,16 +57,11 @@ function UserChat() {
         setError('ERROR', JSON.stringify(err));
       }
     };
-    console.log('chat >>>>>>>>>>', chat);
   }, [chat]);
-
-  console.log('userChat >>>>>>', chat);
-  // console.log('userChat >>>>>>', me);
 
   async function sendMessage(e) {
     e.preventDefault();
     const { id } = user;
-    // console.log('currentChat>>>>>>', currentChat);
     ws.send(JSON.stringify({ id, message }));
     try {
       await fetch('/chat/message', {

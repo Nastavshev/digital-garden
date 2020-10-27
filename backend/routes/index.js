@@ -1,24 +1,18 @@
 import express from 'express';
-import checkSession from '../middlewares/checkSession.js';
-import gardenBedModel from '../models/gardenBedModel.js';
 import commentModel from '../models/commentModel.js';
 import vegetModel from '../models/vegetModel.js';
 import articleModel from '../models/articleModel.js';
 import moonCalendarModel from '../models/moonCalendarModel.js';
+import logger from '../misc/logger.js';
 
 const router = express.Router();
-
-router.get('/secret', checkSession, (req, res) => {
-  res.json({
-    email: req.session.user.email,
-  });
-});
 
 router.get('/moonmonth', async (req, res) => {
   let monthFromBD;
   try {
     monthFromBD = await moonCalendarModel.find();
   } catch (error) {
+    logger.error(error);
     return res.status(404).json({
       errorMessage: error.message,
     });
@@ -31,6 +25,7 @@ router.get('/vegetables', async (req, res) => {
   try {
     vegetFromBD = await vegetModel.find();
   } catch (error) {
+    logger.error(error);
     return res.status(404).json({
       errorMessage: error.message,
     });
@@ -43,6 +38,7 @@ router.get('/articles', async (req, res) => {
   try {
     articlesFromBD = await articleModel.find();
   } catch (error) {
+    logger.error(error);
     return res.status(404).json({
       errorMessage: error.message,
     });
@@ -52,7 +48,6 @@ router.get('/articles', async (req, res) => {
 
 // запись нового комментария в БД
 router.post('/articles/:id/newMessage', async (req, res) => {
-  // console.log(req.session.user);
   const { message, id } = req.body;
   let newComment;
   try {
@@ -60,15 +55,14 @@ router.post('/articles/:id/newMessage', async (req, res) => {
       commentText: message,
       commentDate: new Date(),
       authorId: req.session.user.id,
-      // authorName: req.session.user.userName,
       articleId: id,
     });
     const currentArticle = await articleModel.findOne({ _id: id });
     currentArticle.comments.push(newComment);
     await currentArticle.save();
     await newComment.save();
-    // console.log(newComment);
   } catch (error) {
+    logger.error(error);
     return res.status(404).json({
       errorMessage: error.message,
     });
@@ -77,8 +71,6 @@ router.post('/articles/:id/newMessage', async (req, res) => {
 });
 
 router.get('/articles/:id/:page', async (req, res) => {
-  // console.log('>>>> get /articles/:idTheme');
-  // console.log(req.params);
   const { id, page } = req.params;
   const options = {
     page,
@@ -87,10 +79,9 @@ router.get('/articles/:id/:page', async (req, res) => {
   let dataPagin;
   await commentModel.paginate({}, options, (error, result) => {
     if (error) {
-      console.error(error);
-    } else {
-      dataPagin = result;
+      return error;
     }
+    dataPagin = result;
   });
   let commentFromBD;
   const paginatArray = [];
@@ -101,15 +92,15 @@ router.get('/articles/:id/:page', async (req, res) => {
 
     commentFromBD = JSON.parse(JSON.stringify(commentFromBD));
 
-    for (let i = 1; i <= dataPagin.totalPages; i++) {
+    for (let i = 1; i <= dataPagin.totalPages; i += 1) {
       paginatArray.push({ page: `${i}` });
     }
   } catch (error) {
+    logger.error(error);
     return res.status(404).json({
       errorMessage: error.message,
     });
   }
-  // console.log(commentFromBD, paginatArray);
   return res.status(200).json({ commentFromBD, paginatArray });
 });
 
