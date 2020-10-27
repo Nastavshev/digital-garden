@@ -9,7 +9,7 @@
 * Node.js / Express
 * MongoDB / Mongoose
 
-### Краткая инструкция 
+### Краткая GIF инструкция 
 
 ![Garden](https://github.com/Nastavshev/digital-garden/blob/main/frontend/public/gif/learn.gif)
 
