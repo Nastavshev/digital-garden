@@ -34,6 +34,7 @@ function UserChat() {
   }, []);
 
   useEffect(() => {
+    // if (chat.length) {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setChat((prev) => [

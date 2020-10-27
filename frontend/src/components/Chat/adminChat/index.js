@@ -23,12 +23,8 @@ function AdminChat() {
     try {
       (async () => {
         const response = await fetch('/chat/admin');
-        // if (response.status === 200) {
         const resp = await response.json();
         setAdminChats(resp);
-        // }
-        // const resp = await response.json();
-        // setError(JSON.stringify(resp))
       })();
     } catch (err) {
       setError('ERROR', JSON.stringify(err));
