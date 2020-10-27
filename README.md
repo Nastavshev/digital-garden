@@ -11,6 +11,7 @@
 * React / Redux / thunk
 * Node.js / Express
 * MongoDB / Mongoose
+* Material-UI
 
 ### Краткая GIF инструкция 
 
