@@ -15,7 +15,6 @@ const FileStore = FileStoreGeneral(session);
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
 
 app.use(session({
   store: new FileStore(),
@@ -53,6 +52,4 @@ app.use('/auth', authRouter);
 app.use('/chat', chatRouter);
 app.use('/modals', modalsRouter);
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log('I am work 3001');
-});
+app.listen(process.env.PORT || 3001);

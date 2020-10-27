@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setFault, setLogup } from '../../../redux/authActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import emailjs from 'emailjs-com';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { setFault, setLogup } from '../../../redux/authActions';
 import styles from './index.module.css';
+import logger from '../../../misc/logger';
 
 function Logup(props) {
   const { setOpenSignup, openSignup } = props;
 
-  // // Закрытие модального окна 
+  // // Закрытие модального окна
   const handleClose = () => {
     setOpenSignup(false);
   };
-
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,28 +34,6 @@ function Logup(props) {
   const {
     name, email, password, confirm,
   } = inputs;
-
-  let data = {
-    name: name,
-    email: email,
-    password: password
-  }
-
-  // function sendEmail(e) {
-  //   // e.preventDefault();?>?,.mnbvbnm,.
-  //   console.log('send email');
-  //   emailjs.send(
-  //     'yandex',
-  //     'outlook',
-  //     data,
-  //     'user_fgtM1ILKeawxufmu65ncd',
-  //   )
-  //     .then((result) => {
-  //       console.log(result.text);
-  //     }, (error) => {
-  //       console.log(error.text);
-  //     });
-  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,7 +52,7 @@ function Logup(props) {
         });
         if (response.status === 200) {
           dispatch(setLogup());
-          handleClose()
+          handleClose();
           // sendEmail(e);
           return history.push('/user/account');
         }
@@ -84,8 +61,8 @@ function Logup(props) {
       }
       return setError('Пароль не совпадает');
     } catch (err) {
-      console.error('ERROR ENTER LOGIN PAGE', err);
-      return setError('ERROR ENTER LOGIN PAGE');
+      logger.error(err);
+      return setError('ERROR ENTER LOGIN PAGE', err);
     }
   }
 
@@ -97,34 +74,34 @@ function Logup(props) {
           <DialogContentText>
             Заполните, пожалуста, все поля для регистрации
           </DialogContentText>
-          <form autocomplete="off">
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Введите имя"
-            type="text"
-            fullWidth
-            onChange={handleChange}
-            name="name"
-            value={name}
-            autocomplete="off"
-          />
+          <form autoComplete="off">
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Введите имя"
+              type="text"
+              fullWidth
+              onChange={handleChange}
+              name="name"
+              value={name}
+              autocomplete="off"
+            />
           </form>
         </DialogContent>
         <DialogContent>
-        <form autocomplete="off">
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Введите e-mail"
-            type="text"
-            fullWidth
-            onChange={handleChange}
-            name="email"
-            required
-            value={email}
-            autocomplete="off"
-          />
+          <form autoComplete="off">
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Введите e-mail"
+              type="text"
+              fullWidth
+              onChange={handleChange}
+              name="email"
+              required
+              value={email}
+              autocomplete="off"
+            />
           </form>
         </DialogContent>
         <DialogContent>

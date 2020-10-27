@@ -5,7 +5,6 @@ import { setSupport } from '../../redux/supportAction';
 function Support() {
   const dispatch = useDispatch();
   const [flag, setFlag] = useState(false);
-  console.log('7 flag!!!!!!!!!!!!!!', flag);
 
   function getSupport() {
     setFlag(!flag);

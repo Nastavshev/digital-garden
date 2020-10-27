@@ -7,14 +7,12 @@ import style from './userChat.module.css';
 const ws = new WebSocket('ws://localhost:3333');
 
 function UserChat() {
-  const currentChat = useSelector((state) => state.currentChat);
   const user = useSelector((state) => state.user);
   const [chat, setChat] = useState([]);
   const [error, setError] = useState('');
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -36,13 +34,13 @@ function UserChat() {
   }, []);
 
   useEffect(() => {
+    // if (chat.length) {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setChat((prev) => [
         ...prev,
         data,
       ]);
-      console.log('data >>>>>>>>>>', data);
 
       try {
         (async () => {
@@ -59,15 +57,12 @@ function UserChat() {
       } catch (err) {
         setError('ERROR', JSON.stringify(err));
       }
-
     };
-    console.log('chat >>>>>>>>>>', chat);
   }, [chat]);
 
   async function sendMessage(e) {
     e.preventDefault();
     const { id } = user;
-    // console.log('currentChat>>>>>>', currentChat);
     ws.send(JSON.stringify({ id, message }));
     try {
       await fetch('/chat/message', {

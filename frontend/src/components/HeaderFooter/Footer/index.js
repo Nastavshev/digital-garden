@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { useSelector } from 'react-redux';
 import styles from './index.module.css';
-import Support from '../../Support';
 
 function Copyright() {
   return (
@@ -58,7 +57,6 @@ export default function Footer() {
               </Typography>
             </div>
           </div>
-          {isAuthenticated && <Support />}
         </Container>
       </footer>
     </div>

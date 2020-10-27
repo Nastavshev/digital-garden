@@ -2,12 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, Route,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Login from '../Login';
-import Secret from '../Secret';
-import PrivateRoute from '../PrivateRoute';
-import Logout from '../Logout';
-// import Logup from '../Logup';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Logout from '../Logout/Logout';
 import ModalBed from '../ModalBed';
 import Articles from '../Articles';
 import CreateMessage from '../CreateMessage';
@@ -23,10 +19,8 @@ import Header from '../HeaderFooter/Header';
 import styles from './index.module.css';
 import Personal from '../Personal';
 import Garden from '../Garden';
-import Chat from '../Chat';
 
 function App() {
-  const supportChat = useSelector((state) => state.supportChat);
   return (
     <div className={styles.App}>
       <Router>
@@ -54,9 +48,6 @@ function App() {
           <Route exact path="/mooncalendar/:idMonth">
             <MonthCalendar />
           </Route>
-          {/* <Route exact path='/logup'>
-            <Logup />
-          </Route> */}
           <Route exact path="/policy">
             <Policy />
           </Route>
@@ -77,7 +68,6 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-        {supportChat && <Chat />}
       </Router>
     </div>
   );

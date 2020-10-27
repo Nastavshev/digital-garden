@@ -5,13 +5,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import woman from '../../../logo/housekeeper.png';
 import { Link, NavLink } from 'react-router-dom';
+import { Button, Icon } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import woman from '../../../logo/housekeeper.png';
 import styles from './index.module.css';
 import Signup from '../../Modal/ModalSignup';
 import Login from '../../Modal/ModalLogin';
-import { Button, Icon } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
 import { modalLogin } from '../../../redux/modalLoginActions';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,18 +46,21 @@ export default function MenuAppBar() {
       <AppBar position="static" className={styles.bar}>
         <Toolbar>
           <div className={styles.link}>
-            <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to='/'>Главная
-            {/* <Button size="small" className={styles.bar}>Главная</Button> */}
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to="/">
+              Главная
+              {/* <Button size="small" className={styles.bar}>Главная</Button> */}
             </NavLink>
           </div>
           <div className={styles.link}>
-            <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/mooncalendar'>Лунный календарь
-            {/* <Button size="small" className={styles.bar}>Лунный календарь</Button> */}
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} to="/mooncalendar">
+              Лунный календарь
+              {/* <Button size="small" className={styles.bar}>Лунный календарь</Button> */}
             </NavLink>
           </div>
           <div className={styles.link}>
-            <NavLink activeClassName={styles.activeLink} className={styles.bar} to='/articles'>Статьи
-            {/* <Button size="small" className={styles.bar}>Статьи</Button> */}
+            <NavLink activeClassName={styles.activeLink} className={styles.bar} to="/articles">
+              Статьи
+              {/* <Button size="small" className={styles.bar}>Статьи</Button> */}
             </NavLink>
           </div>
 
@@ -74,29 +77,28 @@ export default function MenuAppBar() {
           </Typography>
 
           {isAuthenticated
-            ?
-            <>
-              <Link to='/user/logout'  >
-                <Button size="small" style={{ color: '#feffe4' }}>Выйти</Button>
-              </Link>
-              <Link to='/user/account' className={styles.buttonHeader}>
-                <Button size="small" style={{ color: '#feffe4' }}>Личный кабинет</Button>
-              </Link>
-              <Avatar src={woman} />
-            </>
-            :
-            <>
-              <Button  size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
-              <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
-              <Button size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenLogin}>Войти</Button>
-              <Login />
-            </>
-          }
+            ? (
+              <>
+                <Link to="/user/logout">
+                  <Button size="small" style={{ color: '#feffe4' }}>Выйти</Button>
+                </Link>
+                <Link to="/user/account" className={styles.buttonHeader}>
+                  <Button size="small" style={{ color: '#feffe4' }}>Личный кабинет</Button>
+                </Link>
+                <Avatar src={woman} />
+              </>
+            )
+            : (
+              <>
+                <Button size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenSignup}>Зарегистрироваться</Button>
+                <Signup setOpenSignup={setOpenSignup} openSignup={openSignup} />
+                <Button size="small" style={{ color: '#feffe4' }} onClick={handleClickOpenLogin}>Войти</Button>
+                <Login />
+              </>
+            )}
         </Toolbar>
       </AppBar>
-      <main className='main'>
-      </main>
-    </div >
+      <main className="main" />
+    </div>
   );
 }
-

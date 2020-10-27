@@ -6,14 +6,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFault, setLogin } from '../../../redux/authActions.js';
 import { modalLogin } from '../../../redux/modalLoginActions';
 import styles from './index.module.css';
+import logger from '../../../misc/logger';
 
 function Login() {
-
   const dispatch = useDispatch();
   const status = useSelector((state) => state.modalLogin);
   const history = useHistory();
@@ -51,7 +51,7 @@ function Login() {
       const resp = await response.json();
       return setError(resp.message);
     } catch (err) {
-      console.error('ERROR ENTER LOGIN PAGE', err);
+      logger.error(err);
       return setError('ERROR ENTER LOGIN PAGE');
     }
   }
@@ -63,7 +63,6 @@ function Login() {
     });
   }
 
-
   return (
     <div>
       <Dialog open={status} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
@@ -74,19 +73,19 @@ function Login() {
           </DialogContentText>
         </DialogContent>
         <DialogContent>
-       <form autocomplete="off">
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Введите e-mail"
-            type="text"
-            fullWidth
-            onChange={handleChange}
-            name="email"
-            value={email}
-            required
-            autocomplete="off"
-          />
+          <form autoComplete="off">
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Введите e-mail"
+              type="text"
+              fullWidth
+              onChange={handleChange}
+              name="email"
+              value={email}
+              required
+              autocomplete="off"
+            />
           </form>
         </DialogContent>
         <DialogContent>
@@ -107,7 +106,7 @@ function Login() {
           <Button onClick={handleClose} color="primary">
             Отмена
           </Button>
-          <Button onClick={(e) => { handleSubmit(e) }} color="primary">
+          <Button onClick={(e) => { handleSubmit(e); }} color="primary">
             Войти!
           </Button>
         </DialogActions>

@@ -16,7 +16,6 @@ function AdminChat() {
   const [message, setMessage] = useState();
 
   ws.onopen = () => {
-    console.log('WS_OPEN ????????????');
     ws.send(JSON.stringify({ userId: user.id }));
   };
 
@@ -24,18 +23,13 @@ function AdminChat() {
     try {
       (async () => {
         const response = await fetch('/chat/admin');
-        // if (response.status === 200) {
         const resp = await response.json();
         setAdminChats(resp);
-        // }
-        // const resp = await response.json();
-        // setError(JSON.stringify(resp))
       })();
     } catch (err) {
       setError('ERROR', JSON.stringify(err));
     }
   }, []);
-  console.log('adminChats >>>>>>>>>', adminChats);
 
   useEffect(() => {
     ws.onmessage = (event) => {
@@ -44,10 +38,8 @@ function AdminChat() {
         ...prev,
         data,
       ]);
-      console.log('data >>>>>>>>>>', data);
     };
   }, [chat]);
-  console.log('chat >xc>>>>>>>>>', chat);
 
   function handleSwitch(id) {
     setFlag(!flag);
@@ -61,11 +53,9 @@ function AdminChat() {
 
   async function sendMessage(e) {
     e.preventDefault();
-    // console.log('currentChat>>>>>>', currentChat);
-    // console.log('user.admin>>>>>>', user.admin);
     ws.send(JSON.stringify({ userId: user.id, id: currentChat, message }));
   }
-
+  
   return (
     <>
       {
@@ -100,10 +90,3 @@ function AdminChat() {
 }
 
 export default AdminChat;
-
-// (
-//   <>
-//     {chat.map((el) => <p>{el}</p>)}
-//     <button type="button" onClick={setFlag(!flag)}>Назад</button>
-//   </>
-// )

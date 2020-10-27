@@ -55,16 +55,14 @@ const useStyles = makeStyles({
 function MonthCalendar() {
   const classes = useStyles();
   const { idMonth } = useParams();
-  console.log(idMonth);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
-  const monthArray = useSelector((state) => state.mooncalendar[0].year.month)
+  const monthArray = useSelector((state) => state.mooncalendar[0].year.month);
  
-  let data = monthArray.find((element) => element._id === idMonth)
-  console.log(data.article.text);
+  let data = monthArray.find((element) => element._id === idMonth);
 
   return (
     <div className={styles.wrapperMoon}>

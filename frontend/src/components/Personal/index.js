@@ -8,7 +8,6 @@ import ModalAddGarden from '../Modal/ModalAddGarden';
 import styles from './index.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import { personalGarden } from '../../../redux/personalGardenActions'
 import Audio from '../Audio';
 import { useHistory } from 'react-router-dom'
 import Weather from '../Weather/Weather';
@@ -45,8 +44,6 @@ export default function Personal() {
   async function openElement(openId) {
     const response = await fetch(`/modals/garden/${openId}`)
     const data = await response.json()
-    console.log(data);
-    console.log(response.status);
     if (response.status === 200) {
       history.push(`/user/garden/${openId}`)
     }
@@ -67,7 +64,7 @@ export default function Personal() {
             </Paper>
           <Paper elevation={3} className={styles.littleContainer}>
             <div className={styles.title}><strong>ПОГОДА</strong></div>
-            <Weather/>
+            <Weather />
           </Paper>
 
           <Paper elevation={3} className={styles.littleContainer}>
