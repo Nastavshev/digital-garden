@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "seed": "node seed.js seedArticle.js seedCalendar.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

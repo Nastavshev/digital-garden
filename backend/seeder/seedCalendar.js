@@ -1,15 +1,8 @@
-import mongoose from 'mongoose';
-import moonCalendarModel from './models/moonCalendarModel.js';
-
-mongoose.connect('mongodb://localhost:27017/vasyn_garden', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+import MoonCalendarModel from '../models/moonCalendarModel.js';
+import '../misc/db.js';
 
 async function createCalendar() {
-  const year1 = await new moonCalendarModel({
+  const year1 = await new MoonCalendarModel({
     year: {
       titleYear: 2020,
       month: [{

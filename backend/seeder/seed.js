@@ -1,15 +1,8 @@
-import mongoose from 'mongoose';
-import vegetModel from './models/vegetModel.js';
-
-mongoose.connect('mongodb://localhost:27017/vasyn_garden', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+import VegetModel from '../models/vegetModel.js';
+import '../misc/db.js';
 
 async function createInfo() {
-  const veg1 = await new vegetModel({
+  const veg1 = await new VegetModel({
     vegetableName: 'Арбуз',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -19,7 +12,7 @@ async function createInfo() {
       temperature: '15-17',
     },
   });
-  const veg2 = await new vegetModel({
+  const veg2 = await new VegetModel({
     vegetableName: 'Баклажан',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -29,7 +22,7 @@ async function createInfo() {
       temperature: '13-14',
     },
   });
-  const veg3 = await new vegetModel({
+  const veg3 = await new VegetModel({
     vegetableName: 'Бобы',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -39,7 +32,7 @@ async function createInfo() {
       temperature: '3-4',
     },
   });
-  const veg4 = await new vegetModel({
+  const veg4 = await new VegetModel({
     vegetableName: 'Горох',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -49,7 +42,7 @@ async function createInfo() {
       temperature: '4-6',
     },
   });
-  const veg5 = await new vegetModel({
+  const veg5 = await new VegetModel({
     vegetableName: 'Дыня',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -59,7 +52,7 @@ async function createInfo() {
       temperature: '15-17',
     },
   });
-  const veg6 = await new vegetModel({
+  const veg6 = await new VegetModel({
     vegetableName: 'Кабачок. патиссон',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -69,7 +62,7 @@ async function createInfo() {
       temperature: '10-12',
     },
   });
-  const veg7 = await new vegetModel({
+  const veg7 = await new VegetModel({
     vegetableName: 'Капуста б/к',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -79,7 +72,7 @@ async function createInfo() {
       temperature: '2-3',
     },
   });
-  const veg8 = await new vegetModel({
+  const veg8 = await new VegetModel({
     vegetableName: 'Капуста цветная',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -89,7 +82,7 @@ async function createInfo() {
       temperature: '2-3',
     },
   });
-  const veg9 = await new vegetModel({
+  const veg9 = await new VegetModel({
     vegetableName: 'Кукуруза сахарная',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -99,7 +92,7 @@ async function createInfo() {
       temperature: '7-10',
     },
   });
-  const veg10 = await new vegetModel({
+  const veg10 = await new VegetModel({
     vegetableName: 'Лук',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -109,7 +102,7 @@ async function createInfo() {
       temperature: '2-3',
     },
   });
-  const veg11 = await new vegetModel({
+  const veg11 = await new VegetModel({
     vegetableName: 'Лук-порей',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -119,7 +112,7 @@ async function createInfo() {
       temperature: '12',
     },
   });
-  const veg12 = await new vegetModel({
+  const veg12 = await new VegetModel({
     vegetableName: 'Морковь',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -129,7 +122,7 @@ async function createInfo() {
       temperature: '4-5',
     },
   });
-  const veg13 = await new vegetModel({
+  const veg13 = await new VegetModel({
     vegetableName: 'Огурец',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -139,7 +132,7 @@ async function createInfo() {
       temperature: '13-15',
     },
   });
-  const veg14 = await new vegetModel({
+  const veg14 = await new VegetModel({
     vegetableName: 'Перец сладкий и острый',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -149,7 +142,7 @@ async function createInfo() {
       temperature: '8-13',
     },
   });
-  const veg15 = await new vegetModel({
+  const veg15 = await new VegetModel({
     vegetableName: 'Редис',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -159,7 +152,7 @@ async function createInfo() {
       temperature: '1-2',
     },
   });
-  const veg16 = await new vegetModel({
+  const veg16 = await new VegetModel({
     vegetableName: 'Редька',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -169,7 +162,7 @@ async function createInfo() {
       temperature: '1-2',
     },
   });
-  const veg17 = await new vegetModel({
+  const veg17 = await new VegetModel({
     vegetableName: 'Салат',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -179,7 +172,7 @@ async function createInfo() {
       temperature: '2-3',
     },
   });
-  const veg18 = await new vegetModel({
+  const veg18 = await new VegetModel({
     vegetableName: 'Свекла столовая',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -189,7 +182,7 @@ async function createInfo() {
       temperature: '5-6',
     },
   });
-  const veg19 = await new vegetModel({
+  const veg19 = await new VegetModel({
     vegetableName: 'Сельдерей корневой',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -199,7 +192,7 @@ async function createInfo() {
       temperature: '3-5',
     },
   });
-  const veg20 = await new vegetModel({
+  const veg20 = await new VegetModel({
     vegetableName: 'Помидоры томат',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -209,7 +202,7 @@ async function createInfo() {
       temperature: '10-11',
     },
   });
-  const veg21 = await new vegetModel({
+  const veg21 = await new VegetModel({
     vegetableName: 'Тыква',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -219,7 +212,7 @@ async function createInfo() {
       temperature: '10-12',
     },
   });
-  const veg22 = await new vegetModel({
+  const veg22 = await new VegetModel({
     vegetableName: 'Фасоль',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -229,7 +222,7 @@ async function createInfo() {
       temperature: '10-12',
     },
   });
-  const veg23 = await new vegetModel({
+  const veg23 = await new VegetModel({
     vegetableName: 'Чеснок',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -239,7 +232,7 @@ async function createInfo() {
       temperature: '2-5',
     },
   });
-  const veg24 = await new vegetModel({
+  const veg24 = await new VegetModel({
     vegetableName: 'Шпинат',
     referenceInfo: {
       timeFromSowingToEmergence: {
@@ -249,7 +242,7 @@ async function createInfo() {
       temperature: '1-2',
     },
   });
-  const veg25 = await new vegetModel({
+  const veg25 = await new VegetModel({
     vegetableName: 'Картофель',
     referenceInfo: {
       timeFromSowingToEmergence: {
