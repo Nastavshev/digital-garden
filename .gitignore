@@ -118,3 +118,4 @@ dist
 .pnp.*
 
 sessions
+package-lock.json
