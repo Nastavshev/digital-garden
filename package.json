@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && yarn && yarn build",
+    "start": "cd backend && yarn && yarn start"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Nastavshev/digital-garden/issues"
   },
-  "homepage": "https://github.com/Nastavshev/digital-garden#readme"
+  "homepage": "https://github.com/Nastavshev/digital-garden#readme",
+  "engines": {
+    "node": "14.x"
+  }
 }

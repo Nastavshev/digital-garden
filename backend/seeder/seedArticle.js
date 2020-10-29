@@ -1,15 +1,8 @@
-import mongoose from 'mongoose';
-import articleModel from './models/articleModel.js';
-
-mongoose.connect('mongodb://localhost:27017/vasyn_garden', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+import ArticleModel from '../models/articleModel.js';
+import '../misc/db.js';
 
 async function createArticle() {
-  const article1 = await new articleModel({
+  const article1 = await new ArticleModel({
     imageArticle: 'potato.jpg',
     title: 'Памятка по хранению картофеля',
     text: [{
@@ -47,7 +40,7 @@ async function createArticle() {
     },
     ],
   });
-  const article2 = await new articleModel({
+  const article2 = await new ArticleModel({
     imageArticle: 'tomato.jpg',
     title: 'Окучивание помидоров в теплице',
     text: [{
@@ -85,7 +78,7 @@ async function createArticle() {
     },
     ],
   })
-  const article3 = await new articleModel({
+  const article3 = await new ArticleModel({
     imageArticle: 'rose.jpg',
     title: 'Обязательно ли укрывать розы на зиму',
     text: [{
@@ -123,7 +116,7 @@ async function createArticle() {
     },
     ],
   })
-  const article4 = await new articleModel({
+  const article4 = await new ArticleModel({
     imageArticle: 'tree.png',
     title: 'Влагозарядковый полив хвойных деревьев осенью',
     text: [{
@@ -155,7 +148,7 @@ async function createArticle() {
     },
     ],
   })
-  const article5 = await new articleModel({
+  const article5 = await new ArticleModel({
     imageArticle: 'bow.jpg',
     title: 'Подкормка лука на репку',
     text: [{
@@ -191,7 +184,7 @@ async function createArticle() {
     },
     ],
   })
-  const article6 = await new articleModel({
+  const article6 = await new ArticleModel({
     imageArticle: 'carrot.jpg',
     title: 'Хранение мытой моркови',
     text: [{
