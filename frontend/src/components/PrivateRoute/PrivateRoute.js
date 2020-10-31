@@ -2,32 +2,32 @@ import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalLogin } from '../../redux/modalLoginActions';
-import { setSession } from '../../redux/sessionActions';
-import logger from '../../misc/logger';
+import { setSession, setErrorSession } from '../../redux/sessionActions';
 
 function PrivateRoute({ children, ...rest }) {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated.status);
+  const errorMessage = useSelector((state) => state.isAuthenticated.error);
 
   useEffect(() => {
-    try {
-      (async () => {
+    (async () => {
+      try {
         const response = await fetch('/auth/isSession');
         const resp = await response.json();
         dispatch(setSession(resp));
-      })();
-    } catch (err) {
-      logger.error(err);
-    }
+      } catch (err) {
+        return dispatch(setErrorSession(err));
+      }
+    })();
   }, [dispatch]);
 
   return (
     <Route {...rest}>
-      {
-        isAuthenticated
-          ? children
-          : (dispatch(modalLogin()) && <Redirect to="/" />)
-      }
+      {errorMessage}
+      { !errorMessage && (isAuthenticated
+        ? children
+        : (dispatch(modalLogin()) && <Redirect to="/" />)
+      )}
     </Route>
   );
 }

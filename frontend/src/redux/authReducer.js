@@ -1,17 +1,39 @@
 import {
-  AUTHENTICATED_SUCCESSULLY, LOGOUT, LOGUP, AUTHENTICATED_UNSUCCESSULLY,
+  AUTHENTICATED_SUCCESSULLY, LOGOUT, LOGUP, AUTHENTICATED_UNSUCCESSULLY, AUTHENTICATION_ERROR,
 } from './actionTypes';
 
-function authorization(state = false, action) {
+const initialAuth = {
+  status: false,
+  error: '',
+};
+
+function authorization(state = initialAuth, action) {
   switch (action.type) {
     case AUTHENTICATED_SUCCESSULLY:
-      return true;
+      return {
+        ...state,
+        status: true,
+      };
     case LOGUP:
-      return true;
+      return {
+        ...state,
+        status: true,
+      };
     case LOGOUT:
-      return false;
+      return {
+        ...state,
+        status: false,
+      };
     case AUTHENTICATED_UNSUCCESSULLY:
-      return false;
+      return {
+        ...state,
+        status: false,
+      };
+    case AUTHENTICATION_ERROR:
+      return {
+        ...state,
+        error: action.payload.message,
+      };
     default:
       return state;
   }

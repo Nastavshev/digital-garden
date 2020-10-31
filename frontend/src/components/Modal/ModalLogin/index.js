@@ -8,14 +8,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFault, setLogin } from '../../../redux/authActions.js';
+import { setFault, setLogin, setAuthError } from '../../../redux/authActions';
 import { modalLogin } from '../../../redux/modalLoginActions';
 import styles from './index.module.css';
-import logger from '../../../misc/logger';
 
 function Login() {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.modalLogin);
+  const errorMessage = useSelector((state) => state.isAuthenticated.error);
   const history = useHistory();
   const [error, setError] = useState();
   const [inputs, setInputs] = useState({
@@ -51,8 +51,7 @@ function Login() {
       const resp = await response.json();
       return setError(resp.message);
     } catch (err) {
-      logger.error(err);
-      return setError('ERROR ENTER LOGIN PAGE');
+      return dispatch(setAuthError(err));
     }
   }
 
@@ -65,52 +64,55 @@ function Login() {
 
   return (
     <div>
-      <Dialog open={status} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
-        <DialogTitle id="form-dialog-title"><strong>Вход</strong></DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Заполните, пожалуста, поля ниже для входа на сайт
-          </DialogContentText>
-        </DialogContent>
-        <DialogContent>
-          <form autoComplete="off">
+      {errorMessage
+        || (
+        <Dialog open={status} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
+          <DialogTitle id="form-dialog-title"><strong>Вход</strong></DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Заполните, пожалуста, поля ниже для входа на сайт
+            </DialogContentText>
+          </DialogContent>
+          <DialogContent>
+            <form autoComplete="off">
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Введите e-mail"
+                type="text"
+                fullWidth
+                onChange={handleChange}
+                name="email"
+                value={email}
+                required
+                autocomplete="off"
+              />
+            </form>
+          </DialogContent>
+          <DialogContent>
             <TextField
               autoFocus
               margin="dense"
-              label="Введите e-mail"
-              type="text"
+              label="Введите пароль"
+              type="password"
               fullWidth
               onChange={handleChange}
-              name="email"
-              value={email}
+              name="password"
+              value={password}
               required
-              autocomplete="off"
             />
-          </form>
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Введите пароль"
-            type="password"
-            fullWidth
-            onChange={handleChange}
-            name="password"
-            value={password}
-            required
-          />
-        </DialogContent>
-        <DialogContent className={styles.error}>{error}</DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Отмена
-          </Button>
-          <Button onClick={(e) => { handleSubmit(e); }} color="primary">
-            Войти!
-          </Button>
-        </DialogActions>
-      </Dialog>
+          </DialogContent>
+          <DialogContent className={styles.error}>{error}</DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Отмена
+            </Button>
+            <Button onClick={(e) => { handleSubmit(e); }} color="primary">
+              Войти!
+            </Button>
+          </DialogActions>
+        </Dialog>
+        )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { ADD_SESSION, DELETE_SESSION } from './actionTypes';
+import { ADD_SESSION, DELETE_SESSION, ERROR_SESSION } from './actionTypes';
 
 const setSession = (session) => ({
   type: ADD_SESSION,
@@ -9,4 +9,9 @@ const setDeleteSession = () => ({
   type: DELETE_SESSION,
 });
 
-export { setSession, setDeleteSession };
+const setErrorSession = (err) => ({
+  type: ERROR_SESSION,
+  payload: err,
+});
+
+export { setSession, setDeleteSession, setErrorSession };

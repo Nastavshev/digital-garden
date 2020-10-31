@@ -3,10 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import { Link, NavLink } from 'react-router-dom';
-import { Button, Icon } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import woman from '../../../logo/housekeeper.png';
 import styles from './index.module.css';
@@ -28,10 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated.status);
   const classes = useStyles();
   const [openSignup, setOpenSignup] = useState(false);
-  const status = useSelector((state) => state.modalLogin);
 
   const handleClickOpenSignup = () => {
     setOpenSignup(true);
@@ -48,30 +46,27 @@ export default function MenuAppBar() {
           <div className={styles.link}>
             <NavLink activeClassName={styles.activeLink} className={styles.bar} exact to="/">
               Главная
-              {/* <Button size="small" className={styles.bar}>Главная</Button> */}
             </NavLink>
           </div>
           <div className={styles.link}>
             <NavLink activeClassName={styles.activeLink} className={styles.bar} to="/mooncalendar">
               Лунный календарь
-              {/* <Button size="small" className={styles.bar}>Лунный календарь</Button> */}
             </NavLink>
           </div>
           <div className={styles.link}>
             <NavLink activeClassName={styles.activeLink} className={styles.bar} to="/articles">
               Статьи
-              {/* <Button size="small" className={styles.bar}>Статьи</Button> */}
             </NavLink>
           </div>
 
           <Typography variant="h6" className={classes.title}>
             <div className={styles.wrapperLogo}>
               <div>
-                <img src="/icons/shovel.png" className={styles.logoIcon} />
+                <img src="/icons/shovel.png" className={styles.logoIcon} alt="icons" />
               </div>
               <div className={styles.logoText}>ВАСИН ОГОРОД</div>
               <div>
-                <img src="/icons/vegetables.png" className={styles.logoIcon} />
+                <img src="/icons/vegetables.png" className={styles.logoIcon} alt="icons" />
               </div>
             </div>
           </Typography>

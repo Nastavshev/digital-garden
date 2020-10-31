@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { getMonthThunk } from '../../redux/action-creater';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './monthCalendar.module.css';
 import { useParams } from 'react-router-dom';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -11,6 +9,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import styles from './monthCalendar.module.css';
+import { getMonthThunk } from '../../redux/action-creater';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -29,7 +29,6 @@ const StyledCell = withStyles((theme) => ({
   },
 }))(StyledTableCell);
 
-
 const StyledTableRow = withStyles((theme) => ({
   root: {
     '&:nth-of-type(odd)': {
@@ -38,18 +37,10 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
-
 const useStyles = makeStyles({
   table: {
     minWidth: 400,
   },
-  //   tableRightBorder: {
-  //     borderWidth: 1,
-  //     borderRightWidth: 1,
-  //     borderColor: 'black',
-  //     borderStyle: 'solid',
-  // },
 });
 
 function MonthCalendar() {
@@ -60,9 +51,9 @@ function MonthCalendar() {
     window.scrollTo(0, 0);
   }, []);
 
-  const monthArray = useSelector((state) => state.mooncalendar[0].year.month);
- 
-  let data = monthArray.find((element) => element._id === idMonth);
+  const monthArray = useSelector((state) => state.mooncalendar[0]?.year.month);
+
+  const data = monthArray.find((element) => element._id === idMonth);
 
   return (
     <div className={styles.wrapperMoon}>
@@ -201,9 +192,7 @@ function MonthCalendar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-
 export default MonthCalendar;
-
