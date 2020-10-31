@@ -28,7 +28,7 @@ function MoonCalendar() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const monthArray = useSelector((state) => state.mooncalendar[0].year.month);
+  const monthArray = useSelector((state) => state.mooncalendar[0]?.year.month);
 
   return (
     <>

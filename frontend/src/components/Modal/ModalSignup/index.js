@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,13 +8,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { setFault, setLogup } from '../../../redux/authActions';
+import { setFault, setLogup, setAuthError } from '../../../redux/authActions';
 import styles from './index.module.css';
-import logger from '../../../misc/logger';
 
 function Logup(props) {
   const { setOpenSignup, openSignup } = props;
-
+  const errorMessage = useSelector((state) => state.isAuthenticated.error);
   // // Закрытие модального окна
   const handleClose = () => {
     setOpenSignup(false);
@@ -53,7 +52,6 @@ function Logup(props) {
         if (response.status === 200) {
           dispatch(setLogup());
           handleClose();
-          // sendEmail(e);
           return history.push('/user/account');
         }
         dispatch(setFault());
@@ -61,86 +59,88 @@ function Logup(props) {
       }
       return setError('Пароль не совпадает');
     } catch (err) {
-      logger.error(err);
-      return setError('ERROR ENTER LOGIN PAGE', err);
+      return dispatch(setAuthError(err));
     }
   }
 
   return (
     <>
-      <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
-        <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Заполните, пожалуста, все поля для регистрации
-          </DialogContentText>
-          <form autoComplete="off">
-            <TextField
-              autoFocus
-              margin="dense"
-              label="Введите имя"
-              type="text"
-              fullWidth
-              onChange={handleChange}
-              name="name"
-              value={name}
-              autocomplete="off"
-            />
-          </form>
-        </DialogContent>
-        <DialogContent>
-          <form autoComplete="off">
-            <TextField
-              autoFocus
-              margin="dense"
-              label="Введите e-mail"
-              type="text"
-              fullWidth
-              onChange={handleChange}
-              name="email"
-              required
-              value={email}
-              autocomplete="off"
-            />
-          </form>
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Введите пароль"
-            type="password"
-            fullWidth
-            onChange={handleChange}
-            name="password"
-            value={password}
-            required
-          />
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="location"
-            label="Подтвердите пароль"
-            type="password"
-            fullWidth
-            onChange={handleChange}
-            name="confirm"
-            value={confirm}
-            required
-          />
-        </DialogContent>
-        <DialogContent className={styles.error}>{error}</DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Отмена
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
-            Зарегистрироваться!
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {errorMessage
+        || (
+          <Dialog open={openSignup} onClose={handleClose} aria-labelledby="form-dialog-title" className="dialog">
+            <DialogTitle id="form-dialog-title"><strong>Регистрация</strong></DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Заполните, пожалуста, все поля для регистрации
+              </DialogContentText>
+              <form autoComplete="off">
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  label="Введите имя"
+                  type="text"
+                  fullWidth
+                  onChange={handleChange}
+                  name="name"
+                  value={name}
+                  autocomplete="off"
+                />
+              </form>
+            </DialogContent>
+            <DialogContent>
+              <form autoComplete="off">
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  label="Введите e-mail"
+                  type="text"
+                  fullWidth
+                  onChange={handleChange}
+                  name="email"
+                  required
+                  value={email}
+                  autocomplete="off"
+                />
+              </form>
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Введите пароль"
+                type="password"
+                fullWidth
+                onChange={handleChange}
+                name="password"
+                value={password}
+                required
+              />
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="location"
+                label="Подтвердите пароль"
+                type="password"
+                fullWidth
+                onChange={handleChange}
+                name="confirm"
+                value={confirm}
+                required
+              />
+            </DialogContent>
+            <DialogContent className={styles.error}>{error}</DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Отмена
+              </Button>
+              <Button onClick={handleSubmit} color="primary">
+                Зарегистрироваться!
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
     </>
   );
 }
